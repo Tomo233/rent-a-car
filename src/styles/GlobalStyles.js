@@ -15,8 +15,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 input,
