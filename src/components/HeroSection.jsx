@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import road from "../../public/road.jpg";
 import Button from "./Button";
 
 const RoadImage = styled.img`
@@ -34,14 +33,14 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-  color: #7dd3fc;
+  color: var(--color-primary-blue);
   font-weight: 600;
 `;
 
 function HeroSection() {
   return (
     <section>
-      <RoadImage src={road} alt="" />
+      <RoadImage src="/road.jpg" alt="" />
       <TextBox>
         <Title>Cruise into Your Perfect Ride</Title>
         <Paragraph>

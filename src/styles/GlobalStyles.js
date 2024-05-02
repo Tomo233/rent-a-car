@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+  :root {
+    --color-primary-blue : #0ea5e9;
+  }
+
     *,
 *::before,
 *::after {

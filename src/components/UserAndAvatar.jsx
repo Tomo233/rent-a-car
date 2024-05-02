@@ -21,7 +21,7 @@ function UserAndAvatar() {
   return (
     <StyledUserAvatar>
       <User>Tomo Bratic</User>
-      <UserImage src="/default-user.jpg" alt="userImage" />
+      <UserImage src="/default-user.png" alt="userImage" />
     </StyledUserAvatar>
   );
 }
