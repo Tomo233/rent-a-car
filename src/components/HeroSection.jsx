@@ -1,30 +1,26 @@
 import styled from "styled-components";
 import road from "../../public/road.jpg";
-
-const StyledHeroSection = styled.section`
-  position: relative;
-  top: -100px;
-  z-index: -1;
-`;
+import Button from "./Button";
 
 const RoadImage = styled.img`
   width: 100%;
   max-height: 800px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 `;
 
 const TextBox = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 24px;
   text-align: center;
+  margin-top: 16rem;
 `;
 
 const Title = styled.h1`
   font-size: 60px;
-  margin-bottom: 10px;
   font-weight: bold;
 `;
 
@@ -32,6 +28,9 @@ const Paragraph = styled.p`
   font-size: 22px;
   width: 800px;
   text-align: center;
+  margin-bottom: 25px;
+  text-align: center;
+  margin: 20px auto;
 `;
 
 const Span = styled.span`
@@ -41,7 +40,7 @@ const Span = styled.span`
 
 function HeroSection() {
   return (
-    <StyledHeroSection>
+    <section>
       <RoadImage src={road} alt="" />
       <TextBox>
         <Title>Cruise into Your Perfect Ride</Title>
@@ -52,8 +51,9 @@ function HeroSection() {
           cater to every traveler&apos;s needs. Experience convenience and
           reliability as you embark on your next journey with us.
         </Paragraph>
+        <Button>Get Started</Button>
       </TextBox>
-    </StyledHeroSection>
+    </section>
   );
 }
 

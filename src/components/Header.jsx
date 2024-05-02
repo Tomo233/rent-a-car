@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import UserAndAvatar from "./UserAndAvatar";
 
 const StyledHeader = styled.header`
-  z-index: 1;
+  /* z-index: 1; */
 `;
 
 function Header() {
