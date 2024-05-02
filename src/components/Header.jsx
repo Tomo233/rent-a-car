@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import UserAndAvatar from "./UserAndAvatar";
 
 const StyledHeader = styled.header`
-  background-color: red;
+  z-index: 1;
 `;
 
 function Header() {
