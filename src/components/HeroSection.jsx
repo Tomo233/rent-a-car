@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
+import SearchForm from "./SearchForm";
+import Container from "./Container";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -52,6 +54,9 @@ function HeroSection() {
         </Paragraph>
         <Button>Get Started</Button>
       </TextBox>
+      <Container>
+        <SearchForm />
+      </Container>
     </section>
   );
 }

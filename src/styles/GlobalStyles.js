@@ -13,14 +13,10 @@ const GlobalStyles = createGlobalStyle`
   margin: 0;
 
 }
-
-html {
-  font-size: 62.5%;
-}
-
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
+  background-color: aqua;
 }
 
 input,
