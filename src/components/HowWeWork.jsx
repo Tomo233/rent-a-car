@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Heading from "./Heading";
 import Span from "./Span";
 import FlexContainer from "./FlexContainer";
+import Line from "./Line";
 
 const StyledHowWeWork = styled.section`
   margin-bottom: 300px;
@@ -67,6 +68,7 @@ function HowWeWork() {
           </Paragraph>
         </Item>
       </FlexContainer>
+      <Line />
     </StyledHowWeWork>
   );
 }
