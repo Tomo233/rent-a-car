@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import FlexContainer from "./FlexContainer";
+import Button from "./Button";
 
 const StyledForm = styled.form`
   background-color: white;
@@ -23,7 +25,7 @@ const FormGrid = styled.div`
 `;
 
 const StyledInput = styled.input`
-  width: 250px;
+  width: 220px;
   height: 50px;
   color: black;
   font-size: 18px;
@@ -35,20 +37,10 @@ const StyledLabel = styled.label`
   font-size: 18px;
 `;
 
-const Button = styled.button`
-  background-color: var(--color-primary-blue);
-  border: none;
-  padding: 25px 40px;
-  z-index: 100;
-  letter-spacing: 2px;
-  font-size: 20px;
-  border-radius: 3px;
+const TimeInput = styled.input`
+  color: black;
+  height: 40px;
 `;
-
-// const TimeInput = styled.input`
-//   width: 30px;
-//   color: black;
-// `;
 
 function SearchForm() {
   return (
@@ -60,17 +52,19 @@ function SearchForm() {
         </FormGrid>
         <FormGrid>
           <StyledLabel>Preuzimanje</StyledLabel>
-          <StyledInput type="date" name="" id="" />
-          {/* <TimeInput type="time" name="" id="" /> */}
+          <FlexContainer>
+            <StyledInput type="date" name="" id="" />
+            <TimeInput type="time" name="" id="" />
+          </FlexContainer>
         </FormGrid>
         <FormGrid>
           <StyledLabel>Povratak</StyledLabel>
-          <FormFlex>
+          <FlexContainer>
             <StyledInput type="date" name="" id="" />
-            {/* <TimeInput type="time" name="" id="" /> */}
-          </FormFlex>
+            <TimeInput type="time" name="" id="" />
+          </FlexContainer>
         </FormGrid>
-        <Button>Pretrazi</Button>
+        <Button type="secondary">Pretrazi</Button>
       </FormFlex>
     </StyledForm>
   );
