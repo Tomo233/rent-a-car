@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import SearchForm from "./SearchForm";
+import Span from "./Span";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -31,11 +32,6 @@ const Paragraph = styled.p`
   margin-bottom: 25px;
   text-align: center;
   margin: 20px auto;
-`;
-
-const Span = styled.span`
-  color: var(--color-primary-blue);
-  font-weight: 600;
 `;
 
 function HeroSection() {

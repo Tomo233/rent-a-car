@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Button from "./Button";
 import FlexContainer from "./FlexContainer";
+import Span from "./Span";
 
-const StyledRecomendedCars = styled.section`
+const StyledRecommendedCars = styled.section`
   margin-top: 100px;
   margin-bottom: 300px;
 `;
@@ -30,9 +31,19 @@ const Stars = styled.div`
   margin-top: 5px;
 `;
 
+const CarTitle = styled.h2`
+  color: black;
+  font-size: 45px;
+  text-align: center;
+  margin-bottom: 50px;
+`;
+
 function RecomendedCars() {
   return (
-    <StyledRecomendedCars>
+    <StyledRecommendedCars>
+      <CarTitle>
+        <Span>Recommended</Span> Cars
+      </CarTitle>
       <FlexContainer>
         <CarItem>
           <StyledCar src="/kia.png" alt="" />,
@@ -86,7 +97,7 @@ function RecomendedCars() {
           </Stars>
         </CarItem>
       </FlexContainer>
-    </StyledRecomendedCars>
+    </StyledRecommendedCars>
   );
 }
 
