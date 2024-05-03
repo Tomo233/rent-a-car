@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import FlexContainer from "./FlexContainer";
 import Button from "./Button";
+import Line from "./Line";
 
 const StyledForm = styled.form`
   background-color: white;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   margin-top: 140px;
   height: 120px;
+  width: 100%;
 `;
-
-// const StyledContent = styled.div``;
 
 const FormFlex = styled.div`
   display: flex;
@@ -17,6 +17,7 @@ const FormFlex = styled.div`
   align-items: center;
   gap: 50px;
   height: 100%;
+  width: 100%;
 `;
 
 const FormGrid = styled.div`
@@ -66,6 +67,7 @@ function SearchForm() {
         </FormGrid>
         <Button type="secondary">Pretrazi</Button>
       </FormFlex>
+      <Line />
     </StyledForm>
   );
 }

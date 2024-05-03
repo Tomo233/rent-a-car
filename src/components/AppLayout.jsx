@@ -1,14 +1,16 @@
 import Container from "./Container";
 import Header from "./Header";
-import HeroSection from "./HeroSection";
+import Home from "../pages/Home";
 
 function AppLayout() {
   return (
     <>
       <Container>
         <Header />
+        <main>
+          <Home />
+        </main>
       </Container>
-      <HeroSection />
     </>
   );
 }

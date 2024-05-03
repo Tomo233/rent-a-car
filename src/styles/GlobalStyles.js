@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   :root {
     --color-primary-blue : #0ea5e9;
+    --color-primary-gray : #d4d4d8;
   }
 
     *,
@@ -14,16 +15,14 @@ const GlobalStyles = createGlobalStyle`
 
 }
 body {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   color: white;
-  background-color: aqua;
 }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
   color: inherit;
 }
 
