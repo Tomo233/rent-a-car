@@ -16,7 +16,7 @@ const GlobalStyles = createGlobalStyle`
 }
 body {
   font-family: 'Courier New', Courier, monospace;
-  color: white;
+  color: black;
 }
 
 input,

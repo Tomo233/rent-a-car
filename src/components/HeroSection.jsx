@@ -23,6 +23,7 @@ const TextBox = styled.div`
 const Title = styled.h1`
   font-size: 60px;
   font-weight: bold;
+  color: white;
 `;
 
 const Paragraph = styled.p`
@@ -32,6 +33,7 @@ const Paragraph = styled.p`
   margin-bottom: 25px;
   text-align: center;
   margin: 20px auto;
+  color: white;
 `;
 
 function HeroSection() {

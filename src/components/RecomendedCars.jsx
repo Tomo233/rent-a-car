@@ -2,24 +2,15 @@ import styled from "styled-components";
 import Button from "./Button";
 import FlexContainer from "./FlexContainer";
 import Span from "./Span";
+import Line from "./Line";
+import Heading from "./Heading";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
-  margin-bottom: 300px;
 `;
 
-const StyledCar = styled.img`
+const CarImage = styled.img`
   width: 200px;
-`;
-
-const CarName = styled.h3`
-  color: black;
-  font-size: 20px;
-`;
-
-const CarDescription = styled.p`
-  color: black;
-  font-weight: 700;
 `;
 
 const CarItem = styled.div`
@@ -31,28 +22,21 @@ const Stars = styled.div`
   margin-top: 5px;
 `;
 
-const CarTitle = styled.h2`
-  color: black;
-  font-size: 45px;
-  text-align: center;
-  margin-bottom: 50px;
-`;
-
 function RecomendedCars() {
   return (
     <StyledRecommendedCars>
-      <CarTitle>
+      <Heading as="h2">
         <Span>Recommended</Span> Cars
-      </CarTitle>
+      </Heading>
       <FlexContainer>
         <CarItem>
-          <StyledCar src="/kia.png" alt="" />,
+          <CarImage src="/kia.png" alt="" />,
           <FlexContainer>
             <div>
-              <CarName>Meredes Benz S Class</CarName>
-              <CarDescription>2015 god.</CarDescription>
-              <CarDescription>200KW</CarDescription>
-              <CarDescription>Beograd</CarDescription>
+              <Heading as="h3">Meredes Benz S Class</Heading>
+              <p>2015 god.</p>
+              <p>200KW</p>
+              <p>Beograd</p>
             </div>
             <Button type="short">50$/Dan</Button>
           </FlexContainer>
@@ -63,13 +47,13 @@ function RecomendedCars() {
           </Stars>
         </CarItem>
         <CarItem>
-          <StyledCar src="/kia.png" alt="" />,
+          <CarImage src="/kia.png" alt="" />,
           <FlexContainer>
             <div>
-              <CarName>Meredes Benz S Class</CarName>
-              <CarDescription>2015 god.</CarDescription>
-              <CarDescription>200KW</CarDescription>
-              <CarDescription>Beograd</CarDescription>
+              <Heading as="h3">Meredes Benz S Class</Heading>
+              <p>2015 god.</p>
+              <p>200KW</p>
+              <p>Beograd</p>
             </div>
             <Button type="short">50$/Dan</Button>
           </FlexContainer>
@@ -80,13 +64,13 @@ function RecomendedCars() {
           </Stars>
         </CarItem>
         <CarItem>
-          <StyledCar src="/kia.png" alt="" />,
+          <CarImage src="/kia.png" alt="" />,
           <FlexContainer>
             <div>
-              <CarName>Meredes Benz S Class</CarName>
-              <CarDescription>2015 god.</CarDescription>
-              <CarDescription>200KW</CarDescription>
-              <CarDescription>Beograd</CarDescription>
+              <Heading as="h3">Meredes Benz S Class</Heading>
+              <p>2015 god.</p>
+              <p>200KW</p>
+              <p>Beograd</p>
             </div>
             <Button type="short">50$/Dan</Button>
           </FlexContainer>
@@ -97,6 +81,7 @@ function RecomendedCars() {
           </Stars>
         </CarItem>
       </FlexContainer>
+      <Line />
     </StyledRecommendedCars>
   );
 }

@@ -12,6 +12,7 @@ const Button = styled.button`
   letter-spacing: 2px;
   font-size: 16px;
   border-radius: 3px;
+  color: white;
 `;
 
 export default Button;
