@@ -13,10 +13,15 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import styled from "styled-components";
 
-const P = styled.p`
+const Question = styled.h3`
   color: var(--color-primary-blue);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+`;
+
+const Answer = styled.p`
+  letter-spacing: 1.5px;
 `;
 
 function Row(props) {
@@ -40,7 +45,7 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          <P>{row.question}</P>
+          <Question>{row.question}</Question>
         </TableCell>
       </TableRow>
       <TableRow>
@@ -55,7 +60,7 @@ function Row(props) {
                 <TableBody>
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      {row.answer}
+                      <Answer>{row.answer}</Answer>
                     </TableCell>
                   </TableRow>
                 </TableBody>
