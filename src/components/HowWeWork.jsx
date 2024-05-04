@@ -3,6 +3,7 @@ import Heading from "./Heading";
 import Span from "./Span";
 import FlexContainer from "./FlexContainer";
 import Line from "./Line";
+import CollapsibleTable from "./Cards";
 
 const CarImage = styled.img`
   width: 150px;
@@ -64,6 +65,7 @@ function HowWeWork() {
           </Paragraph>
         </Item>
       </FlexContainer>
+      <CollapsibleTable />
       <Line />
     </section>
   );
