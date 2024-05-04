@@ -13,15 +13,10 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import styled from "styled-components";
 
-const Question = styled.h3`
+const P = styled.p`
   color: var(--color-primary-blue);
   font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 1.5px;
-`;
-
-const Answer = styled.p`
-  letter-spacing: 1.5px;
+  font-size: 20px;
 `;
 
 function Row(props) {
@@ -45,10 +40,10 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          <Question>{row.question}</Question>
+          <P>{row.question}</P>
         </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow style={{ display: open ? "table-row" : "none" }}>
         <TableCell style={{ padding: 0, margin: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
@@ -60,7 +55,7 @@ function Row(props) {
                 <TableBody>
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      <Answer>{row.answer}</Answer>
+                      {row.answer}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -109,11 +104,11 @@ const questionsAndAnswers = [
   },
 ];
 
-export default function Cards() {
+export default function FAQ() {
   return (
     <TableContainer
       component={Paper}
-      style={{ width: "700px", marginTop: "150px" }}
+      style={{ width: "700px", maxHeight: "400px" }} // Set minHeight to reserve space even when collapsed
     >
       <Table aria-label="FAQ table">
         {questionsAndAnswers.map((qa, index) => (

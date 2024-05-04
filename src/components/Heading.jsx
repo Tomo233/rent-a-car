@@ -6,7 +6,6 @@ const Heading = styled.h2`
     css`
       font-size: 60px;
       font-weight: bold;
-      color: white;
     `}
 
   ${(props) =>
@@ -15,7 +14,6 @@ const Heading = styled.h2`
       font-size: 45px;
       text-align: center;
       margin: 30px 0;
-      color: black;
     `}
 
   ${(props) =>
@@ -23,8 +21,9 @@ const Heading = styled.h2`
     css`
       font-size: 20px;
       text-align: center;
-      color: black;
     `}
+
+    color: ${(props) => (props.color === "white" ? "#fff" : "#000")};
 `;
 
 export default Heading;

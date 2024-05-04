@@ -3,12 +3,12 @@ import Heading from "./Heading";
 import Button from "./Button";
 import Paragraph from "./Paragraph";
 import Span from "./Span";
+import Overlay from "./Overlay";
 
 const StyledGetStarted = styled.div`
   position: relative;
   display: inline-block;
   margin-top: 100px;
-  margin-bottom: 300px;
 `;
 
 const Road = styled.img`
@@ -21,15 +21,6 @@ const Road = styled.img`
   height: 100%;
   object-fit: cover;
   z-index: -1;
-`;
-
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const Box = styled.div`
@@ -46,7 +37,7 @@ function GetStarted() {
       <Road src="./images.jpg" alt="" />
       <Overlay />
       <Box>
-        <Heading as="h2" style={{ color: "white" }}>
+        <Heading as="h2" color="white">
           Get Started With Our App
         </Heading>
         <Paragraph>

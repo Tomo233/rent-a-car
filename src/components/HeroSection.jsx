@@ -27,7 +27,9 @@ function HeroSection() {
     <section>
       <RoadImage src="/road.jpg" alt="" />
       <TextBox>
-        <Heading as="h1">Cruise into Your Perfect Ride</Heading>
+        <Heading as="h1" color="white">
+          Cruise into Your Perfect Ride
+        </Heading>
         <Paragraph>
           Welcome to our car <Span>rental application</Span>, where finding your
           ideal <Span>vehicle</Span> is effortless. With a diverse selection of
