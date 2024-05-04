@@ -4,10 +4,6 @@ import Span from "./Span";
 import FlexContainer from "./FlexContainer";
 import Line from "./Line";
 
-const StyledHowWeWork = styled.section`
-  margin-bottom: 300px;
-`;
-
 const CarImage = styled.img`
   width: 150px;
   display: block;
@@ -26,7 +22,7 @@ const Paragraph = styled.p`
 
 function HowWeWork() {
   return (
-    <StyledHowWeWork>
+    <section>
       <Heading as="h2">
         How We <Span>Work</Span>
       </Heading>
@@ -69,7 +65,7 @@ function HowWeWork() {
         </Item>
       </FlexContainer>
       <Line />
-    </StyledHowWeWork>
+    </section>
   );
 }
 

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Button from "./Button";
 import SearchForm from "./SearchForm";
 import Span from "./Span";
+import Heading from "./Heading";
+import Paragraph from "./Paragraph";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -20,28 +22,12 @@ const TextBox = styled.div`
   margin-top: 16rem;
 `;
 
-const Title = styled.h1`
-  font-size: 60px;
-  font-weight: bold;
-  color: white;
-`;
-
-const Paragraph = styled.p`
-  font-size: 22px;
-  width: 800px;
-  text-align: center;
-  margin-bottom: 25px;
-  text-align: center;
-  margin: 20px auto;
-  color: white;
-`;
-
 function HeroSection() {
   return (
     <section>
       <RoadImage src="/road.jpg" alt="" />
       <TextBox>
-        <Title>Cruise into Your Perfect Ride</Title>
+        <Heading as="h1">Cruise into Your Perfect Ride</Heading>
         <Paragraph>
           Welcome to our car <Span>rental application</Span>, where finding your
           ideal <Span>vehicle</Span> is effortless. With a diverse selection of
