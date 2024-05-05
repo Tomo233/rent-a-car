@@ -8,15 +8,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
-const StyledIcon = styled.div`
-  color: var(--color-primary-blue);
-  background-color: red;
-`;
-
-const StyledSocialIcon = ({ Icon }) => {
-  return <StyledIcon as={Icon} />;
-};
-
 const StyledFooter = styled.footer`
   margin-top: 200px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -32,10 +23,19 @@ const Grid = styled.div`
   height: 100%;
 `;
 
-const Inline = styled.div`
+const FooterFlex = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
+`;
+
+const StyledIcon = styled.div`
+  color: var(--color-primary-blue);
+  font-size: 40px;
+`;
+
+const P = styled.p`
+  margin: 5px 0;
 `;
 
 function Footer() {
@@ -44,33 +44,33 @@ function Footer() {
       <Container>
         <Grid>
           <div>
-            <Inline>
+            <FooterFlex>
               <Logo />
               <Heading as="h3">Car Rental</Heading>
-            </Inline>
-            <p style={{ color: "var(--color-text-gray)" }}>
+            </FooterFlex>
+            <P>
               Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Possimus, voluptate.
-            </p>
+              consectetur adiPisicing elit. Possimus, voluPtate.
+            </P>
           </div>
           <div>
             <Heading as="h3" style={{ textAlign: "start" }}>
               Popular Rental Cars
             </Heading>
-            <p>Luxury Car Rental</p>
-            <p>All Car/Sedan Sizes</p>
-            <p>Electric Car Rental</p>
+            <P>Luxury Car Rental</P>
+            <P>All Car/Sedan Sizes</P>
+            <P>Electric Car Rental</P>
           </div>
           <div>
             <Heading as="h3" style={{ textAlign: "start" }}>
               Contact
             </Heading>
-            <p>Email: rental@gmail.com</p>
-            <p>Telefon: +387 66 357 126</p>
-            <StyledSocialIcon icon={InstagramIcon} />
-            <StyledSocialIcon icon={LinkedInIcon} />
-            <StyledSocialIcon icon={FacebookIcon} />
-            <StyledSocialIcon icon={TwitterIcon} />
+            <P>Email: rental@gmail.com</P>
+            <P>Telefon: +387 66 357 126</P>
+            <StyledIcon as={InstagramIcon} fontSize="" />
+            <StyledIcon as={LinkedInIcon} fontSize="" />
+            <StyledIcon as={FacebookIcon} fontSize="" />
+            <StyledIcon as={TwitterIcon} fontSize="" />
           </div>
         </Grid>
       </Container>
