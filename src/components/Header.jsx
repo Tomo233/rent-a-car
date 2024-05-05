@@ -12,7 +12,7 @@ function Header() {
   return (
     <StyledHeader>
       <FlexContainer>
-        <FlexContainer>
+        <FlexContainer gap="50px">
           <Logo />
           <HeaderList />
         </FlexContainer>

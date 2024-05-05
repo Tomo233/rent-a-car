@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import styled from "styled-components";
 import Heading from "./Heading";
 import Logo from "./Logo";
+import Span from "./Span";
 import Container from "./Container";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -38,6 +38,10 @@ const P = styled.p`
   margin: 5px 0;
 `;
 
+const AlignedHeading = styled(Heading)`
+  text-align: start;
+`;
+
 function Footer() {
   return (
     <StyledFooter>
@@ -46,7 +50,9 @@ function Footer() {
           <div>
             <FooterFlex>
               <Logo />
-              <Heading as="h3">Car Rental</Heading>
+              <Heading as="h3">
+                <Span>Car</Span> Rental
+              </Heading>
             </FooterFlex>
             <P>
               Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
@@ -54,17 +60,15 @@ function Footer() {
             </P>
           </div>
           <div>
-            <Heading as="h3" style={{ textAlign: "start" }}>
-              Popular Rental Cars
-            </Heading>
+            <AlignedHeading as="h3">
+              Popular <Span>Rental Cars</Span>
+            </AlignedHeading>
             <P>Luxury Car Rental</P>
             <P>All Car/Sedan Sizes</P>
             <P>Electric Car Rental</P>
           </div>
           <div>
-            <Heading as="h3" style={{ textAlign: "start" }}>
-              Contact
-            </Heading>
+            <AlignedHeading as="h3">Contact</AlignedHeading>
             <P>Email: rental@gmail.com</P>
             <P>Telefon: +387 66 357 126</P>
             <StyledIcon as={InstagramIcon} fontSize="" />

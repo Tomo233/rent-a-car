@@ -15,9 +15,9 @@ const ListItem = styled.li`
 function HeaderList() {
   return (
     <StyledList>
-      <ListItem>O nama</ListItem>
+      <ListItem>About Us</ListItem>
       <ListItem>Cars</ListItem>
-      <ListItem>Pomoc</ListItem>
+      <ListItem>Bookings</ListItem>
     </StyledList>
   );
 }

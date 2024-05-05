@@ -4,7 +4,7 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: ${(props) => (props.gap ? props.gap : "10px")};
 `;
 
 export default FlexContainer;
