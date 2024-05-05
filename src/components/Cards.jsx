@@ -14,7 +14,9 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import styled from "styled-components";
 
 const P = styled.p`
-  color: var(--color-primary-blue);
+  color: ${(props) =>
+    props.type === "opened" ? "var(--color-primary-blue)" : "black"};
+
   font-weight: 700;
   font-size: 20px;
 `;
@@ -40,7 +42,7 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          <P>{row.question}</P>
+          <P type={open ? "opened" : "closed"}>{row.question}</P>
         </TableCell>
       </TableRow>
       <TableRow style={{ display: open ? "table-row" : "none" }}>
