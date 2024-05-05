@@ -47,7 +47,7 @@ function GetStarted() {
           seamless travel andexclusive deals. Join savvy travelers for
           personalized service.
         </Paragraph>
-        <Button>See Offers</Button>
+        <Button>Sign Up</Button>
       </Box>
     </StyledGetStarted>
   );

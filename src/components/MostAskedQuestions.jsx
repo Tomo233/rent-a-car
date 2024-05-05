@@ -7,10 +7,6 @@ import Span from "./Span";
 import Overlay from "./Overlay";
 import Line from "./Line";
 
-const StyledQuestions = styled.section`
-  margin-bottom: 300px;
-`;
-
 const Image = styled.img`
   width: 350px;
   display: block;
@@ -31,7 +27,7 @@ const Content = styled.div`
 
 function MostAskedQuestions() {
   return (
-    <StyledQuestions>
+    <section>
       <Line />
       <Heading as="h2">
         Most Asked <Span>Question</Span>
@@ -43,13 +39,13 @@ function MostAskedQuestions() {
           <Image src="./keys.jpg" alt="" />
           <Content>
             <Heading as="h3" color="white" style={{ marginBottom: "15px" }}>
-              Do you have questions?
+              Do you have any questions?
             </Heading>
             <Button type="secondary">Ask a question</Button>
           </Content>
         </Box>
       </FlexContainer>
-    </StyledQuestions>
+    </section>
   );
 }
 

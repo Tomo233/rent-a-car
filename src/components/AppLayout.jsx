@@ -1,6 +1,7 @@
 import Container from "./Container";
 import Header from "./Header";
 import Home from "../pages/Home";
+import Footer from "./Footer";
 
 function AppLayout() {
   return (
@@ -11,6 +12,7 @@ function AppLayout() {
           <Home />
         </main>
       </Container>
+      <Footer />
     </>
   );
 }
