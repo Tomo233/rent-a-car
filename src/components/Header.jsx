@@ -2,7 +2,8 @@ import styled from "styled-components";
 import FlexContainer from "./FlexContainer";
 import HeaderList from "./HeaderList";
 import Logo from "./Logo";
-import UserAndAvatar from "./UserAndAvatar";
+// import UserAndAvatar from "./UserAndAvatar";
+import BasicModal from "./BasicModal";
 
 const StyledHeader = styled.header`
   padding-top: 15px;
@@ -16,7 +17,8 @@ function Header() {
           <Logo />
           <HeaderList />
         </FlexContainer>
-        <UserAndAvatar />
+        {/* <UserAndAvatar /> */}
+        <BasicModal />
       </FlexContainer>
     </StyledHeader>
   );

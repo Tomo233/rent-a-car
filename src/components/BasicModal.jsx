@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import styled from "styled-components";
 
 const style = {
   position: "absolute",
@@ -16,6 +17,11 @@ const style = {
   p: 4,
 };
 
+const StyledButton = styled(Button)`
+  background-color: white !important;
+  color: black !important;
+`;
+
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -23,7 +29,7 @@ export default function BasicModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <StyledButton onClick={handleOpen}>Open modal</StyledButton>
       <Modal
         open={open}
         onClose={handleClose}
