@@ -1,7 +1,7 @@
 import Container from "./Container";
 import Header from "./Header";
-import Home from "../pages/Home";
 import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
 
 function AppLayout() {
   return (
@@ -9,7 +9,7 @@ function AppLayout() {
       <Container>
         <Header />
         <main>
-          <Home />
+          <Outlet />
         </main>
       </Container>
       <Footer />
