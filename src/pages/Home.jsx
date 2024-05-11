@@ -3,7 +3,7 @@ import HeroSection from "../components/HeroSection";
 import HowWeWork from "../components/HowWeWork";
 import LoginForm from "../components/LoginForm";
 import MostAskedQuestions from "../components/MostAskedQuestions";
-import RecomendedCars from "../components/RecomendedCars";
+import RecomendedCars from "../features/cars/RecomendedCars";
 
 function Home() {
   return (

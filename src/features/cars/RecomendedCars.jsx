@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Button from "./Button";
-import FlexContainer from "./FlexContainer";
-import Span from "./Span";
-import Line from "./Line";
-import Heading from "./Heading";
+import Button from "../../components/Button";
+import FlexContainer from "../../components/FlexContainer";
+import Span from "../../components/Span";
+import Line from "../../components/Line";
+import Heading from "../../components/Heading";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
