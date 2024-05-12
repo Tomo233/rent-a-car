@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledList = styled.ul`
@@ -5,7 +6,7 @@ const StyledList = styled.ul`
   gap: 50px;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled(NavLink)`
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -16,7 +17,7 @@ function HeaderList() {
   return (
     <StyledList>
       <ListItem>About Us</ListItem>
-      <ListItem>Cars</ListItem>
+      <ListItem to="cars">Cars</ListItem>
       <ListItem>Bookings</ListItem>
     </StyledList>
   );
