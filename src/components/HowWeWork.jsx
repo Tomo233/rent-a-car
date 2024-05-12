@@ -28,7 +28,7 @@ function HowWeWork() {
       </Heading>
       <FlexContainer>
         <Item>
-          <CarImage src="./support.png" alt="" />
+          <CarImage src="/support.png" alt="" />
           <Heading as="h3">Customized Fleet Selection</Heading>
           <Paragraph>
             We boast a diverse array of vehicles meticulously curated to cater
