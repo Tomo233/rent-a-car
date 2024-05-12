@@ -54,15 +54,15 @@ function SearchForm() {
         <FormGrid>
           <StyledLabel>Preuzimanje</StyledLabel>
           <FlexContainer>
-            <StyledInput type="date" name="" id="" />
-            <TimeInput type="time" name="" id="" />
+            <StyledInput type="date" />
+            <TimeInput type="time" />
           </FlexContainer>
         </FormGrid>
         <FormGrid>
           <StyledLabel>Povratak</StyledLabel>
           <FlexContainer>
-            <StyledInput type="date" name="" id="" />
-            <TimeInput type="time" name="" id="" />
+            <StyledInput type="date" />
+            <TimeInput type="time" />
           </FlexContainer>
         </FormGrid>
         <Button type="secondary">Pretrazi</Button>

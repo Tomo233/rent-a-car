@@ -110,12 +110,14 @@ export default function FAQ() {
   return (
     <TableContainer
       component={Paper}
-      style={{ width: "700px", maxHeight: "400px" }} // Set minHeight to reserve space even when collapsed
+      style={{ width: "700px", maxHeight: "400px" }}
     >
       <Table aria-label="FAQ table">
-        {questionsAndAnswers.map((qa, index) => (
-          <Row key={index} row={qa} />
-        ))}
+        <TableBody>
+          {questionsAndAnswers.map((qa, index) => (
+            <Row key={index} row={qa} />
+          ))}
+        </TableBody>
       </Table>
     </TableContainer>
   );
