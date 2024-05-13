@@ -10,12 +10,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 const StyledFooter = styled.footer`
   margin-top: 200px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  background-color: #171717;
   height: 300px;
-  position: absolute;
-  bottom: 0;
 `;
 
 const Grid = styled.div`
@@ -38,6 +34,7 @@ const StyledIcon = styled.div`
 
 const P = styled.p`
   margin: 5px 0;
+  color: white;
 `;
 
 const AlignedHeading = styled(Heading)`
@@ -52,7 +49,7 @@ function Footer() {
           <div>
             <FooterFlex>
               <Logo />
-              <Heading as="h3">
+              <Heading as="h3" color="white">
                 <Span>Car</Span> Rental
               </Heading>
             </FooterFlex>
@@ -62,7 +59,7 @@ function Footer() {
             </P>
           </div>
           <div>
-            <AlignedHeading as="h3">
+            <AlignedHeading as="h3" color="white">
               Popular <Span>Rental Cars</Span>
             </AlignedHeading>
             <P>Luxury Car Rental</P>
@@ -70,7 +67,9 @@ function Footer() {
             <P>Electric Car Rental</P>
           </div>
           <div>
-            <AlignedHeading as="h3">Contact</AlignedHeading>
+            <AlignedHeading as="h3" color="white">
+              Contact
+            </AlignedHeading>
             <P>Email: rental@gmail.com</P>
             <P>Telefon: +387 66 357 126</P>
             <StyledIcon as={InstagramIcon} fontSize="" />

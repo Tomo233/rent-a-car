@@ -1,12 +1,8 @@
-import { useCars } from "./useCars";
-
 function Cars() {
-  const { isLoading, data } = useCars();
+  // const { isLoading, data, error } = useCars();
 
-  if (isLoading) return <p>loading</p>;
-
-  console.log(data);
-  return <div>e</div>;
+  // if (isLoading) return <CircularProgress />;
+  return <section></section>;
 }
 
 export default Cars;

@@ -18,8 +18,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<AppLayout />}>
-              <Route path="dopam,d" element={<Home />} />
-              <Route path="/" index element={<CarsPage />} />
+              <Route path="/s" element={<Home />} />
+              <Route path="/" element={<CarsPage />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>

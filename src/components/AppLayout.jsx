@@ -6,8 +6,8 @@ import { Outlet } from "react-router-dom";
 function AppLayout() {
   return (
     <>
+      <Header />
       <Container>
-        <Header />
         <main>
           <Outlet />
         </main>
