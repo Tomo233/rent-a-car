@@ -11,12 +11,12 @@ import Container from "./Container";
 const StyledHeader = styled.header`
   padding-top: 15px;
   background-color: ${(props) =>
-    props?.isHomePage ? "transparent" : "#171717"};
+    props.isHomePage ? "transparent" : "#171717"};
 `;
 
 function Header() {
   const { pathname } = useLocation();
-  const isHomePage = pathname === "/";
+  const isHomePage = pathname !== "/";
 
   return (
     <StyledHeader isHomePage={isHomePage}>
