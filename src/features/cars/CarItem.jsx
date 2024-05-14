@@ -5,7 +5,7 @@ import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 
 const CarImage = styled.img`
-  width: 250px;
+  width: 200px;
   display: block;
   margin: 0 auto;
 `;
@@ -36,7 +36,7 @@ function CarItem({ car }) {
       <div style={{ marginBottom: "50px" }}>
         <CarImage src={image} alt="" />
       </div>
-      <FlexContainer gap="50px">
+      <FlexContainer>
         <div>
           <Heading as="h3">
             {name} {model}
