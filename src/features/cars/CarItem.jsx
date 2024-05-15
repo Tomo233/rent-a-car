@@ -38,7 +38,7 @@ function CarItem({ car }) {
       </div>
       <FlexContainer>
         <div>
-          <Heading as="h3">
+          <Heading as="h3" notAligned={true}>
             {name} {model}
           </Heading>
           <p>{year} god.</p>
