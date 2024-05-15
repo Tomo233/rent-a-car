@@ -18,7 +18,6 @@ function RecomendedCars() {
   console.log(data);
 
   if (isLoading) return <CircularProgress />;
-
   if (error) console.log(error);
 
   return (
