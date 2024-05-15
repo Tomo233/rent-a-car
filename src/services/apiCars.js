@@ -7,3 +7,10 @@ export async function getCars() {
 
   return data;
 }
+export async function getSomeCars({ from, to }) {
+  let { data, error } = await supabase.from("cars").select("*").range(from, to);
+
+  if (error) throw new Error("Cars cannot be loaded");
+
+  return data;
+}

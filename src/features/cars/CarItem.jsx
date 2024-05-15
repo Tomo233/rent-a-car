@@ -29,8 +29,6 @@ function CarItem({ car }) {
     location,
   } = car;
 
-  console.log(image);
-
   return (
     <Car>
       <div style={{ marginBottom: "50px" }}>

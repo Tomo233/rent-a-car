@@ -24,8 +24,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<AppLayout />}>
-              <Route path="/s" element={<Home />} />
-              <Route path="/" element={<CarsPage />} />
+              <Route index element={<Home />} />
+              <Route path="/cars" element={<CarsPage />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
