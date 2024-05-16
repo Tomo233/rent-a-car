@@ -36,6 +36,15 @@ const GoogleSpan = styled.span`
   margin-right: 5px;
 `;
 
+const GoogleFlex = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 45px;
+  background-color: white;
+`;
+
 function LoginForm() {
   return (
     <StyledForm>
@@ -50,18 +59,9 @@ function LoginForm() {
       <p>Or</p>
       <GoogleButton>
         <FlexContainer>
-          <div
-            style={{
-              backgroundColor: "white",
-              height: "45px",
-              width: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <GoogleFlex>
             <img src="./googleLogo.jpg" alt="" height="25px" />
-          </div>
+          </GoogleFlex>
           <GoogleSpan>Login With Google</GoogleSpan>
         </FlexContainer>
       </GoogleButton>
