@@ -14,8 +14,9 @@ const style = {
 };
 
 const StyledButton = styled(Button)`
-  background-color: white !important;
-  color: black !important;
+  border: 1px solid white !important;
+  background-color: transparent !important;
+  color: white !important;
 `;
 
 export default function BasicModal() {
@@ -25,7 +26,7 @@ export default function BasicModal() {
 
   return (
     <div>
-      <StyledButton onClick={handleOpen}>Open modal</StyledButton>
+      <StyledButton onClick={handleOpen}>Login / Sign Up</StyledButton>
       <Modal
         open={open}
         onClose={handleClose}

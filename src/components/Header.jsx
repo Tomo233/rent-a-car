@@ -16,7 +16,7 @@ const StyledHeader = styled.header`
 
 function Header() {
   const { pathname } = useLocation();
-  const isHomePage = pathname !== "/";
+  const isHomePage = pathname === "/";
 
   return (
     <StyledHeader isHomePage={isHomePage}>
