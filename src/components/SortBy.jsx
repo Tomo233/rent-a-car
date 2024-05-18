@@ -1,9 +1,10 @@
-import * as React from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+
 import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const StyledMenu = styled((props) => (
@@ -56,12 +57,14 @@ const StyledButton = styled(Button)`
   font-size: 18px;
 `;
 
-export default function SortBy() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function SortBy({ options }) {
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -89,22 +92,13 @@ export default function SortBy() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <KeyboardArrowUpIcon />
-          A-Z
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <KeyboardArrowDownIcon />
-          Z-A
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <KeyboardArrowUpIcon />
-          Price ascending
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <KeyboardArrowDownIcon />
-          Price descending
-        </MenuItem>
+        {options.map((option) => {
+          return (
+            <MenuItem onClick={handleClose} disableRipple key={option.query}>
+              {option.option}
+            </MenuItem>
+          );
+        })}
       </StyledMenu>
     </div>
   );
