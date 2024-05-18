@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import styled from "styled-components";
@@ -7,8 +8,6 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FlexContainer from "./FlexContainer";
@@ -38,16 +37,6 @@ export default function Filter({ filters }) {
   const DrawerList = (
     <Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {/* {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))} */}
         {filters.map(([category, ...options]) => {
           return (
             <>
@@ -58,10 +47,8 @@ export default function Filter({ filters }) {
                   const { text, query } = option;
                   return (
                     <ListItem key={text} disablePadding>
-                      {/* <StyledFilters> */}
                       <input type="checkbox" name="" id="" />
                       <ListItemText primary={text} />
-                      {/* </StyledFilters> */}
                     </ListItem>
                   );
                 })}
