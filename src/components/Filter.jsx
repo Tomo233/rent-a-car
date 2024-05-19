@@ -25,7 +25,18 @@ const Category = styled.p`
   text-transform: capitalize;
 `;
 
-const StyledFilters = styled.div``;
+const StyledFilters = styled.div`
+  padding: 13px 0;
+`;
+const StyledCheckbox = styled.input`
+  width: 50px;
+  height: 20px;
+`;
+
+const StyledListItem = styled(ListItem)`
+  padding-bottom: 10px;
+  margin-top: 5px;
+`;
 
 export default function Filter({ filters }) {
   const [open, setOpen] = useState(false);
@@ -35,25 +46,24 @@ export default function Filter({ filters }) {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 350 }} role="presentation">
       <List>
         {filters.map(([category, ...options]) => {
           return (
             <>
-              <Category>{category}</Category>
-
               <StyledFilters>
+                <Category key={category}>{category}</Category>
                 {options.map((option) => {
                   const { text, query } = option;
                   return (
-                    <ListItem key={text} disablePadding>
-                      <input type="checkbox" name="" id="" />
+                    <StyledListItem key={text} disablePadding>
+                      <StyledCheckbox type="checkbox" name="" id="" />
                       <ListItemText primary={text} />
-                    </ListItem>
+                    </StyledListItem>
                   );
                 })}
+                <Divider />
               </StyledFilters>
-              <Divider />
             </>
           );
         })}

@@ -55,6 +55,36 @@ function CarOperations() {
                 text: "Electric",
               },
             ],
+            [
+              "Car Year",
+              {
+                query: "carYear-2015-2017",
+                text: "2015-2017",
+              },
+              {
+                query: "carYear-2017-2020",
+                text: "2017-2020",
+              },
+              {
+                query: "carYear-2020-2022",
+                text: "2020-2022",
+              },
+            ],
+            [
+              "Horse Power",
+              {
+                query: "horsePower-150-250",
+                text: "150-250",
+              },
+              {
+                query: "horsePower-250-350",
+                text: "250-350",
+              },
+              {
+                query: "horsePower-350-450",
+                text: "350-450",
+              },
+            ],
           ]}
         />
         <SortBy
