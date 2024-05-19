@@ -4,6 +4,9 @@ import FlexContainer from "../../components/FlexContainer";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 
+const CarImageParent = styled.div`
+  margin-bottom: 50px;
+`;
 const CarImage = styled.img`
   width: 200px;
   display: block;
@@ -14,6 +17,7 @@ const Car = styled.div`
   border: 2px solid var(--color-primary-gray);
   padding: 20px;
   width: 400px;
+  height: 300px;
 `;
 
 function CarItem({ car }) {
@@ -31,9 +35,9 @@ function CarItem({ car }) {
 
   return (
     <Car>
-      <div style={{ marginBottom: "50px" }}>
+      <CarImageParent>
         <CarImage src={image} alt="" />
-      </div>
+      </CarImageParent>
       <FlexContainer>
         <div>
           <Heading as="h3" notAligned={true}>
