@@ -5,8 +5,8 @@ import Line from "../../components/Line";
 import Heading from "../../components/Heading";
 import { useSomeCars } from "./useSomeCars";
 import { randomNum } from "../../utils/helpers";
-import { CircularProgress } from "@mui/material";
 import CarItem from "./CarItem";
+import Loader from "../../components/Loader";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
@@ -17,7 +17,7 @@ function RecomendedCars() {
   const { data, isLoading, error } = useSomeCars(fromTo);
   console.log(data);
 
-  if (isLoading) return <CircularProgress />;
+  if (isLoading) return <Loader />;
   if (error) console.log(error);
 
   return (

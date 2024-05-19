@@ -4,6 +4,7 @@ import SearchForm from "./SearchForm";
 import Span from "./Span";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
+import { Link } from "react-router-dom";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -37,7 +38,9 @@ function HeroSection() {
           cater to every traveler&apos;s needs. Experience convenience and
           reliability as you embark on your next journey with us.
         </Paragraph>
-        <Button>Get Started</Button>
+        <Button>
+          <Link to="/cars">Get Started</Link>
+        </Button>
       </TextBox>
       <SearchForm />
     </section>

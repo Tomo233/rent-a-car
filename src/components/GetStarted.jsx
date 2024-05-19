@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Heading from "./Heading";
-import Button from "./Button";
 import Paragraph from "./Paragraph";
 import Span from "./Span";
 import Overlay from "./Overlay";
+import BasicModal from "./BasicModal";
 
 const StyledGetStarted = styled.div`
   position: relative;
@@ -47,7 +47,7 @@ function GetStarted() {
           seamless travel andexclusive deals. Join savvy travelers for
           personalized service.
         </Paragraph>
-        <Button>Sign Up</Button>
+        <BasicModal needButton={true} />
       </Box>
     </StyledGetStarted>
   );

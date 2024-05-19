@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import * as React from "react";
-import Button from "@mui/material/Button";
+import MuiButton from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import LoginForm from "./LoginForm";
 import Box from "@mui/material/Box";
+import Button from "./Button";
 
 const style = {
   position: "absolute",
@@ -13,20 +15,23 @@ const style = {
   width: 500,
 };
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(MuiButton)`
   border: 1px solid white !important;
   background-color: transparent !important;
   color: white !important;
 `;
 
-export default function BasicModal() {
+export default function BasicModal({ needButton }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   return (
     <div>
-      <StyledButton onClick={handleOpen}>Login / Sign Up</StyledButton>
+      {needButton ? (
+        <Button onClick={handleOpen}>Sign Up</Button>
+      ) : (
+        <StyledButton onClick={handleOpen}>Login / SignUp</StyledButton>
+      )}
       <Modal
         open={open}
         onClose={handleClose}
