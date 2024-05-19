@@ -10,8 +10,10 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import FlexContainer from "./FlexContainer";
 import { Divider } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+
+import FlexContainer from "./FlexContainer";
 
 const StyledButton = styled(Button)`
   color: black !important;
@@ -26,17 +28,15 @@ const Category = styled.p`
 `;
 
 const StyledFilters = styled.div`
-  padding: 13px 0;
-`;
-const StyledCheckbox = styled.input`
-  width: 50px;
-  height: 20px;
+  padding: 10px 0;
 `;
 
 const StyledListItem = styled(ListItem)`
-  padding-bottom: 10px;
+  padding-bottom: 2px;
   margin-top: 5px;
 `;
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Filter({ filters }) {
   const [open, setOpen] = useState(false);
@@ -57,7 +57,15 @@ export default function Filter({ filters }) {
                   const { text, query } = option;
                   return (
                     <StyledListItem key={text} disablePadding>
-                      <StyledCheckbox type="checkbox" name="" id="" />
+                      <Checkbox
+                        {...label}
+                        sx={{
+                          color: "var(--color-primary-blue)",
+                          "&.Mui-checked": {
+                            color: "var(--color-primary-blue)",
+                          },
+                        }}
+                      />
                       <ListItemText primary={text} />
                     </StyledListItem>
                   );
