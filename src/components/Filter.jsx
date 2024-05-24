@@ -14,6 +14,7 @@ import { Divider } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 
 import FlexContainer from "./FlexContainer";
+import { useSearchParams } from "react-router-dom";
 
 const StyledButton = styled(Button)`
   color: black !important;
@@ -40,9 +41,15 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Filter({ filters }) {
   const [open, setOpen] = useState(false);
+  const [, setSearchParams] = useSearchParams();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+
+  const handleFilter = (e, query) => {
+    console.log(e.target.checked);
+    // setSearchParams({ filter: query });
   };
 
   const DrawerList = (
@@ -56,7 +63,7 @@ export default function Filter({ filters }) {
                 {options.map((option) => {
                   const { text, query } = option;
                   return (
-                    <StyledListItem key={text} disablePadding>
+                    <StyledListItem key={query} disablePadding>
                       <Checkbox
                         {...label}
                         sx={{
@@ -65,6 +72,7 @@ export default function Filter({ filters }) {
                             color: "var(--color-primary-blue)",
                           },
                         }}
+                        onChange={(e) => handleFilter(e, query)}
                       />
                       <ListItemText primary={text} />
                     </StyledListItem>

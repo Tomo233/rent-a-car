@@ -16,15 +16,15 @@ function CarOperations() {
             [
               "price",
               {
-                query: "price-zero-fifty",
+                query: "price-1-50",
                 text: "0$ - 50$",
               },
               {
-                query: "price-fifty-hundred",
+                query: "price-50-100",
                 text: "50$ - 100$",
               },
               {
-                query: "price-hundred-twoHundred",
+                query: "price-100-200",
                 text: "100$ - 200$",
               },
             ],

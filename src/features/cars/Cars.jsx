@@ -16,17 +16,16 @@ const Grid = styled.div`
 
 function Cars() {
   const [searchParams] = useSearchParams();
-  const param = searchParams.get("sort").split("-").at(0);
-  const ascending = searchParams.get("sort").split("-").at(1) === "ascending";
-
-  const { cars, isLoading } = useCars({ param, ascending });
+  const sortQuery = searchParams.get("sort")?.split("-").at(0);
+  const ascending = searchParams.get("sort")?.split("-").at(1) === "ascending";
+  const { cars, isLoading } = useCars({ sortQuery, ascending });
 
   if (isLoading) return <Loader />;
 
   return (
     <StyledRecommendedCars>
       <Grid>
-        {cars.map((car) => (
+        {cars?.map((car) => (
           <CarItem car={car} key={car.id} />
         ))}
       </Grid>
