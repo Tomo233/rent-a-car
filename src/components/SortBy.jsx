@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useSearchParams } from "react-router-dom";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -60,13 +61,19 @@ const StyledButton = styled(Button)`
 export default function SortBy({ options }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [, setSearchParams] = useSearchParams();
 
-  const handleClick = (event) => {
+  const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleClick = (query) => {
+    setSearchParams({ sort: query });
+    handleClose();
   };
 
   return (
@@ -78,7 +85,7 @@ export default function SortBy({ options }) {
         aria-expanded={open ? "true" : undefined}
         variant="contained"
         disableElevation
-        onClick={handleClick}
+        onClick={handleOpen}
         endIcon={<KeyboardArrowDownIcon />}
       >
         Sort By
@@ -92,10 +99,14 @@ export default function SortBy({ options }) {
         open={open}
         onClose={handleClose}
       >
-        {options.map((option) => {
+        {options.map(({ option, query }) => {
           return (
-            <MenuItem onClick={handleClose} disableRipple key={option.query}>
-              {option.option}
+            <MenuItem
+              onClick={() => handleClick(query)}
+              disableRipple
+              key={query}
+            >
+              {option}
             </MenuItem>
           );
         })}

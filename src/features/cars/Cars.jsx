@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useCars } from "./useCars";
 import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
+import { useSearchParams } from "react-router-dom";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
@@ -14,7 +15,11 @@ const Grid = styled.div`
 `;
 
 function Cars() {
-  const { cars, isLoading } = useCars();
+  const [searchParams] = useSearchParams();
+  const param = searchParams.get("sort").split("-").at(0);
+  const ascending = searchParams.get("sort").split("-").at(1) === "ascending";
+
+  const { cars, isLoading } = useCars({ param, ascending });
 
   if (isLoading) return <Loader />;
 
