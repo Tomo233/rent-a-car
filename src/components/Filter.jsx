@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Box from "@mui/material/Box";
@@ -41,15 +41,35 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Filter({ filters }) {
   const [open, setOpen] = useState(false);
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filterValue, setFilterValue] = useState([]);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
+  useEffect(() => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.delete("filters");
+
+    filterValue.forEach((value) => {
+      newParams.append("filters", value);
+    });
+
+    console.log(newParams.toString());
+
+    // Only set the searchParams if there is an actual change
+    if (newParams.toString() !== searchParams.toString()) {
+      setSearchParams(newParams);
+    }
+  }, [filterValue, searchParams, setSearchParams]);
+
   const handleFilter = (e, query) => {
-    console.log(e.target.checked);
-    // setSearchParams({ filter: query });
+    if (e.target.checked) {
+      setFilterValue((prev) => [...prev, query]);
+    } else {
+      setFilterValue((prev) => prev.filter((f) => f !== query));
+    }
   };
 
   const DrawerList = (
@@ -57,30 +77,28 @@ export default function Filter({ filters }) {
       <List>
         {filters.map(([category, ...options]) => {
           return (
-            <>
-              <StyledFilters>
-                <Category key={category}>{category}</Category>
-                {options.map((option) => {
-                  const { text, query } = option;
-                  return (
-                    <StyledListItem key={query} disablePadding>
-                      <Checkbox
-                        {...label}
-                        sx={{
+            <StyledFilters key={category}>
+              <Category>{category}</Category>
+              {options.map((option) => {
+                const { text, query } = option;
+                return (
+                  <StyledListItem key={query} disablePadding>
+                    <Checkbox
+                      {...label}
+                      sx={{
+                        color: "var(--color-primary-blue)",
+                        "&.Mui-checked": {
                           color: "var(--color-primary-blue)",
-                          "&.Mui-checked": {
-                            color: "var(--color-primary-blue)",
-                          },
-                        }}
-                        onChange={(e) => handleFilter(e, query)}
-                      />
-                      <ListItemText primary={text} />
-                    </StyledListItem>
-                  );
-                })}
-                <Divider />
-              </StyledFilters>
-            </>
+                        },
+                      }}
+                      onChange={(e) => handleFilter(e, query)}
+                    />
+                    <ListItemText primary={text} />
+                  </StyledListItem>
+                );
+              })}
+              <Divider />
+            </StyledFilters>
           );
         })}
       </List>

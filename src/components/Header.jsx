@@ -11,7 +11,7 @@ import Container from "./Container";
 const StyledHeader = styled.header`
   padding-top: 15px;
   background-color: ${(props) =>
-    props.isHomePage ? "transparent" : "#171717"};
+    props.ishomepage ? "transparent" : "#171717"};
 `;
 
 function Header() {
@@ -19,7 +19,7 @@ function Header() {
   const isHomePage = pathname === "/";
 
   return (
-    <StyledHeader isHomePage={isHomePage}>
+    <StyledHeader ishomepage={isHomePage}>
       <Container>
         <FlexContainer>
           <FlexContainer gap="50px">

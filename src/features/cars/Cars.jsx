@@ -16,9 +16,9 @@ const Grid = styled.div`
 
 function Cars() {
   const [searchParams] = useSearchParams();
-  const sortQuery = searchParams.get("sort")?.split("-").at(0);
-  const ascending = searchParams.get("sort")?.split("-").at(1) === "ascending";
-  const { cars, isLoading } = useCars({ sortQuery, ascending });
+  const sort = searchParams.get("sort")?.split("-");
+  // const filter = searchParams.get("filter")?.split("-");
+  const { cars, isLoading } = useCars(sort);
 
   if (isLoading) return <Loader />;
 

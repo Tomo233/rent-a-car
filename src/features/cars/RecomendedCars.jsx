@@ -15,7 +15,6 @@ const StyledRecommendedCars = styled.section`
 function RecomendedCars() {
   const fromTo = randomNum();
   const { data, isLoading, error } = useSomeCars(fromTo);
-  console.log(data);
 
   if (isLoading) return <Loader />;
   if (error) console.log(error);

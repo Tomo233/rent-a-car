@@ -22,7 +22,7 @@ const Heading = styled.h2`
     `}
       
   color: ${(props) => (props.color === "white" ? "#fff" : "#000")};
-  text-align: ${(props) => (props.notAligned ? "start" : "center")};
+  text-align: ${(props) => (props.notaligned ? "start" : "center")};
 `;
 
 export default Heading;

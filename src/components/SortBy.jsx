@@ -61,7 +61,7 @@ const StyledButton = styled(Button)`
 export default function SortBy({ options }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -72,6 +72,8 @@ export default function SortBy({ options }) {
   };
 
   const handleClick = (query) => {
+    searchParams.set("sort", query);
+
     setSearchParams({ sort: query });
     handleClose();
   };
