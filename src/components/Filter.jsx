@@ -102,6 +102,7 @@ export default function Filter({ filters, sortOptions }) {
                           },
                         }}
                         onChange={(e) => handleFilter(e, query)}
+                        checked={filterValue.includes(query)}
                       />
                       <ListItemText primary={text} />
                     </StyledListItem>

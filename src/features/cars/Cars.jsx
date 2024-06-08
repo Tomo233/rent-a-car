@@ -3,6 +3,7 @@ import { useCars } from "./useCars";
 import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
 import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
@@ -17,7 +18,10 @@ const Grid = styled.div`
 function Cars() {
   const [searchParams] = useSearchParams();
   const sort = searchParams.get("sort")?.split("-");
-  console.log(searchParams.get("filters"));
+
+  useEffect(() => {
+    console.log(searchParams.getAll("filters"));
+  }, [searchParams]);
 
   const { cars, isLoading } = useCars(sort);
 
