@@ -77,7 +77,7 @@ export default function Filter({ filters, sortOptions }) {
   };
 
   return (
-    <div>
+    <FlexContainer>
       <StyledButton onClick={toggleDrawer(true)}>
         <FlexContainer>
           <FilterListIcon /> <span>Filter</span>
@@ -118,6 +118,6 @@ export default function Filter({ filters, sortOptions }) {
         setSortValue={setSortValue}
         options={sortOptions}
       />
-    </div>
+    </FlexContainer>
   );
 }
