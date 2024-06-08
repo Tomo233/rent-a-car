@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useSearchParams } from "react-router-dom";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -58,10 +57,9 @@ const StyledButton = styled(Button)`
   font-size: 18px;
 `;
 
-export default function SortBy({ options }) {
+export default function SortBy({ options, sortValue, setSortValue }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -72,9 +70,7 @@ export default function SortBy({ options }) {
   };
 
   const handleClick = (query) => {
-    searchParams.set("sort", query);
-
-    setSearchParams({ sort: query });
+    setSortValue(query);
     handleClose();
   };
 
@@ -101,17 +97,16 @@ export default function SortBy({ options }) {
         open={open}
         onClose={handleClose}
       >
-        {options.map(({ option, query }) => {
-          return (
-            <MenuItem
-              onClick={() => handleClick(query)}
-              disableRipple
-              key={query}
-            >
-              {option}
-            </MenuItem>
-          );
-        })}
+        {options.map(({ option, query }) => (
+          <MenuItem
+            onClick={() => handleClick(query)}
+            disableRipple
+            key={query}
+            selected={sortValue === query} // Optional: Highlight selected option
+          >
+            {option}
+          </MenuItem>
+        ))}
       </StyledMenu>
     </div>
   );

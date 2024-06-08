@@ -10,11 +10,11 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import { Divider } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
+import { Divider, Checkbox } from "@mui/material";
 
 import FlexContainer from "./FlexContainer";
 import { useSearchParams } from "react-router-dom";
+import SortBy from "./SortBy"; // Assuming SortBy is in the same directory
 
 const StyledButton = styled(Button)`
   color: black !important;
@@ -39,10 +39,11 @@ const StyledListItem = styled(ListItem)`
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-export default function Filter({ filters }) {
+export default function Filter({ filters, sortOptions }) {
   const [open, setOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterValue, setFilterValue] = useState([]);
+  const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -56,13 +57,16 @@ export default function Filter({ filters }) {
       newParams.append("filters", value);
     });
 
-    console.log(newParams.toString());
+    if (sortValue) {
+      newParams.set("sort", sortValue);
+    } else {
+      newParams.delete("sort");
+    }
 
-    // Only set the searchParams if there is an actual change
     if (newParams.toString() !== searchParams.toString()) {
       setSearchParams(newParams);
     }
-  }, [filterValue, searchParams, setSearchParams]);
+  }, [filterValue, sortValue, searchParams, setSearchParams]);
 
   const handleFilter = (e, query) => {
     if (e.target.checked) {
@@ -72,39 +76,6 @@ export default function Filter({ filters }) {
     }
   };
 
-  const DrawerList = (
-    <Box sx={{ width: 350 }} role="presentation">
-      <List>
-        {filters.map(([category, ...options]) => {
-          return (
-            <StyledFilters key={category}>
-              <Category>{category}</Category>
-              {options.map((option) => {
-                const { text, query } = option;
-                return (
-                  <StyledListItem key={query} disablePadding>
-                    <Checkbox
-                      {...label}
-                      sx={{
-                        color: "var(--color-primary-blue)",
-                        "&.Mui-checked": {
-                          color: "var(--color-primary-blue)",
-                        },
-                      }}
-                      onChange={(e) => handleFilter(e, query)}
-                    />
-                    <ListItemText primary={text} />
-                  </StyledListItem>
-                );
-              })}
-              <Divider />
-            </StyledFilters>
-          );
-        })}
-      </List>
-    </Box>
-  );
-
   return (
     <div>
       <StyledButton onClick={toggleDrawer(true)}>
@@ -113,8 +84,40 @@ export default function Filter({ filters }) {
         </FlexContainer>
       </StyledButton>
       <Drawer open={open} onClose={toggleDrawer(false)}>
-        {DrawerList}
+        <Box sx={{ width: 350 }} role="presentation">
+          <List>
+            {filters.map(([category, ...options]) => (
+              <StyledFilters key={category}>
+                <Category>{category}</Category>
+                {options.map((option) => {
+                  const { text, query } = option;
+                  return (
+                    <StyledListItem key={query} disablePadding>
+                      <Checkbox
+                        {...label}
+                        sx={{
+                          color: "var(--color-primary-blue)",
+                          "&.Mui-checked": {
+                            color: "var(--color-primary-blue)",
+                          },
+                        }}
+                        onChange={(e) => handleFilter(e, query)}
+                      />
+                      <ListItemText primary={text} />
+                    </StyledListItem>
+                  );
+                })}
+                <Divider />
+              </StyledFilters>
+            ))}
+          </List>
+        </Box>
       </Drawer>
+      <SortBy
+        sortValue={sortValue}
+        setSortValue={setSortValue}
+        options={sortOptions}
+      />
     </div>
   );
 }

@@ -17,7 +17,8 @@ const Grid = styled.div`
 function Cars() {
   const [searchParams] = useSearchParams();
   const sort = searchParams.get("sort")?.split("-");
-  // const filter = searchParams.get("filter")?.split("-");
+  console.log(searchParams.get("filters"));
+
   const { cars, isLoading } = useCars(sort);
 
   if (isLoading) return <Loader />;

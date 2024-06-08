@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import FlexContainer from "../../components/FlexContainer";
-import SortBy from "../../components/SortBy";
 import Filter from "../../components/Filter";
 
 const StyledCarOperations = styled.section`
@@ -86,9 +85,7 @@ function CarOperations() {
               },
             ],
           ]}
-        />
-        <SortBy
-          options={[
+          sortOptions={[
             {
               query: "name-ascending",
               option: "Name A-Z",
