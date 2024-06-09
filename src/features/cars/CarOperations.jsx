@@ -13,16 +13,8 @@ function CarOperations() {
           [
             "price",
             {
-              query: "price-1-50",
-              text: "0$ - 50$",
-            },
-            {
-              query: "price-50-100",
-              text: "50$ - 100$",
-            },
-            {
-              query: "price-100-200",
-              text: "100$ - 200$",
+              min: 1,
+              max: 200,
             },
           ],
 
@@ -55,31 +47,15 @@ function CarOperations() {
           [
             "Car Year",
             {
-              query: "caryear-2015-2017",
-              text: "2015-2017",
-            },
-            {
-              query: "caryear-2017-2020",
-              text: "2017-2020",
-            },
-            {
-              query: "caryear-2020-2022",
-              text: "2020-2022",
+              min: 2015,
+              max: 2022,
             },
           ],
           [
             "Horse Power",
             {
-              query: "horsepower-150-250",
-              text: "150-250",
-            },
-            {
-              query: "horsepower-250-350",
-              text: "250-350",
-            },
-            {
-              query: "horsepower-350-450",
-              text: "350-450",
+              min: 150,
+              max: 450,
             },
           ],
         ]}

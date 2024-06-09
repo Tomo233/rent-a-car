@@ -27,11 +27,13 @@ export async function getCars(sort, filters) {
     }
 
     const { data, error } = await query;
+
     if (error) throw new Error("Cars cannot be loaded");
 
     return data;
-  } catch (err) {
-    console.error("Error fetching cars:", err.message);
+  } catch (error) {
+    console.error("Error fetching cars:", error.message);
+    throw error;
   }
 }
 

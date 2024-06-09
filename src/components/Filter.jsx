@@ -16,6 +16,9 @@ import FlexContainer from "./FlexContainer";
 import { useSearchParams } from "react-router-dom";
 import SortBy from "./SortBy"; // Assuming SortBy is in the same directory
 
+import RangeSlider from "react-range-slider-input";
+import "react-range-slider-input/dist/style.css";
+
 const StyledButton = styled(Button)`
   color: black !important;
   text-transform: capitalize !important;
@@ -44,10 +47,13 @@ export default function Filter({ filters, sortOptions }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterValue, setFilterValue] = useState([]);
   const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
+  const [value, setValue] = useState(0);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+
+  console.log(value);
 
   useEffect(() => {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -93,22 +99,27 @@ export default function Filter({ filters, sortOptions }) {
                   const { text, query } = option;
                   return (
                     <StyledListItem key={query} disablePadding>
-                      <Checkbox
-                        {...label}
-                        sx={{
-                          color: "var(--color-primary-blue)",
-                          "&.Mui-checked": {
+                      {category === "fuelType" ||
+                      category === "transmission" ? (
+                        <Checkbox
+                          {...label}
+                          sx={{
                             color: "var(--color-primary-blue)",
-                          },
-                        }}
-                        onChange={(e) => handleFilter(e, query)}
-                        checked={filterValue.includes(query)}
-                      />
+                            "&.Mui-checked": {
+                              color: "var(--color-primary-blue)",
+                            },
+                          }}
+                          onChange={(e) => handleFilter(e, query)}
+                          checked={filterValue.includes(query)}
+                        />
+                      ) : (
+                        <RangeSlider />
+                      )}
                       <ListItemText primary={text} />
                     </StyledListItem>
                   );
                 })}
-                <Divider />
+                <Divider style={{ marginTop: "15px" }} />
               </StyledFilters>
             ))}
           </List>
