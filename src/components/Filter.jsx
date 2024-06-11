@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import styled from "styled-components";
-
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -11,13 +10,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Divider, Checkbox } from "@mui/material";
-
-import FlexContainer from "./FlexContainer";
 import { useSearchParams } from "react-router-dom";
-import SortBy from "./SortBy"; // Assuming SortBy is in the same directory
-
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
+
+import SortBy from "./SortBy";
+import FlexContainer from "./FlexContainer";
+import CustomButton from "./Button";
 
 const StyledButton = styled(Button)`
   color: black !important;
@@ -42,37 +41,87 @@ const StyledListItem = styled(ListItem)`
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
+const initialState = {
+  year: { from: 0, to: 1 },
+  horsepower: { from: 0, to: 1 },
+  price: { from: 0, to: 1 },
+};
+function reducer(state, action) {
+  switch (action.type) {
+    case "caryear":
+      return {
+        ...state,
+        year: {
+          ...state.year,
+          from: action.payload.firstValue,
+          to: action.payload.secondValue,
+        },
+      };
+    case "horsepower":
+      return {
+        ...state,
+        horsepower: {
+          ...state.year,
+          from: action.payload.firstValue,
+          to: action.payload.secondValue,
+        },
+      };
+    case "price":
+      return {
+        ...state,
+        price: {
+          ...state.year,
+          from: action.payload.firstValue,
+          to: action.payload.secondValue,
+        },
+      };
+    case "reset":
+      return initialState;
+    default:
+      throw new Error("Unknown action type");
+  }
+}
+
 export default function Filter({ filters, sortOptions }) {
   const [open, setOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterValue, setFilterValue] = useState([]);
   const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
-  const [value, setValue] = useState(0);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [isClicked, setIsClicked] = useState(false);
+
+  console.log(state);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-  console.log(value);
-
-  useEffect(() => {
+  const updateParams = useCallback(() => {
     const newParams = new URLSearchParams(searchParams.toString());
+
+    // Clear existing filters
     newParams.delete("filters");
 
-    filterValue.forEach((value) => {
-      newParams.append("filters", value);
-    });
+    // Add new filter values
+    if (isClicked)
+      filterValue.forEach((value) => {
+        newParams.append("filters", value.trim());
+      });
 
+    // Update sort parameter
     if (sortValue) {
       newParams.set("sort", sortValue);
     } else {
       newParams.delete("sort");
     }
 
-    if (newParams.toString() !== searchParams.toString()) {
-      setSearchParams(newParams);
-    }
-  }, [filterValue, sortValue, searchParams, setSearchParams]);
+    // Update search parameters
+    setSearchParams(newParams);
+  }, [filterValue, isClicked, searchParams, setSearchParams, sortValue]);
+
+  useEffect(() => {
+    updateParams();
+  }, [updateParams]);
 
   const handleFilter = (e, query) => {
     if (e.target.checked) {
@@ -80,6 +129,13 @@ export default function Filter({ filters, sortOptions }) {
     } else {
       setFilterValue((prev) => prev.filter((f) => f !== query));
     }
+  };
+
+  const handleRangeFilter = (event, category) => {
+    const carCategory = category.toLowerCase().replace(/\s+/g, "");
+    const [firstValue, secondValue] = event;
+    console.log(carCategory);
+    dispatch({ type: carCategory, payload: { firstValue, secondValue } });
   };
 
   return (
@@ -96,7 +152,8 @@ export default function Filter({ filters, sortOptions }) {
               <StyledFilters key={category}>
                 <Category>{category}</Category>
                 {options.map((option) => {
-                  const { text, query } = option;
+                  const { text, query, min, max } = option;
+                  console.log(query);
                   return (
                     <StyledListItem key={query} disablePadding>
                       {category === "fuelType" ||
@@ -113,7 +170,18 @@ export default function Filter({ filters, sortOptions }) {
                           checked={filterValue.includes(query)}
                         />
                       ) : (
-                        <RangeSlider />
+                        <>
+                          {/* {category.toLowerCase().split(" ")} */}
+                          <p>
+                            {min} | ${max}
+                          </p>
+                          {query}
+                          <RangeSlider
+                            min={min}
+                            max={max}
+                            onInput={(e) => handleRangeFilter(e, category)}
+                          />
+                        </>
                       )}
                       <ListItemText primary={text} />
                     </StyledListItem>
@@ -123,6 +191,14 @@ export default function Filter({ filters, sortOptions }) {
               </StyledFilters>
             ))}
           </List>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <CustomButton
+              type="secondary"
+              onClick={() => setIsClicked((isClicked) => !isClicked)}
+            >
+              Filter
+            </CustomButton>
+          </div>
         </Box>
       </Drawer>
       <SortBy
