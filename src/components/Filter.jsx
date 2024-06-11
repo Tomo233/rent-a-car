@@ -148,45 +148,38 @@ export default function Filter({ filters, sortOptions }) {
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 350 }} role="presentation">
           <List>
-            {filters.map(([category, ...options]) => (
-              <StyledFilters key={category}>
+            {filters.map(([category, ...options], categoryIndex) => (
+              <StyledFilters key={category + categoryIndex}>
                 <Category>{category}</Category>
-                {options.map((option) => {
-                  const { text, query, min, max } = option;
-                  console.log(query);
-                  return (
-                    <StyledListItem key={query} disablePadding>
-                      {category === "fuelType" ||
-                      category === "transmission" ? (
-                        <Checkbox
-                          {...label}
-                          sx={{
+                {options.map(({ text, query, min, max }, optionIndex) => (
+                  <StyledListItem key={query + optionIndex} disablePadding>
+                    {category === "fuelType" || category === "transmission" ? (
+                      <Checkbox
+                        {...label}
+                        sx={{
+                          color: "var(--color-primary-blue)",
+                          "&.Mui-checked": {
                             color: "var(--color-primary-blue)",
-                            "&.Mui-checked": {
-                              color: "var(--color-primary-blue)",
-                            },
-                          }}
-                          onChange={(e) => handleFilter(e, query)}
-                          checked={filterValue.includes(query)}
+                          },
+                        }}
+                        onChange={(e) => handleFilter(e, query)}
+                        checked={filterValue.includes(query)}
+                      />
+                    ) : (
+                      <>
+                        <p>
+                          {min} | ${max}
+                        </p>
+                        <RangeSlider
+                          min={min}
+                          max={max}
+                          onInput={(e) => handleRangeFilter(e, category)}
                         />
-                      ) : (
-                        <>
-                          {/* {category.toLowerCase().split(" ")} */}
-                          <p>
-                            {min} | ${max}
-                          </p>
-                          {query}
-                          <RangeSlider
-                            min={min}
-                            max={max}
-                            onInput={(e) => handleRangeFilter(e, category)}
-                          />
-                        </>
-                      )}
-                      <ListItemText primary={text} />
-                    </StyledListItem>
-                  );
-                })}
+                      </>
+                    )}
+                    <ListItemText primary={text} />
+                  </StyledListItem>
+                ))}
                 <Divider style={{ marginTop: "15px" }} />
               </StyledFilters>
             ))}
@@ -194,7 +187,7 @@ export default function Filter({ filters, sortOptions }) {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <CustomButton
               type="secondary"
-              onClick={() => setIsClicked((isClicked) => !isClicked)}
+              onClick={() => setIsClicked((prev) => !prev)}
             >
               Filter
             </CustomButton>

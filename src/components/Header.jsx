@@ -11,7 +11,11 @@ import Container from "./Container";
 const StyledHeader = styled.header`
   padding-top: 15px;
   background-color: ${(props) =>
-    props.ishomepage ? "transparent" : "#171717"};
+    props.$ishomepage ? "transparent" : "#171717"};
+`;
+
+const FlexContainerWithGap = styled(FlexContainer)`
+  gap: ${(props) => props.$gap};
 `;
 
 function Header() {
@@ -19,13 +23,13 @@ function Header() {
   const isHomePage = pathname === "/";
 
   return (
-    <StyledHeader ishomepage={isHomePage}>
+    <StyledHeader $ishomepage={isHomePage}>
       <Container>
         <FlexContainer>
-          <FlexContainer gap="50px">
+          <FlexContainerWithGap $gap="50px">
             <Logo />
             <HeaderList />
-          </FlexContainer>
+          </FlexContainerWithGap>
           {/* <UserAndAvatar /> */}
           <BasicModal />
         </FlexContainer>

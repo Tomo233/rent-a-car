@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 const CarImageParent = styled.div`
   margin-bottom: 50px;
 `;
+
 const CarImage = styled.img`
   width: 200px;
   display: block;
@@ -40,7 +41,7 @@ function CarItem({ car }) {
       </CarImageParent>
       <FlexContainer>
         <div>
-          <Heading as="h3" notaligned="true">
+          <Heading as="h3" $notaligned={true}>
             {name} {model}
           </Heading>
           <p>{year} god.</p>

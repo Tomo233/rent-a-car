@@ -18,7 +18,6 @@ function Cars() {
   const [searchParams] = useSearchParams();
   const sort = searchParams.get("sort")?.split("-");
   const filters = searchParams.getAll("filters");
-  // .map((f) => f.split("-").join(" "));
 
   const { cars, isLoading } = useCars(sort, filters);
 

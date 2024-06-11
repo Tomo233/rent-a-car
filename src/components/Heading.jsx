@@ -15,14 +15,14 @@ const Heading = styled.h2`
       margin: 30px 0;
     `}
       
-      ${(props) =>
+  ${(props) =>
     props.as === "h3" &&
     css`
       font-size: 20px;
     `}
       
   color: ${(props) => (props.color === "white" ? "#fff" : "#000")};
-  text-align: ${(props) => (props.notaligned ? "start" : "center")};
+  text-align: ${(props) => (props.$notaligned ? "start" : "center")};
 `;
 
 export default Heading;
