@@ -41,40 +41,20 @@ const StyledListItem = styled(ListItem)`
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const initialState = {
-  year: { from: 0, to: 1 },
-  horsepower: { from: 0, to: 1 },
-  price: { from: 0, to: 1 },
-};
+const initialState = [
+  { category: "year", from: 0, to: 1 },
+  { category: "horsepower", from: 0, to: 1 },
+  { category: "price", from: 0, to: 1 },
+];
+
 function reducer(state, action) {
   switch (action.type) {
-    case "caryear":
-      return {
-        ...state,
-        year: {
-          ...state.year,
-          from: action.payload.firstValue,
-          to: action.payload.secondValue,
-        },
-      };
-    case "horsepower":
-      return {
-        ...state,
-        horsepower: {
-          ...state.year,
-          from: action.payload.firstValue,
-          to: action.payload.secondValue,
-        },
-      };
-    case "price":
-      return {
-        ...state,
-        price: {
-          ...state.year,
-          from: action.payload.firstValue,
-          to: action.payload.secondValue,
-        },
-      };
+    case "setValue":
+      return state.map((item) =>
+        item.category === action.payload.category
+          ? { ...item, from: action.payload.from, to: action.payload.to }
+          : item
+      );
     case "reset":
       return initialState;
     default:
@@ -87,10 +67,8 @@ export default function Filter({ filters, sortOptions }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterValue, setFilterValue] = useState([]);
   const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [rangeValue, dispatch] = useReducer(reducer, initialState);
   const [isClicked, setIsClicked] = useState(false);
-
-  console.log(state);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -103,10 +81,13 @@ export default function Filter({ filters, sortOptions }) {
     newParams.delete("filters");
 
     // Add new filter values
-    if (isClicked)
+    if (isClicked) {
       filterValue.forEach((value) => {
         newParams.append("filters", value.trim());
       });
+
+      setOpen(false);
+    }
 
     // Update sort parameter
     if (sortValue) {
@@ -134,9 +115,13 @@ export default function Filter({ filters, sortOptions }) {
   const handleRangeFilter = (event, category) => {
     const carCategory = category.toLowerCase().replace(/\s+/g, "");
     const [firstValue, secondValue] = event;
-    console.log(carCategory);
-    dispatch({ type: carCategory, payload: { firstValue, secondValue } });
+    dispatch({
+      type: "setValue",
+      payload: { category: carCategory, from: firstValue, to: secondValue },
+    });
   };
+
+  console.log(rangeValue);
 
   return (
     <FlexContainer>
@@ -168,7 +153,7 @@ export default function Filter({ filters, sortOptions }) {
                     ) : (
                       <>
                         <p>
-                          {min} | ${max}
+                          {min} | {max}
                         </p>
                         <RangeSlider
                           min={min}
