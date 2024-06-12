@@ -1,6 +1,6 @@
 import supabase from "./supabase";
 
-export async function getCars(sort, filters) {
+export async function getCars(sort, filters, rangeFilters) {
   try {
     let query = supabase.from("cars").select("*");
 
@@ -12,18 +12,27 @@ export async function getCars(sort, filters) {
 
     if (filters.length > 0) {
       filters.map((f) => {
-        const [column, value, secondValue] = f.split("-");
-
-        if (column === "price" || column === "horsepower" || column === "year")
-          return (query = query
-            .gt(column, Number(value))
-            .lt(column, Number(secondValue)));
+        const [column, value] = f.split("-");
 
         return (query = query.eq(
           column,
           value.charAt(0).toUpperCase() + value.slice(1)
         ));
       });
+    }
+
+    if (rangeFilters.length > 0) {
+      rangeFilters.map((f) => {
+        const [column, value, secondValue] = f.split("-");
+        console.log(Number(value));
+        return (query = query
+          .gt(column, Number(value))
+          .lt(column, Number(secondValue)));
+      });
+
+      // return (query = query
+      //   .gt(column, Number(value))
+      //   .lt(column, Number(secondValue)));
     }
 
     const { data, error } = await query;

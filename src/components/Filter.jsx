@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -15,6 +15,7 @@ import "react-range-slider-input/dist/style.css";
 
 import SortBy from "./SortBy";
 import FlexContainer from "./FlexContainer";
+import { useCarFilter } from "../context/CarFilterContext";
 
 const StyledFilters = styled.div`
   padding: 10px 0;
@@ -49,52 +50,13 @@ const StyledButton = styled(Button)`
   font-size: 18px !important;
 `;
 
-const initialState = [
-  {
-    category: "year",
-    from: 2015,
-    to: 2022,
-    min: 2015,
-    max: 2022,
-  },
-  {
-    category: "horsepower",
-    from: 150,
-    to: 450,
-    min: 150,
-    max: 450,
-  },
-  {
-    category: "price",
-    from: 1,
-    to: 200,
-    min: 1,
-    max: 200,
-  },
-];
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "setValue":
-      return state.map((item) =>
-        item.category === action.payload.category
-          ? { ...item, from: action.payload.from, to: action.payload.to }
-          : item
-      );
-    case "reset":
-      return initialState;
-    default:
-      throw new Error("Unknown action type");
-  }
-}
-
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Filter({ filters, sortOptions }) {
   const [open, setOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterValue, setFilterValue] = useState([]);
-  const [rangeValue, dispatch] = useReducer(reducer, initialState);
+  const { rangeValue, dispatch } = useCarFilter();
   const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
 
   const toggleDrawer = (newOpen) => () => {
@@ -110,12 +72,11 @@ export default function Filter({ filters, sortOptions }) {
 
     // Add new filter values
     filterValue.forEach((value) => {
-      newParams.append("filters", value.trim());
+      newParams.append("filters", value);
     });
 
     rangeValue.forEach(({ category, from, to }) => {
-      // console.log(from);
-      newParams.append("rangeValues", `${category}-${from}-${to}`);
+      newParams.set(category, `${from}-${to}`);
     });
 
     // Update sort parameter
@@ -127,7 +88,7 @@ export default function Filter({ filters, sortOptions }) {
 
     // Update search parameters
     setSearchParams(newParams);
-  }, [filterValue, rangeValue, searchParams, sortValue, setSearchParams]);
+  }, [filterValue, rangeValue, sortValue]);
 
   const handleFilter = (e, query) => {
     if (e.target.checked) {
