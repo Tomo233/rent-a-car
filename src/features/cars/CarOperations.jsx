@@ -10,14 +10,27 @@ function CarOperations() {
     <StyledCarOperations>
       <Filter
         filters={[
-          [
-            "price",
-            {
-              min: 1,
-              max: 200,
-            },
-          ],
-
+          // [
+          //   "price",
+          //   {
+          //     min: 1,
+          //     max: 200,
+          //   },
+          // ],
+          // [
+          //   "Car Year",
+          //   {
+          //     min: 2015,
+          //     max: 2022,
+          //   },
+          // ],
+          // [
+          //   "Horse Power",
+          //   {
+          //     min: 150,
+          //     max: 450,
+          //   },
+          // ],
           [
             "transmission",
             {
@@ -42,20 +55,6 @@ function CarOperations() {
             {
               query: "fuelType-electric",
               text: "Electric",
-            },
-          ],
-          [
-            "Car Year",
-            {
-              min: 2015,
-              max: 2022,
-            },
-          ],
-          [
-            "Horse Power",
-            {
-              min: 150,
-              max: 450,
             },
           ],
         ]}

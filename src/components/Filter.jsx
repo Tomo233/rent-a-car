@@ -28,6 +28,7 @@ const Category = styled.p`
   text-align: center;
   font-size: 20px;
   text-transform: capitalize;
+  margin-bottom: 12px;
 `;
 
 const StyledFilters = styled.div`
@@ -39,12 +40,23 @@ const StyledListItem = styled(ListItem)`
   margin-top: 5px;
 `;
 
+const StyledRangeItem = styled.div`
+  height: 90px;
+`;
+
+const RangeListItem = styled(ListItem)`
+  padding-bottom: 2px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+`;
+
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const initialState = [
-  { category: "year", from: 0, to: 1 },
-  { category: "horsepower", from: 0, to: 1 },
-  { category: "price", from: 0, to: 1 },
+  { category: "year", from: 2015, to: 2022, min: 2015, max: 2022 },
+  { category: "horsepower", from: 150, to: 450, min: 150, max: 450 },
+  { category: "price", from: 1, to: 200, min: 1, max: 200 },
 ];
 
 function reducer(state, action) {
@@ -66,8 +78,8 @@ export default function Filter({ filters, sortOptions }) {
   const [open, setOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterValue, setFilterValue] = useState([]);
-  const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
   const [rangeValue, dispatch] = useReducer(reducer, initialState);
+  const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
   const [isClicked, setIsClicked] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -121,8 +133,6 @@ export default function Filter({ filters, sortOptions }) {
     });
   };
 
-  console.log(rangeValue);
-
   return (
     <FlexContainer>
       <StyledButton onClick={toggleDrawer(true)}>
@@ -138,36 +148,56 @@ export default function Filter({ filters, sortOptions }) {
                 <Category>{category}</Category>
                 {options.map(({ text, query, min, max }, optionIndex) => (
                   <StyledListItem key={query + optionIndex} disablePadding>
-                    {category === "fuelType" || category === "transmission" ? (
-                      <Checkbox
-                        {...label}
-                        sx={{
+                    {/* {category === "fuelType" || category === "transmission" ? ( */}
+                    <Checkbox
+                      {...label}
+                      sx={{
+                        color: "var(--color-primary-blue)",
+                        "&.Mui-checked": {
                           color: "var(--color-primary-blue)",
-                          "&.Mui-checked": {
-                            color: "var(--color-primary-blue)",
-                          },
-                        }}
-                        onChange={(e) => handleFilter(e, query)}
-                        checked={filterValue.includes(query)}
-                      />
-                    ) : (
-                      <>
-                        <p>
-                          {min} | {max}
-                        </p>
-                        <RangeSlider
-                          min={min}
-                          max={max}
-                          onInput={(e) => handleRangeFilter(e, category)}
-                        />
-                      </>
-                    )}
+                        },
+                      }}
+                      onChange={(e) => handleFilter(e, query)}
+                      checked={filterValue.includes(query)}
+                    />
+                    {/* // ) : (
+                    //   <>
+                    //     <p>
+                    //       {min} | {max}
+                    //     </p>
+                    //     <RangeSlider
+                    //       min={min}
+                    //       max={max}
+                    //       onInput={(e) => handleRangeFilter(e, category)}
+                    //     />
+                    //   </>
+                    // )} */}
                     <ListItemText primary={text} />
                   </StyledListItem>
                 ))}
                 <Divider style={{ marginTop: "15px" }} />
               </StyledFilters>
             ))}
+            {rangeValue.map(({ category, min, max, from, to }) => {
+              return (
+                <StyledRangeItem key={category}>
+                  <RangeListItem>
+                    <Category>
+                      {category.charAt(0).toUpperCase() + category.slice(1)}{" "}
+                      {from}-{to}
+                    </Category>
+                    <p></p>
+                    <RangeSlider
+                      key={category}
+                      min={min}
+                      max={max}
+                      onInput={(e) => handleRangeFilter(e, category)}
+                    />
+                  </RangeListItem>
+                  <Divider style={{ marginTop: "15px" }} />
+                </StyledRangeItem>
+              );
+            })}
           </List>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <CustomButton
