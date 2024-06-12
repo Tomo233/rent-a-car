@@ -10,8 +10,8 @@ export function useCars() {
   const { rangeValue } = useCarFilter();
 
   const rangeFilters = rangeValue.map((value) => {
-    const filters = searchParams.get(value.category);
-    return `${value.category}-${filters}`;
+    const rangeValue = searchParams.get(value.category);
+    return `${value.category}-${rangeValue}`;
   });
 
   const {

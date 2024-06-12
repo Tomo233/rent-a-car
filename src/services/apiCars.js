@@ -26,8 +26,8 @@ export async function getCars(sort, filters, rangeFilters) {
         const [column, value, secondValue] = f.split("-");
         console.log(Number(value));
         return (query = query
-          .gt(column, Number(value))
-          .lt(column, Number(secondValue)));
+          .gte(column, Number(value))
+          .lte(column, Number(secondValue)));
       });
 
       // return (query = query

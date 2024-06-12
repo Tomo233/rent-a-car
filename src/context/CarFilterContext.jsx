@@ -6,24 +6,24 @@ const FilterContext = createContext();
 const initialState = [
   {
     category: "year",
-    from: 2015,
+    from: 2011,
     to: 2022,
-    min: 2015,
+    min: 2011,
     max: 2022,
   },
   {
     category: "horsepower",
-    from: 150,
+    from: 158,
     to: 450,
-    min: 150,
+    min: 158,
     max: 450,
   },
   {
     category: "price",
-    from: 1,
-    to: 200,
-    min: 1,
-    max: 200,
+    from: 20,
+    to: 250,
+    min: 20,
+    max: 250,
   },
 ];
 
