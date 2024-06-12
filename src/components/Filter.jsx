@@ -18,10 +18,8 @@ import SortBy from "./SortBy";
 import FlexContainer from "./FlexContainer";
 import CustomButton from "./Button";
 
-const StyledButton = styled(Button)`
-  color: black !important;
-  text-transform: capitalize !important;
-  font-size: 18px !important;
+const StyledFilters = styled.div`
+  padding: 10px 0;
 `;
 
 const Category = styled.p`
@@ -29,10 +27,6 @@ const Category = styled.p`
   font-size: 20px;
   text-transform: capitalize;
   margin-bottom: 12px;
-`;
-
-const StyledFilters = styled.div`
-  padding: 10px 0;
 `;
 
 const StyledListItem = styled(ListItem)`
@@ -51,7 +45,11 @@ const RangeListItem = styled(ListItem)`
   flex-direction: column;
 `;
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+const StyledButton = styled(Button)`
+  color: black !important;
+  text-transform: capitalize !important;
+  font-size: 18px !important;
+`;
 
 const initialState = [
   { category: "year", from: 2015, to: 2022, min: 2015, max: 2022 },
@@ -73,6 +71,8 @@ function reducer(state, action) {
       throw new Error("Unknown action type");
   }
 }
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Filter({ filters, sortOptions }) {
   const [open, setOpen] = useState(false);
@@ -148,7 +148,6 @@ export default function Filter({ filters, sortOptions }) {
                 <Category>{category}</Category>
                 {options.map(({ text, query, min, max }, optionIndex) => (
                   <StyledListItem key={query + optionIndex} disablePadding>
-                    {/* {category === "fuelType" || category === "transmission" ? ( */}
                     <Checkbox
                       {...label}
                       sx={{
@@ -160,18 +159,6 @@ export default function Filter({ filters, sortOptions }) {
                       onChange={(e) => handleFilter(e, query)}
                       checked={filterValue.includes(query)}
                     />
-                    {/* // ) : (
-                    //   <>
-                    //     <p>
-                    //       {min} | {max}
-                    //     </p>
-                    //     <RangeSlider
-                    //       min={min}
-                    //       max={max}
-                    //       onInput={(e) => handleRangeFilter(e, category)}
-                    //     />
-                    //   </>
-                    // )} */}
                     <ListItemText primary={text} />
                   </StyledListItem>
                 ))}
