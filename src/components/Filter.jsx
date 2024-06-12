@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import styled from "styled-components";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -16,7 +15,6 @@ import "react-range-slider-input/dist/style.css";
 
 import SortBy from "./SortBy";
 import FlexContainer from "./FlexContainer";
-import CustomButton from "./Button";
 
 const StyledFilters = styled.div`
   padding: 10px 0;
@@ -52,9 +50,27 @@ const StyledButton = styled(Button)`
 `;
 
 const initialState = [
-  { category: "year", from: 2015, to: 2022, min: 2015, max: 2022 },
-  { category: "horsepower", from: 150, to: 450, min: 150, max: 450 },
-  { category: "price", from: 1, to: 200, min: 1, max: 200 },
+  {
+    category: "year",
+    from: 2015,
+    to: 2022,
+    min: 2015,
+    max: 2022,
+  },
+  {
+    category: "horsepower",
+    from: 150,
+    to: 450,
+    min: 150,
+    max: 450,
+  },
+  {
+    category: "price",
+    from: 1,
+    to: 200,
+    min: 1,
+    max: 200,
+  },
 ];
 
 function reducer(state, action) {
@@ -80,26 +96,27 @@ export default function Filter({ filters, sortOptions }) {
   const [filterValue, setFilterValue] = useState([]);
   const [rangeValue, dispatch] = useReducer(reducer, initialState);
   const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
-  const [isClicked, setIsClicked] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-  const updateParams = useCallback(() => {
+  useEffect(() => {
     const newParams = new URLSearchParams(searchParams.toString());
 
     // Clear existing filters
     newParams.delete("filters");
+    newParams.delete("rangeValues");
 
     // Add new filter values
-    if (isClicked) {
-      filterValue.forEach((value) => {
-        newParams.append("filters", value.trim());
-      });
+    filterValue.forEach((value) => {
+      newParams.append("filters", value.trim());
+    });
 
-      setOpen(false);
-    }
+    rangeValue.forEach(({ category, from, to }) => {
+      // console.log(from);
+      newParams.append("rangeValues", `${category}-${from}-${to}`);
+    });
 
     // Update sort parameter
     if (sortValue) {
@@ -110,11 +127,7 @@ export default function Filter({ filters, sortOptions }) {
 
     // Update search parameters
     setSearchParams(newParams);
-  }, [filterValue, isClicked, searchParams, setSearchParams, sortValue]);
-
-  useEffect(() => {
-    updateParams();
-  }, [updateParams]);
+  }, [filterValue, rangeValue, searchParams, sortValue, setSearchParams]);
 
   const handleFilter = (e, query) => {
     if (e.target.checked) {
@@ -146,7 +159,7 @@ export default function Filter({ filters, sortOptions }) {
             {filters.map(([category, ...options], categoryIndex) => (
               <StyledFilters key={category + categoryIndex}>
                 <Category>{category}</Category>
-                {options.map(({ text, query, min, max }, optionIndex) => (
+                {options.map(({ text, query }, optionIndex) => (
                   <StyledListItem key={query + optionIndex} disablePadding>
                     <Checkbox
                       {...label}
@@ -186,14 +199,6 @@ export default function Filter({ filters, sortOptions }) {
               );
             })}
           </List>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <CustomButton
-              type="secondary"
-              onClick={() => setIsClicked((prev) => !prev)}
-            >
-              Filter
-            </CustomButton>
-          </div>
         </Box>
       </Drawer>
       <SortBy
