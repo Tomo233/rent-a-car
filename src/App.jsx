@@ -8,6 +8,7 @@ import CarsPage from "./pages/CarsPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CarFilterProvider } from "./context/CarFilterContext";
+import Car from "./features/cars/Car";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,6 +28,7 @@ function App() {
             <Route element={<AppLayout />}>
               <Route index element={<Home />} />
               <Route path="/cars" element={<CarsPage />} />
+              <Route path="/cars/:carId" element={<Car />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>

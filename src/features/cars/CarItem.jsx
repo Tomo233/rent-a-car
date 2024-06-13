@@ -15,7 +15,7 @@ const CarImage = styled.img`
 `;
 
 const Car = styled.div`
-  border: 2px solid var(--color-primary-gray);
+  border: 2px solid var(--color-border-gray);
   padding: 20px;
   width: 400px;
   height: 300px;

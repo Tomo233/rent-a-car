@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   :root {
     --color-primary-blue : #0ea5e9;
-    --color-primary-gray : #d4d4d8;
-    --color-secondary-gray : #e6e6e6;
+    --color-primary-gray : #6F6F6F;
+    --color-border-gray : #d4d4d8;
   }
 
     *,
@@ -16,7 +16,7 @@ const GlobalStyles = createGlobalStyle`
 
 }
 body {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Montserrat', sans-serif;
   color: black;
 }
 
