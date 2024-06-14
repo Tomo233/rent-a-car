@@ -47,6 +47,8 @@ function Car() {
     mileage,
     year,
     location,
+    transmission,
+    fuelType,
   } = data;
 
   console.log(data);
@@ -79,6 +81,8 @@ function Car() {
           <StyledListItem>Car Model: {model}</StyledListItem>
           <StyledListItem>Engine: {engine}</StyledListItem>
           <StyledListItem>Horse Power: {horsepower}</StyledListItem>
+          <StyledListItem>Transmission: {transmission}</StyledListItem>
+          <StyledListItem>FuelType: {fuelType}</StyledListItem>
           <StyledListItem>Model Year: {year}</StyledListItem>
           <StyledListItem>Mileage: {mileage}</StyledListItem>
         </ul>
