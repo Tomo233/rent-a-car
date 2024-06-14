@@ -24,7 +24,6 @@ export async function getCars(sort, filters, rangeFilters) {
     if (rangeFilters.length > 0) {
       rangeFilters.map((f) => {
         const [column, value, secondValue] = f.split("-");
-        console.log(Number(value));
         return (query = query
           .gte(column, Number(value))
           .lte(column, Number(secondValue)));
@@ -50,6 +49,17 @@ export async function getSomeCars({ from, to }) {
   let { data, error } = await supabase.from("cars").select("*").range(from, to);
 
   if (error) throw new Error("Cars cannot be loaded");
+
+  return data;
+}
+
+export async function getCarById(id) {
+  let { data, error } = await supabase
+    .from("cars")
+    .select("*")
+    .eq("id", id)
+    .single();
+  if (error) throw new Error("Car cannot be loaded");
 
   return data;
 }

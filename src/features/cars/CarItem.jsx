@@ -3,6 +3,7 @@ import styled from "styled-components";
 import FlexContainer from "../../components/FlexContainer";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const CarImageParent = styled.div`
   margin-bottom: 50px;
@@ -23,6 +24,7 @@ const Car = styled.div`
 
 function CarItem({ car }) {
   const {
+    id,
     image,
     name,
     horsepower,
@@ -33,6 +35,7 @@ function CarItem({ car }) {
     year,
     location,
   } = car;
+  const navigate = useNavigate();
 
   return (
     <Car>
@@ -48,7 +51,9 @@ function CarItem({ car }) {
           <p>{horsepower} horsepower</p>
           <p>{location}</p>
         </div>
-        <Button type="short">{price}$/Dan</Button>
+        <Button type="short" onClick={() => navigate(`/cars/${id}`)}>
+          {price}$/Dan
+        </Button>
       </FlexContainer>
     </Car>
   );

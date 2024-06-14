@@ -17,7 +17,9 @@ function HeaderList() {
   return (
     <StyledList>
       <ListItem>About Us</ListItem>
-      <ListItem to="cars">Cars</ListItem>
+      <ListItem to="cars?year=2011-2022&horsepower=158-450&price=20-250">
+        Cars
+      </ListItem>
       <ListItem>Bookings</ListItem>
     </StyledList>
   );

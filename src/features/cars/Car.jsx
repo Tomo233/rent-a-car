@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Line from "../../components/Line";
+import SearchForm from "../../components/SearchForm";
+import { useCarsById } from "../useCarsById";
+import Loader from "../../components/Loader";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -29,42 +32,64 @@ const StyledListItem = styled.li`
 `;
 
 function Car() {
+  const { data, isLoading } = useCarsById();
+
+  if (isLoading) return <Loader />;
+
+  const {
+    image,
+    name,
+    horsepower,
+    features,
+    engine,
+    model,
+    price,
+    mileage,
+    year,
+    location,
+  } = data;
+
+  console.log(data);
   return (
     <StyledCar>
       <CarFlex>
         <div>
-          <img src="/kia.png" alt="" />
+          <img src={image} alt={name} width="700px" />
         </div>
         <CarInfo>
           <div>
-            <StyledHeading>Mercedes Benz S Class</StyledHeading>
+            <StyledHeading>
+              {name} {model}
+            </StyledHeading>
             <ul>
               <StyledListItem>+387 66 357 126</StyledListItem>
               <StyledListItem>rental@gmail.com</StyledListItem>
-              <StyledListItem>Lokacija : Beograd</StyledListItem>
+              <StyledListItem>Lokacija : {location}</StyledListItem>
+              <StyledListItem>Price : {price}$</StyledListItem>
             </ul>
           </div>
         </CarInfo>
       </CarFlex>
+      <SearchForm />
       <Line />
       <CarInfo>
         <StyledHeading>Opste informacije</StyledHeading>
         <ul>
-          <StyledListItem>Car: Mercedes</StyledListItem>
-          <StyledListItem>Car Model: S Class</StyledListItem>
-          <StyledListItem>Engine: 2.0L 4-cylinder</StyledListItem>
-          <StyledListItem>Horse Power: 234</StyledListItem>
-          <StyledListItem>Model Year: 2018</StyledListItem>
-          <StyledListItem>Mileage: 18000</StyledListItem>
+          <StyledListItem>Car: {name}</StyledListItem>
+          <StyledListItem>Car Model: {model}</StyledListItem>
+          <StyledListItem>Engine: {engine}</StyledListItem>
+          <StyledListItem>Horse Power: {horsepower}</StyledListItem>
+          <StyledListItem>Model Year: {year}</StyledListItem>
+          <StyledListItem>Mileage: {mileage}</StyledListItem>
         </ul>
       </CarInfo>
       <Line />
       <CarInfo>
         <StyledHeading>Dodatne informacije</StyledHeading>
         <ul>
-          <StyledListItem>Autopilot</StyledListItem>
-          <StyledListItem>Premium Interior</StyledListItem>
-          <StyledListItem>Panoramic Roof</StyledListItem>
+          {features.map((f) => (
+            <StyledListItem key={f}>{f}</StyledListItem>
+          ))}
         </ul>
       </CarInfo>
     </StyledCar>

@@ -6,7 +6,7 @@ import Line from "./Line";
 const StyledForm = styled.form`
   background-color: white;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  margin-top: 140px;
+  /* margin-top: 140px; */
   height: 120px;
   width: 100%;
 `;
