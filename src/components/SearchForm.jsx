@@ -27,7 +27,7 @@ const FormGrid = styled.div`
 `;
 
 const StyledInput = styled.input`
-  width: 220px;
+  width: 190px;
   height: 50px;
   color: black;
   font-size: 18px;
@@ -45,7 +45,12 @@ const TimeInput = styled.input`
 `;
 
 function SearchForm() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm();
 
   const handleForm = (data) => {
     console.log(data);
@@ -55,36 +60,60 @@ function SearchForm() {
     <StyledForm onSubmit={handleSubmit(handleForm)}>
       <FormFlex>
         <FormGrid>
-          <StyledLabel>Lokacija</StyledLabel>
+          <StyledLabel>{errors?.location?.message || "Location"}</StyledLabel>
           <StyledInput
             type="search"
+            name="location"
             placeholder="Unesi Lokaciju"
-            {...register("location", { required: "This field is required" })}
+            {...register("location", { required: "Required Field" })}
           />
         </FormGrid>
         <FormGrid>
-          <StyledLabel>Preuzimanje</StyledLabel>
+          <FlexContainer>
+            <StyledLabel>
+              {errors?.startDate?.message || "Start Date"}
+            </StyledLabel>
+            <StyledLabel>
+              {errors?.startTime?.message || "Start Time"}
+            </StyledLabel>
+          </FlexContainer>
           <FlexContainer>
             <StyledInput
               type="date"
-              {...register("startDate", { required: "This field is required" })}
+              name="startDate"
+              {...register("startDate", {
+                required: "Required Field",
+              })}
             />
             <TimeInput
               type="time"
-              {...register("startTime", { required: "This field is required" })}
+              name="startTime"
+              {...register("startTime", {
+                required: "Required Field",
+              })}
             />
           </FlexContainer>
         </FormGrid>
         <FormGrid>
-          <StyledLabel>Povratak</StyledLabel>
           <FlexContainer>
-            <StyledInput
-              type="date"
-              {...register("endDate", { required: "This field is required" })}
-            />
+            <StyledLabel>{errors?.endTime?.message || "End Time"}</StyledLabel>
+            <StyledLabel>{errors?.endDate?.message || "End Date"}</StyledLabel>
+          </FlexContainer>
+          <FlexContainer>
             <TimeInput
               type="time"
-              {...register("endTime", { required: "This field is required" })}
+              name="endTime"
+              {...register("endTime", { required: "Required Field" })}
+            />
+            <StyledInput
+              type="date"
+              name="endDate"
+              {...register("endDate", {
+                required: "Required Field",
+                validate: (value) =>
+                  value >= getValues("startDate") ||
+                  "end date is before start date",
+              })}
             />
           </FlexContainer>
         </FormGrid>
