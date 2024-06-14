@@ -21,6 +21,7 @@ const RoadImage = styled.img`
 const TextBox = styled.div`
   text-align: center;
   margin-top: 16rem;
+  margin-bottom: 140px;
 `;
 
 function HeroSection() {

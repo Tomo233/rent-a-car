@@ -16,11 +16,11 @@ const ListItem = styled(NavLink)`
 function HeaderList() {
   return (
     <StyledList>
-      <ListItem>About Us</ListItem>
+      <ListItem to="/aboutUs">About Us</ListItem>
       <ListItem to="cars?year=2011-2022&horsepower=158-450&price=20-250">
         Cars
       </ListItem>
-      <ListItem>Bookings</ListItem>
+      <ListItem to="/bookings">Bookings</ListItem>
     </StyledList>
   );
 }
