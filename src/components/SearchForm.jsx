@@ -2,6 +2,7 @@ import styled from "styled-components";
 import FlexContainer from "./FlexContainer";
 import Button from "./Button";
 import Line from "./Line";
+import { useForm } from "react-hook-form";
 
 const StyledForm = styled.form`
   background-color: white;
@@ -44,25 +45,47 @@ const TimeInput = styled.input`
 `;
 
 function SearchForm() {
+  const { register, handleSubmit } = useForm();
+
+  const handleForm = (data) => {
+    console.log(data);
+  };
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit(handleForm)}>
       <FormFlex>
         <FormGrid>
           <StyledLabel>Lokacija</StyledLabel>
-          <StyledInput type="search" placeholder="Unesi Lokaciju" />
+          <StyledInput
+            type="search"
+            placeholder="Unesi Lokaciju"
+            {...register("location", { required: "This field is required" })}
+          />
         </FormGrid>
         <FormGrid>
           <StyledLabel>Preuzimanje</StyledLabel>
           <FlexContainer>
-            <StyledInput type="date" />
-            <TimeInput type="time" />
+            <StyledInput
+              type="date"
+              {...register("startDate", { required: "This field is required" })}
+            />
+            <TimeInput
+              type="time"
+              {...register("startTime", { required: "This field is required" })}
+            />
           </FlexContainer>
         </FormGrid>
         <FormGrid>
           <StyledLabel>Povratak</StyledLabel>
           <FlexContainer>
-            <StyledInput type="date" />
-            <TimeInput type="time" />
+            <StyledInput
+              type="date"
+              {...register("endDate", { required: "This field is required" })}
+            />
+            <TimeInput
+              type="time"
+              {...register("endTime", { required: "This field is required" })}
+            />
           </FlexContainer>
         </FormGrid>
         <Button type="secondary">Pretrazi</Button>
