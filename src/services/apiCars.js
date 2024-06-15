@@ -1,6 +1,6 @@
 import supabase from "./supabase";
 
-export async function getCars(sort, filters, rangeFilters) {
+export async function getCars(sort, filters, rangeFilters, formData) {
   try {
     let query = supabase.from("cars").select("*");
 
@@ -28,14 +28,22 @@ export async function getCars(sort, filters, rangeFilters) {
           .gte(column, Number(value))
           .lte(column, Number(secondValue)));
       });
+    }
+    if (formData && Object.keys(formData).length > 0) {
+      console.log("e");
+      const {
+        startDate: formStartDate,
+        endDate: formEndDate,
+        startTime: formStartTime,
+        endTime: formEndTime,
+      } = formData;
 
-      // return (query = query
-      //   .gt(column, Number(value))
-      //   .lt(column, Number(secondValue)));
+      query = supabase.from("cars").select("*").gte("startDate", formStartDate);
+      // .gt("startDate", formStartDate));
     }
 
     const { data, error } = await query;
-
+    console.log(data);
     if (error) throw new Error("Cars cannot be loaded");
 
     return data;

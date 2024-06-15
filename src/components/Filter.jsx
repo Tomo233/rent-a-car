@@ -15,7 +15,7 @@ import "react-range-slider-input/dist/style.css";
 
 import SortBy from "./SortBy";
 import FlexContainer from "./FlexContainer";
-import { useCarFilter } from "../context/CarFilterContext";
+import { useCarContext } from "../context/CarContext";
 
 const StyledFilters = styled.div`
   padding: 10px 0;
@@ -56,7 +56,7 @@ export default function Filter({ filters, sortOptions }) {
   const [open, setOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterValue, setFilterValue] = useState([]);
-  const { rangeValue, dispatch } = useCarFilter();
+  const { rangeFilterValues, dispatch } = useCarContext();
   const [sortValue, setSortValue] = useState(searchParams.get("sort") || "");
 
   const toggleDrawer = (newOpen) => () => {
@@ -75,7 +75,7 @@ export default function Filter({ filters, sortOptions }) {
       newParams.append("filters", value);
     });
 
-    rangeValue.forEach(({ category, from, to }) => {
+    rangeFilterValues.forEach(({ category, from, to }) => {
       newParams.set(category, `${from}-${to}`);
     });
 
@@ -88,7 +88,7 @@ export default function Filter({ filters, sortOptions }) {
 
     // Update search parameters
     setSearchParams(newParams);
-  }, [filterValue, rangeValue, sortValue]);
+  }, [filterValue, rangeFilterValues, sortValue]);
 
   const handleFilter = (e, query) => {
     if (e.target.checked) {
@@ -139,7 +139,7 @@ export default function Filter({ filters, sortOptions }) {
                 <Divider style={{ marginTop: "15px" }} />
               </StyledFilters>
             ))}
-            {rangeValue.map(({ category, min, max, from, to }) => {
+            {rangeFilterValues.map(({ category, min, max, from, to }) => {
               return (
                 <StyledRangeItem key={category}>
                   <RangeListItem>

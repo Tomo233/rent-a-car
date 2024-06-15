@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { useCars } from "./useCars";
 import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
-// import { useSearchParams } from "react-router-dom";
-// import { useCarFilter } from "../../context/CarFilterContext";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
@@ -19,6 +17,8 @@ function Cars() {
   const { cars, isLoading } = useCars();
 
   if (isLoading) return <Loader />;
+
+  if (!cars) return <p>no cars</p>;
 
   return (
     <StyledRecommendedCars>

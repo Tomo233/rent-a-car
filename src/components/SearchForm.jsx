@@ -3,20 +3,20 @@ import FlexContainer from "./FlexContainer";
 import Button from "./Button";
 import Line from "./Line";
 import { useForm } from "react-hook-form";
+import { useCarContext } from "../context/CarContext";
+import { useNavigate } from "react-router-dom";
 
 const StyledForm = styled.form`
   background-color: white;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  /* margin-top: 140px; */
   height: 120px;
   width: 100%;
 `;
 
 const FormFlex = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 50px;
   height: 100%;
   width: 100%;
 `;
@@ -51,9 +51,13 @@ function SearchForm() {
     getValues,
     formState: { errors },
   } = useForm();
+  const { dispatch } = useCarContext();
+  const navigate = useNavigate();
 
   const handleForm = (data) => {
-    console.log(data);
+    // console.log(data);
+    dispatch({ type: "setFormData", payload: data });
+    navigate("cars?year=2011-2022&horsepower=158-194&price=20-250");
   };
 
   return (
