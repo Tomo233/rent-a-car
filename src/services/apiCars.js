@@ -38,8 +38,9 @@ export async function getCars(sort, filters, rangeFilters, formData) {
         endTime: formEndTime,
       } = formData;
 
-      query = supabase.from("cars").select("*").gte("startDate", formStartDate);
-      // .gt("startDate", formStartDate));
+      query = query.or(
+        `startDate.is.null,endDate.is.null,startDate.gt.${formEndDate},endDate.lt.${formStartDate}`
+      );
     }
 
     const { data, error } = await query;
