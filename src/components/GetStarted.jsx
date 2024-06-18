@@ -47,7 +47,7 @@ function GetStarted() {
           seamless travel andexclusive deals. Join savvy travelers for
           personalized service.
         </Paragraph>
-        <BasicModal needButton={true} />
+        <BasicModal largeButton={true} />
       </Box>
     </StyledGetStarted>
   );

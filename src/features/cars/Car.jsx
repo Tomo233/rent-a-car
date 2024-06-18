@@ -3,6 +3,8 @@ import Line from "../../components/Line";
 import SearchForm from "../../components/SearchForm";
 import { useCarsById } from "../useCarsById";
 import Loader from "../../components/Loader";
+import Map from "../../components/Map";
+import FlexContainer from "../../components/FlexContainer";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -49,6 +51,8 @@ function Car() {
     location,
     transmission,
     fuelType,
+    lat,
+    lng,
   } = data;
 
   console.log(data);
@@ -87,6 +91,7 @@ function Car() {
           <StyledListItem>Mileage: {mileage}</StyledListItem>
         </ul>
       </CarInfo>
+
       <Line />
       <CarInfo>
         <StyledHeading>Dodatne informacije</StyledHeading>
@@ -96,6 +101,7 @@ function Car() {
           ))}
         </ul>
       </CarInfo>
+      <Map lat={lat} lng={lng} />
     </StyledCar>
   );
 }
