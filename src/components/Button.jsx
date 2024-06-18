@@ -5,7 +5,8 @@ const Button = styled.button`
   border: none;
   padding: ${(props) =>
     props.type === "secondary" ? "16px 50px" : "12px 80px"};
-  padding: ${(props) => props.type === "short" && "20px 3px"};
+  padding: ${(props) => props.type === "carItemButton" && "20px 5px"};
+  padding: ${(props) => props.type === "reserveButton" && "20px 25px"};
   font-weight: 600;
   letter-spacing: 2px;
   font-size: 16px;

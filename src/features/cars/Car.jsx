@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Line from "../../components/Line";
-import SearchForm from "../../components/SearchForm";
 import { useCarsById } from "../useCarsById";
 import Loader from "../../components/Loader";
 import Map from "../../components/Map";
 import FlexContainer from "../../components/FlexContainer";
+import Button from "../../components/Button";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -71,25 +71,34 @@ function Car() {
               <StyledListItem>+387 66 357 126</StyledListItem>
               <StyledListItem>rental@gmail.com</StyledListItem>
               <StyledListItem>Lokacija : {location}</StyledListItem>
-              <StyledListItem>Price : {price}$</StyledListItem>
+              <StyledListItem>
+                <CarFlex>
+                  <span>Price :</span>
+                  <Button type="reserveButton">{price}$</Button>
+                </CarFlex>
+              </StyledListItem>
             </ul>
           </div>
         </CarInfo>
       </CarFlex>
-      <SearchForm />
       <Line />
       <CarInfo>
-        <StyledHeading>Opste informacije</StyledHeading>
-        <ul>
-          <StyledListItem>Car: {name}</StyledListItem>
-          <StyledListItem>Car Model: {model}</StyledListItem>
-          <StyledListItem>Engine: {engine}</StyledListItem>
-          <StyledListItem>Horse Power: {horsepower}</StyledListItem>
-          <StyledListItem>Transmission: {transmission}</StyledListItem>
-          <StyledListItem>FuelType: {fuelType}</StyledListItem>
-          <StyledListItem>Model Year: {year}</StyledListItem>
-          <StyledListItem>Mileage: {mileage}</StyledListItem>
-        </ul>
+        <FlexContainer>
+          <div>
+            <StyledHeading>Opste informacije</StyledHeading>
+            <ul>
+              <StyledListItem>Car: {name}</StyledListItem>
+              <StyledListItem>Car Model: {model}</StyledListItem>
+              <StyledListItem>Engine: {engine}</StyledListItem>
+              <StyledListItem>Horse Power: {horsepower}</StyledListItem>
+              <StyledListItem>Transmission: {transmission}</StyledListItem>
+              <StyledListItem>FuelType: {fuelType}</StyledListItem>
+              <StyledListItem>Model Year: {year}</StyledListItem>
+              <StyledListItem>Mileage: {mileage}</StyledListItem>
+            </ul>
+          </div>
+          <Map lat={lat} lng={lng} />
+        </FlexContainer>
       </CarInfo>
 
       <Line />
@@ -101,7 +110,6 @@ function Car() {
           ))}
         </ul>
       </CarInfo>
-      <Map lat={lat} lng={lng} />
     </StyledCar>
   );
 }
