@@ -17,7 +17,7 @@ function HeaderList() {
   return (
     <StyledList>
       <ListItem to="/aboutUs">About Us</ListItem>
-      <ListItem to="cars">Cars</ListItem>
+      {/* <ListItem to="cars">Cars</ListItem> */}
       <ListItem to="/bookings">Bookings</ListItem>
     </StyledList>
   );

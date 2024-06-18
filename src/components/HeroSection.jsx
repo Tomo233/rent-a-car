@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import Button from "./Button";
 import SearchForm from "./SearchForm";
 import Span from "./Span";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
-import { Link } from "react-router-dom";
+import BasicModal from "./BasicModal";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -39,9 +38,7 @@ function HeroSection() {
           cater to every traveler&apos;s needs. Experience convenience and
           reliability as you embark on your next journey with us.
         </Paragraph>
-        <Button>
-          <Link to="/cars">Get Started</Link>
-        </Button>
+        <BasicModal largeButton={true} />
       </TextBox>
       <SearchForm />
     </section>

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import * as React from "react";
 import MuiButton from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import LoginForm from "./LoginForm";
 import Box from "@mui/material/Box";
 import Button from "./Button";
+import { useState } from "react";
 
 const style = {
   position: "absolute",
@@ -21,14 +21,17 @@ const StyledButton = styled(MuiButton)`
   color: white !important;
 `;
 
-export default function BasicModal({ needButton }) {
-  const [open, setOpen] = React.useState(false);
+export default function BasicModal({ largeButton = false }) {
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   return (
     <div>
-      {needButton ? (
-        <Button onClick={handleOpen}>Sign Up</Button>
+      {largeButton ? (
+        <Button onClick={handleOpen} type="secondary">
+          Login / SignUp
+        </Button>
       ) : (
         <StyledButton onClick={handleOpen}>Login / SignUp</StyledButton>
       )}
