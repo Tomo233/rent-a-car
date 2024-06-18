@@ -34,17 +34,19 @@ export async function getCars(sort, filters, rangeFilters, formData) {
       const {
         startDate: formStartDate,
         endDate: formEndDate,
-        startTime: formStartTime,
-        endTime: formEndTime,
+        // startTime: formStartTime,
+        // endTime: formEndTime,
       } = formData;
 
-      query = query.or(
+      query.or(
         `startDate.is.null,endDate.is.null,startDate.gt.${formEndDate},endDate.lt.${formStartDate}`
       );
     }
 
+    if (!filters && !rangeFilters && !sort)
+      await supabase.from("cars").select("*");
+
     const { data, error } = await query;
-    console.log(data);
     if (error) throw new Error("Cars cannot be loaded");
 
     return data;

@@ -15,7 +15,7 @@ const StyledForm = styled.form`
 
 const StyledInput = styled.input`
   padding-left: 5px;
-  background-color: var(--color-secondary-gray);
+  background-color: var(--color-border-gray);
   border: none;
   width: 250px;
   height: 45px;
@@ -26,7 +26,7 @@ const GoogleButton = styled.button`
   background-color: var(--color-primary-blue);
   height: 50px;
   margin-bottom: 25px;
-  border: 3px solid var(--color-secondary-gray);
+  border: 3px solid var(--color-border-gray);
 `;
 
 const GoogleSpan = styled.span`

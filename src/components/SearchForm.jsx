@@ -57,7 +57,7 @@ function SearchForm() {
   const handleForm = (data) => {
     // console.log(data);
     dispatch({ type: "setFormData", payload: data });
-    navigate("cars?year=2011-2022&horsepower=158-194&price=20-250");
+    navigate("cars");
   };
 
   return (
@@ -107,7 +107,12 @@ function SearchForm() {
             <TimeInput
               type="time"
               name="endTime"
-              {...register("endTime", { required: "Required Field" })}
+              {...register("endTime", {
+                required: "Required Field",
+                validate: (value) =>
+                  value >= getValues("startTime") ||
+                  "end time is before start time",
+              })}
             />
             <StyledInput
               type="date"

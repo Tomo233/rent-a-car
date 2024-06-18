@@ -27,7 +27,7 @@ const initialState = {
       max: 250,
     },
   ],
-  formData: {},
+  formData: JSON.parse(localStorage.getItem("formData")) || {}, // Load formData from localStorage
 };
 
 function reducer(state, action) {
@@ -42,10 +42,13 @@ function reducer(state, action) {
         ),
       };
     case "setFormData":
+      // set formData to local storage
+      localStorage.setItem("formData", JSON.stringify(action.payload));
       return {
         ...state,
         formData: action.payload,
       };
+
     case "reset":
       return initialState;
     default:
