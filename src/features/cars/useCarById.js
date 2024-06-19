@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCarById } from "../services/apiCars";
+import { getCarById } from "../../services/apiCars";
 import { useParams } from "react-router-dom";
 
-export const useCarsById = function () {
+export const useCarById = function () {
   const { carId } = useParams();
   const { isLoading, data, error } = useQuery({
     queryKey: ["car"],

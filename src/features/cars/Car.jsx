@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Line from "../../components/Line";
-import { useCarsById } from "../useCarsById";
 import Loader from "../../components/Loader";
 import Map from "../../components/Map";
 import FlexContainer from "../../components/FlexContainer";
 import Button from "../../components/Button";
 import { useReserveCar } from "./useReserveCar";
+import { useCarById } from "./useCarById";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -35,7 +35,7 @@ const StyledListItem = styled.li`
 `;
 
 function Car() {
-  const { data, isLoading } = useCarsById();
+  const { data, isLoading } = useCarById();
   const { reserveCar, isReserving } = useReserveCar();
 
   if (isLoading || isReserving) return <Loader />;
