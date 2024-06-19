@@ -18,6 +18,7 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 function App() {
   return (
     <CarProvider>
@@ -49,7 +50,7 @@ function App() {
               fontStyle: "16px",
               maxWidth: "500px",
               padding: "16px 24px",
-              backgroundColor: "var(--color-primary-gray)",
+              backgroundColor: "var(--color-border-gray)",
               color: "black",
             },
           }}

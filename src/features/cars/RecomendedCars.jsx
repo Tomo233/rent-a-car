@@ -17,6 +17,7 @@ function RecomendedCars() {
   const { data, isLoading, error } = useSomeCars(fromTo);
 
   if (isLoading) return <Loader />;
+
   if (error) console.log(error);
 
   return (
@@ -26,7 +27,7 @@ function RecomendedCars() {
       </Heading>
       <FlexContainer>
         {data.map((car) => (
-          <CarItem key={car.id} car={car} />
+          <CarItem key={car.id} car={car} usedOnRecommended={true} />
         ))}
       </FlexContainer>
       <Line />

@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { useCars } from "./useCars";
 import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
-import { useFetchCars } from "./useFetchCars";
+import { useCars } from "./useCars";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
@@ -15,19 +14,14 @@ const Grid = styled.div`
 `;
 
 function Cars() {
-  // const { cars, isLoading } = useCars();
-  const { fetchedCars, isLoading } = useFetchCars();
+  const { cars, isLoading } = useCars();
 
   if (isLoading) return <Loader />;
-
-  // if (!cars) return <p>no cars</p>;
-
-  console.log(fetchedCars);
 
   return (
     <StyledRecommendedCars>
       <Grid>
-        {fetchedCars?.map((car) => (
+        {cars?.map((car) => (
           <CarItem car={car} key={car.id} />
         ))}
       </Grid>
