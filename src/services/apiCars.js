@@ -1,5 +1,6 @@
 import supabase from "./supabase";
 
+// eslint-disable-next-line no-unused-vars
 export async function getCars(sort, filters, rangeFilters, formData) {
   try {
     let query = supabase.from("cars").select("*");
@@ -29,19 +30,20 @@ export async function getCars(sort, filters, rangeFilters, formData) {
           .lte(column, Number(secondValue)));
       });
     }
-    if (formData && Object.keys(formData).length > 0) {
-      console.log("e");
-      const {
-        startDate: formStartDate,
-        endDate: formEndDate,
-        // startTime: formStartTime,
-        // endTime: formEndTime,
-      } = formData;
 
-      query.or(
-        `startDate.is.null,endDate.is.null,startDate.gt.${formEndDate},endDate.lt.${formStartDate}`
-      );
-    }
+    // if (formData && Object.keys(formData).length > 0) {
+    //   console.log("e");
+    //   const {
+    //     startDate: formStartDate,
+    //     endDate: formEndDate,
+    //     // startTime: formStartTime,
+    //     // endTime: formEndTime,
+    //   } = formData;
+
+    //   query.or(
+    //     `startDate.is.null,endDate.is.null,startDate.gt.${formEndDate},endDate.lt.${formStartDate}`
+    //   );
+    // }
 
     if (!filters && !rangeFilters && !sort)
       await supabase.from("cars").select("*");
@@ -73,4 +75,31 @@ export async function getCarById(id) {
   if (error) throw new Error("Car cannot be loaded");
 
   return data;
+}
+
+export async function reserveCarById(
+  carId,
+  { startDate, endDate, startTime, endTime }
+) {
+  try {
+    const { data, error } = await supabase.from("reservations").insert([
+      {
+        car_id: carId,
+        startDate,
+        endDate,
+        startTime,
+        endTime,
+      },
+    ]);
+
+    if (error) {
+      throw error;
+    }
+
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error reserving car:", error.message);
+    throw new Error("Car reservation failed");
+  }
 }

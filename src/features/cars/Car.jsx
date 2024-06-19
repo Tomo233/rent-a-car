@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import Map from "../../components/Map";
 import FlexContainer from "../../components/FlexContainer";
 import Button from "../../components/Button";
+import { useReserveCar } from "./useReserveCar";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -35,8 +36,9 @@ const StyledListItem = styled.li`
 
 function Car() {
   const { data, isLoading } = useCarsById();
+  const { reserveCar, isReserving } = useReserveCar();
 
-  if (isLoading) return <Loader />;
+  if (isLoading || isReserving) return <Loader />;
 
   const {
     image,
@@ -55,7 +57,10 @@ function Car() {
     lng,
   } = data;
 
-  console.log(data);
+  const handleReserve = () => {
+    reserveCar();
+  };
+
   return (
     <StyledCar>
       <CarFlex>
@@ -74,7 +79,9 @@ function Car() {
               <StyledListItem>
                 <CarFlex>
                   <span>Price :</span>
-                  <Button type="reserveButton">{price}$</Button>
+                  <Button type="reserveButton" onClick={handleReserve}>
+                    {price}$
+                  </Button>
                 </CarFlex>
               </StyledListItem>
             </ul>
