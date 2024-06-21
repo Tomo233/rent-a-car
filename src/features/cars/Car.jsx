@@ -4,8 +4,8 @@ import Loader from "../../components/Loader";
 import Map from "../../components/Map";
 import FlexContainer from "../../components/FlexContainer";
 import Button from "../../components/Button";
-import { useReserveCar } from "./useReserveCar";
 import { useCarById } from "./useCarById";
+import { useBookCar } from "./useBookCar";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -36,9 +36,9 @@ const StyledListItem = styled.li`
 
 function Car() {
   const { data, isLoading } = useCarById();
-  const { reserveCar, isReserving } = useReserveCar();
+  const { bookCar, isBooking } = useBookCar();
 
-  if (isLoading || isReserving) return <Loader />;
+  if (isLoading || isBooking) return <Loader />;
 
   const {
     image,
@@ -58,7 +58,7 @@ function Car() {
   } = data;
 
   const handleReserve = () => {
-    reserveCar();
+    bookCar();
   };
 
   return (
