@@ -5,6 +5,7 @@ import Line from "./Line";
 import { useForm } from "react-hook-form";
 import { useCarContext } from "../context/CarContext";
 import { useNavigate } from "react-router-dom";
+import { FormControl, MenuItem, Select } from "@mui/material";
 
 const StyledForm = styled.form`
   background-color: white;
@@ -44,6 +45,10 @@ const TimeInput = styled.input`
   height: 40px;
 `;
 
+const StyledSelect = styled(Select)`
+  border: 1px solid var(--color-border-gray);
+  width: 190px;
+`;
 function SearchForm() {
   const {
     register,
@@ -58,10 +63,8 @@ function SearchForm() {
   const startDate = watch("startDate");
   const endDate = watch("endDate");
   const startTime = watch("startTime");
-  // const endTime = watch("endTime");
 
   const handleForm = (data) => {
-    // console.log(data);
     dispatch({ type: "setFormData", payload: data });
     navigate("cars");
   };
@@ -71,12 +74,20 @@ function SearchForm() {
       <FormFlex>
         <FormGrid>
           <StyledLabel>{errors?.location?.message || "Location"}</StyledLabel>
-          <StyledInput
-            type="search"
-            name="location"
-            placeholder="Unesi Lokaciju"
-            {...register("location", { required: "Required Field" })}
-          />
+
+          <FormControl>
+            <StyledSelect
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              onChange={handleForm}
+              {...register("location", { required: "Required Field" })}
+            >
+              <MenuItem value="Belgrade">Belgrade</MenuItem>
+              <MenuItem value="Mostar">Mostar</MenuItem>
+              <MenuItem value="Sarajevo">Sarajevo</MenuItem>
+              <MenuItem value="Zagreb">Zagreb</MenuItem>
+            </StyledSelect>
+          </FormControl>
         </FormGrid>
         <FormGrid>
           <FlexContainer>

@@ -3,7 +3,7 @@ import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
 import { useCars } from "./useCars";
 
-const StyledRecommendedCars = styled.section`
+const StyledCars = styled.section`
   margin-top: 100px;
 `;
 
@@ -19,13 +19,13 @@ function Cars() {
   if (isLoading) return <Loader />;
 
   return (
-    <StyledRecommendedCars>
+    <StyledCars>
       <Grid>
         {cars?.map((car) => (
           <CarItem car={car} key={car.id} />
         ))}
       </Grid>
-    </StyledRecommendedCars>
+    </StyledCars>
   );
 }
 

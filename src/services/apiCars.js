@@ -4,7 +4,8 @@ export async function getCars(formData) {
   try {
     const { data: cars, error: carsError } = await supabase
       .from("cars")
-      .select("*");
+      .select("*")
+      .eq("location", formData.location);
 
     if (carsError) {
       throw new Error("Error fetching cars:", carsError.message);
