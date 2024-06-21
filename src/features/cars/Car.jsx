@@ -6,6 +6,7 @@ import FlexContainer from "../../components/FlexContainer";
 import Button from "../../components/Button";
 import { useCarById } from "./useCarById";
 import { useBookCar } from "./useBookCar";
+import { useCarContext } from "../../context/CarContext";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -37,6 +38,8 @@ const StyledListItem = styled.li`
 function Car() {
   const { data, isLoading } = useCarById();
   const { bookCar, isBooking } = useBookCar();
+  const { formData } = useCarContext();
+  const { startDate, endDate, startTime, endTime } = formData;
 
   if (isLoading || isBooking) return <Loader />;
 
@@ -76,6 +79,12 @@ function Car() {
               <StyledListItem>+387 66 357 126</StyledListItem>
               <StyledListItem>rental@gmail.com</StyledListItem>
               <StyledListItem>Lokacija : {location}</StyledListItem>
+              <StyledListItem>
+                Date : {startDate} - {endDate}
+              </StyledListItem>
+              <StyledListItem>
+                Time : {startTime} - {endTime}
+              </StyledListItem>
               <StyledListItem>
                 <CarFlex>
                   <span>Price :</span>
