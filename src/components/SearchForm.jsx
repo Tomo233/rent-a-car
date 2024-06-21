@@ -50,9 +50,15 @@ function SearchForm() {
     handleSubmit,
     getValues,
     formState: { errors },
+    watch,
   } = useForm();
   const { dispatch } = useCarContext();
   const navigate = useNavigate();
+
+  const startDate = watch("startDate");
+  const endDate = watch("endDate");
+  const startTime = watch("startTime");
+  // const endTime = watch("endTime");
 
   const handleForm = (data) => {
     // console.log(data);
@@ -109,9 +115,15 @@ function SearchForm() {
               name="endTime"
               {...register("endTime", {
                 required: "Required Field",
-                validate: (value) =>
-                  value >= getValues("startTime") ||
-                  "end time is before start time",
+                validate: (value) => {
+                  if (startDate === endDate) {
+                    return (
+                      value >= startTime ||
+                      "End Time must be later than or equal to Start Time"
+                    );
+                  }
+                  return true;
+                },
               })}
             />
             <StyledInput
