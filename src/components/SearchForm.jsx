@@ -46,7 +46,7 @@ const TimeInput = styled.input`
 `;
 
 const StyledSelect = styled(Select)`
-  border: 1px solid var(--color-border-gray);
+  border: 1px solid var(--color-border-gray) !important;
   width: 190px;
 `;
 function SearchForm() {
