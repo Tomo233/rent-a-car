@@ -88,8 +88,8 @@ function Car() {
               <StyledListItem>
                 <CarFlex>
                   <span>Price :</span>
-                  <Button type="reserveButton" onClick={handleReserve}>
-                    {price}$
+                  <Button type="short" onClick={handleReserve}>
+                    {price}$/Dan
                   </Button>
                 </CarFlex>
               </StyledListItem>

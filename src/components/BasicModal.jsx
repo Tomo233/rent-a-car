@@ -29,9 +29,7 @@ export default function BasicModal({ largeButton = false }) {
   return (
     <div>
       {largeButton ? (
-        <Button onClick={handleOpen} type="secondary">
-          Login / SignUp
-        </Button>
+        <Button onClick={handleOpen}>Login / SignUp</Button>
       ) : (
         <StyledButton onClick={handleOpen}>Login / SignUp</StyledButton>
       )}
@@ -42,6 +40,7 @@ export default function BasicModal({ largeButton = false }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          {/* <p>op</p> */}
           <LoginForm />
         </Box>
       </Modal>

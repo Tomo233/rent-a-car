@@ -41,7 +41,7 @@ function MostAskedQuestions() {
             <Heading as="h3" color="white" style={{ marginBottom: "15px" }}>
               Do you have any questions?
             </Heading>
-            <Button type="secondary">Ask a question</Button>
+            <Button>Ask a question</Button>
           </Content>
         </Box>
       </FlexContainer>

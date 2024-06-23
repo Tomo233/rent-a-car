@@ -5,7 +5,7 @@ import Line from "./Line";
 import { useForm } from "react-hook-form";
 import { useCarContext } from "../context/CarContext";
 import { useNavigate } from "react-router-dom";
-import { FormControl, MenuItem, Select } from "@mui/material";
+import { FormControl, MenuItem, Select, InputLabel } from "@mui/material";
 
 const StyledForm = styled.form`
   background-color: white;
@@ -49,6 +49,7 @@ const StyledSelect = styled(Select)`
   border: 1px solid var(--color-border-gray) !important;
   width: 190px;
 `;
+
 function SearchForm() {
   const {
     register,
@@ -56,7 +57,16 @@ function SearchForm() {
     getValues,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      location: "", // Set the default value to an empty string
+      startDate: "",
+      endDate: "",
+      startTime: "",
+      endTime: "",
+    },
+  });
+
   const { dispatch } = useCarContext();
   const navigate = useNavigate();
 
@@ -66,6 +76,7 @@ function SearchForm() {
 
   const handleForm = (data) => {
     dispatch({ type: "setFormData", payload: data });
+
     navigate("cars");
   };
 
@@ -74,12 +85,12 @@ function SearchForm() {
       <FormFlex>
         <FormGrid>
           <StyledLabel>{errors?.location?.message || "Location"}</StyledLabel>
-
           <FormControl>
+            <InputLabel id="location-label">Location</InputLabel>
             <StyledSelect
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              onChange={handleForm}
+              labelId="location-label"
+              id="location"
+              defaultValue="" // Set the default value
               {...register("location", { required: "Required Field" })}
             >
               <MenuItem value="Belgrade">Belgrade</MenuItem>
@@ -101,17 +112,11 @@ function SearchForm() {
           <FlexContainer>
             <StyledInput
               type="date"
-              name="startDate"
-              {...register("startDate", {
-                required: "Required Field",
-              })}
+              {...register("startDate", { required: "Required Field" })}
             />
             <TimeInput
               type="time"
-              name="startTime"
-              {...register("startTime", {
-                required: "Required Field",
-              })}
+              {...register("startTime", { required: "Required Field" })}
             />
           </FlexContainer>
         </FormGrid>
@@ -123,7 +128,6 @@ function SearchForm() {
           <FlexContainer>
             <TimeInput
               type="time"
-              name="endTime"
               {...register("endTime", {
                 required: "Required Field",
                 validate: (value) => {
@@ -139,17 +143,16 @@ function SearchForm() {
             />
             <StyledInput
               type="date"
-              name="endDate"
               {...register("endDate", {
                 required: "Required Field",
                 validate: (value) =>
                   value >= getValues("startDate") ||
-                  "end date is before start date",
+                  "End date is before start date",
               })}
             />
           </FlexContainer>
         </FormGrid>
-        <Button type="secondary">Pretrazi</Button>
+        <Button>Search</Button>
       </FormFlex>
       <Line />
     </StyledForm>

@@ -141,7 +141,6 @@ export async function bookCarById(
       throw error;
     }
 
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error reserving car:", error.message);

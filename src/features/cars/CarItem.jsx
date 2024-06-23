@@ -51,7 +51,7 @@ function CarItem({ car }) {
           <p>{horsepower} horsepower</p>
           <p>{location}</p>
         </div>
-        <Button type="carItemButton" onClick={() => navigate(`/cars/${id}`)}>
+        <Button type="short" onClick={() => navigate(`/cars/${id}`)}>
           {price}$/Dan
         </Button>
       </FlexContainer>
