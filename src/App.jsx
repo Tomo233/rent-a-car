@@ -10,6 +10,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Car from "./features/cars/Car";
 import { CarProvider } from "./context/CarContext";
 import { Toaster } from "react-hot-toast";
+import BookingsPage from "./pages/BookingsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ function App() {
             <Route element={<AppLayout />}>
               <Route index element={<Home />} />
               <Route path="/cars" element={<CarsPage />} />
+              <Route path="/bookings" element={<BookingsPage />} />
               <Route path="/cars/:carId" element={<Car />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />

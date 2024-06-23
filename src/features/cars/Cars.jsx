@@ -2,15 +2,10 @@ import styled from "styled-components";
 import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
 import { useCars } from "./useCars";
+import CarGrid from "../../components/CarGrid";
 
 const StyledCars = styled.section`
   margin-top: 100px;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
 `;
 
 function Cars() {
@@ -22,11 +17,11 @@ function Cars() {
 
   return (
     <StyledCars>
-      <Grid>
+      <CarGrid>
         {cars?.map((car) => (
           <CarItem car={car} key={car.id} />
         ))}
-      </Grid>
+      </CarGrid>
     </StyledCars>
   );
 }

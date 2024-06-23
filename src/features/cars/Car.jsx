@@ -101,12 +101,7 @@ function Car() {
               <StyledListItem>+387 66 357 126</StyledListItem>
               <StyledListItem>rental@gmail.com</StyledListItem>
               <StyledListItem>Lokacija : {location}</StyledListItem>
-              <StyledListItem>
-                Date : {startDate} - {endDate}
-              </StyledListItem>
-              <StyledListItem>
-                Time : {startTime} - {endTime}
-              </StyledListItem>
+
               <StyledListItem>
                 <CarFlex>
                   <span>Price :</span>
@@ -125,7 +120,7 @@ function Car() {
                         </p>
                         <p>{daysDifference} days</p>
                         <p>Price : {price * daysDifference}$</p>
-                        <Button onClick={handleReserve}>Reserve</Button>
+                        <Button onClick={handleReserve}>Book</Button>
                       </ModalGrid>
                     </ModalContent>
                   </BasicModal>
