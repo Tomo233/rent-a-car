@@ -25,7 +25,6 @@ export async function getCars(formData, sort, filters, rangeFilters) {
     if (rangeFilters.length > 0) {
       rangeFilters.map((f) => {
         const [column, value, secondValue] = f.split("-");
-        console.log(Number(value));
         return (query = query
           .gt(column, Number(value))
           .lt(column, Number(secondValue)));

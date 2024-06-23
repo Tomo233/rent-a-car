@@ -4,6 +4,8 @@ import Loader from "../../components/Loader";
 import Map from "../../components/Map";
 import FlexContainer from "../../components/FlexContainer";
 import Button from "../../components/Button";
+import BasicModal from "../../components/BasicModal";
+import Heading from "../../components/Heading";
 import { useCarById } from "./useCarById";
 import { useBookCar } from "./useBookCar";
 import { useCarContext } from "../../context/CarContext";
@@ -35,6 +37,19 @@ const StyledListItem = styled.li`
   padding-bottom: 20px;
 `;
 
+const ModalContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 300px;
+`;
+
+const ModalGrid = styled.div`
+  display: grid;
+  gap: 15px;
+`;
+
 function Car() {
   const { data, isLoading } = useCarById();
   const { bookCar, isBooking } = useBookCar();
@@ -64,6 +79,13 @@ function Car() {
     bookCar();
   };
 
+  const button = <Button type="short">{price}$/Dan</Button>;
+
+  let difference = new Date(endDate).getTime() - new Date(startDate).getTime();
+  let daysDifference = difference / (1000 * 3600 * 24);
+
+  console.log(daysDifference);
+
   return (
     <StyledCar>
       <CarFlex>
@@ -88,9 +110,25 @@ function Car() {
               <StyledListItem>
                 <CarFlex>
                   <span>Price :</span>
-                  <Button type="short" onClick={handleReserve}>
-                    {price}$/Dan
-                  </Button>
+
+                  <BasicModal button={button}>
+                    <ModalContent>
+                      <ModalGrid>
+                        <Heading as="h3">
+                          {name} {model}
+                        </Heading>
+                        <p>
+                          Date : {startDate} - {endDate}
+                        </p>
+                        <p>
+                          Time : {startTime} - {endTime}
+                        </p>
+                        <p>{daysDifference} days</p>
+                        <p>Price : {price * daysDifference}$</p>
+                        <Button onClick={handleReserve}>Reserve</Button>
+                      </ModalGrid>
+                    </ModalContent>
+                  </BasicModal>
                 </CarFlex>
               </StyledListItem>
             </ul>

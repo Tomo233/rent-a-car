@@ -1,11 +1,7 @@
 /* eslint-disable react/prop-types */
-import MuiButton from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import styled from "styled-components";
-import LoginForm from "./LoginForm";
 import Box from "@mui/material/Box";
-import Button from "./Button";
-import { useState } from "react";
+import { cloneElement, useState } from "react";
 
 const style = {
   position: "absolute",
@@ -15,34 +11,25 @@ const style = {
   width: 500,
 };
 
-const StyledButton = styled(MuiButton)`
-  border: 1px solid white !important;
-  background-color: transparent !important;
-  color: white !important;
-`;
-
-export default function BasicModal({ largeButton = false }) {
+export default function BasicModal({ button, children }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const buttonWithHandler = button
+    ? cloneElement(button, { onClick: handleOpen })
+    : null;
+
   return (
     <div>
-      {largeButton ? (
-        <Button onClick={handleOpen}>Login / SignUp</Button>
-      ) : (
-        <StyledButton onClick={handleOpen}>Login / SignUp</StyledButton>
-      )}
+      {buttonWithHandler}
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          {/* <p>op</p> */}
-          <LoginForm />
-        </Box>
+        <Box sx={style}>{children}</Box>
       </Modal>
     </div>
   );

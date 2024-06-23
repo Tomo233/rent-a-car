@@ -6,6 +6,8 @@ import HeaderList from "./HeaderList";
 import Logo from "./Logo";
 import BasicModal from "./BasicModal";
 import Container from "./Container";
+import LoginForm from "./LoginForm";
+import MuiButton from "@mui/material/Button";
 // import UserAndAvatar from "./UserAndAvatar";
 
 const StyledHeader = styled.header`
@@ -17,6 +19,14 @@ const StyledHeader = styled.header`
 const FlexContainerWithGap = styled(FlexContainer)`
   gap: ${(props) => props.$gap};
 `;
+
+const StyledButton = styled(MuiButton)`
+  border: 1px solid white !important;
+  background-color: transparent !important;
+  color: white !important;
+`;
+
+const button = <StyledButton>Login / SignUp</StyledButton>;
 
 function Header() {
   const { pathname } = useLocation();
@@ -31,7 +41,9 @@ function Header() {
             <HeaderList />
           </FlexContainerWithGap>
           {/* <UserAndAvatar /> */}
-          <BasicModal />
+          <BasicModal button={button}>
+            <LoginForm />
+          </BasicModal>
         </FlexContainer>
       </Container>
     </StyledHeader>

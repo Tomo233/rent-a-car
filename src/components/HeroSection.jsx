@@ -4,6 +4,8 @@ import Span from "./Span";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import BasicModal from "./BasicModal";
+import LoginForm from "./LoginForm";
+import Button from "./Button";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -23,6 +25,8 @@ const TextBox = styled.div`
   margin-bottom: 140px;
 `;
 
+const button = <Button>Login / Sign Up</Button>;
+
 function HeroSection() {
   return (
     <section>
@@ -38,7 +42,9 @@ function HeroSection() {
           cater to every traveler&apos;s needs. Experience convenience and
           reliability as you embark on your next journey with us.
         </Paragraph>
-        <BasicModal largeButton={true} />
+        <BasicModal button={button}>
+          <LoginForm />
+        </BasicModal>
       </TextBox>
       <SearchForm />
     </section>

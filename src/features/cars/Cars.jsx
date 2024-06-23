@@ -18,6 +18,8 @@ function Cars() {
 
   if (isLoading) return <Loader />;
 
+  if (cars.length === 0) return <p>no cars to display</p>;
+
   return (
     <StyledCars>
       <Grid>

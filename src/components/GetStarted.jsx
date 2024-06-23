@@ -4,6 +4,8 @@ import Paragraph from "./Paragraph";
 import Span from "./Span";
 import Overlay from "./Overlay";
 import BasicModal from "./BasicModal";
+import LoginForm from "./LoginForm";
+import Button from "./Button";
 
 const StyledGetStarted = styled.div`
   position: relative;
@@ -31,6 +33,8 @@ const Box = styled.div`
   transform: translate(-50%, -50%);
 `;
 
+const button = <Button>Get Started</Button>;
+
 function GetStarted() {
   return (
     <StyledGetStarted>
@@ -41,13 +45,15 @@ function GetStarted() {
           Get Started With Our App
         </Heading>
         <Paragraph>
-          Start now for seamless travel with exclusive deals. Join savvy
+          Start now for seamless travel with exclusive deals. Join savy
           travelers for personalized service. Say goodbye to hassle -
           <Span> sign up </Span>for convenience and affordability.Begin now for
           seamless travel andexclusive deals. Join savvy travelers for
           personalized service.
         </Paragraph>
-        <BasicModal largeButton={true} />
+        <BasicModal button={button}>
+          <LoginForm />
+        </BasicModal>
       </Box>
     </StyledGetStarted>
   );
