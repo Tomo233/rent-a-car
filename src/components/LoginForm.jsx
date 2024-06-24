@@ -4,6 +4,7 @@ import Heading from "./Heading";
 import Span from "./Span";
 import Button from "./Button";
 import FlexContainer from "./FlexContainer";
+import { useForm } from "react-hook-form";
 
 const StyledForm = styled.form`
   display: grid;
@@ -56,25 +57,68 @@ const ToggleLink = styled.button`
   font-size: 16px;
 `;
 
+const ErrorLabel = styled.label`
+  color: red;
+  font-weight: 500;
+  letter-spacing: 1px;
+`;
+
 function LoginForm() {
   const [isSignUpPage, setIsSignUpPage] = useState(false);
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const handleForm = (e) => {
     e.preventDefault();
-    setIsSignUpPage((prev) => !prev);
   };
 
   if (isSignUpPage) {
     return (
-      <StyledForm>
+      <StyledForm onSubmit={handleSubmit(handleForm)}>
         <Heading as="h2">Sign Up</Heading>
-        <StyledInput type="text" placeholder="User Name" />
-        <StyledInput type="email" placeholder="Email" />
-        <StyledInput type="password" placeholder="Password" />
-        <StyledInput type="password" placeholder="Confirm Password" />
+        <ErrorLabel>{errors?.userName?.message || ""}</ErrorLabel>
+        <StyledInput
+          type="text"
+          placeholder="User Name"
+          {...register("userName", { required: "Required Field" })}
+        />
+        <ErrorLabel>{errors?.signUpEmail?.message || ""}</ErrorLabel>
+        <StyledInput
+          type="email"
+          placeholder="Email"
+          {...register("signUpEmail", { required: "Required Field" })}
+        />
+        <ErrorLabel>{errors?.signUpPassword?.message || ""}</ErrorLabel>
+        <StyledInput
+          type="password"
+          placeholder="Password"
+          {...register("signUpPassword", { required: "Required Field" })}
+        />
+        <ErrorLabel>{errors?.confirmPassword?.message || ""}</ErrorLabel>
+        <StyledInput
+          type="password"
+          placeholder="Confirm Password"
+          {...register("confirmPassword", {
+            required: "Required Field",
+            validate: (value) => {
+              return (
+                value === getValues("signUpPassword") ||
+                "passwords does not match"
+              );
+            },
+          })}
+        />
         <FlexContainer>
           <p>Do have an account ?</p>
-          <ToggleLink onClick={handleForm}>
+          <ToggleLink
+            onClick={() => {
+              setIsSignUpPage((prev) => !prev);
+            }}
+          >
             <Span>Login</Span>
           </ToggleLink>
         </FlexContainer>
@@ -86,15 +130,29 @@ function LoginForm() {
   }
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit(handleForm)}>
       <Heading as="h2">Login</Heading>
-      <StyledInput type="email" placeholder="Email" />
-      <StyledInput type="password" placeholder="Password" />
+      <ErrorLabel>{errors?.email?.message || ""}</ErrorLabel>
+      <StyledInput
+        type="email"
+        placeholder="Email"
+        {...register("email", { required: "Required Field" })}
+      />
+      <ErrorLabel>{errors?.password?.message || ""}</ErrorLabel>
+      <StyledInput
+        type="password"
+        placeholder="Password"
+        {...register("password", { required: "Required Field" })}
+      />
       <Span>forgot password?</Span>
       <Button>Login</Button>
       <FlexContainer>
         <p>Do not have an account ?</p>
-        <ToggleLink onClick={handleForm}>
+        <ToggleLink
+          onClick={() => {
+            setIsSignUpPage((prev) => !prev);
+          }}
+        >
           <Span>Sign Up</Span>
         </ToggleLink>
       </FlexContainer>
