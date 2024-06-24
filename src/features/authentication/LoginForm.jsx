@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
-import Heading from "./Heading";
-import Span from "./Span";
-import Button from "./Button";
-import FlexContainer from "./FlexContainer";
+import Heading from "../../components/Heading";
+import Span from "../../components/Span";
+import Button from "../../components/Button";
+import FlexContainer from "../../components/FlexContainer";
 import { useForm } from "react-hook-form";
 
 const StyledForm = styled.form`
@@ -72,13 +72,13 @@ function LoginForm() {
     formState: { errors },
   } = useForm();
 
-  const handleForm = (e) => {
+  const handleSignUp = (data, e) => {
     e.preventDefault();
   };
 
   if (isSignUpPage) {
     return (
-      <StyledForm onSubmit={handleSubmit(handleForm)}>
+      <StyledForm onSubmit={handleSubmit(handleSignUp)}>
         <Heading as="h2">Sign Up</Heading>
         <ErrorLabel>{errors?.userName?.message || ""}</ErrorLabel>
         <StyledInput
@@ -130,7 +130,7 @@ function LoginForm() {
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit(handleForm)}>
+    <StyledForm>
       <Heading as="h2">Login</Heading>
       <ErrorLabel>{errors?.email?.message || ""}</ErrorLabel>
       <StyledInput

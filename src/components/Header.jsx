@@ -6,8 +6,8 @@ import HeaderList from "./HeaderList";
 import Logo from "./Logo";
 import BasicModal from "./BasicModal";
 import Container from "./Container";
-import LoginForm from "./LoginForm";
 import MuiButton from "@mui/material/Button";
+import LoginForm from "../features/authentication/LoginForm";
 // import UserAndAvatar from "./UserAndAvatar";
 
 const StyledHeader = styled.header`

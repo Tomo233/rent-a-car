@@ -4,8 +4,8 @@ import Span from "./Span";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import BasicModal from "./BasicModal";
-import LoginForm from "./LoginForm";
 import Button from "./Button";
+import LoginForm from "../features/authentication/LoginForm";
 
 const RoadImage = styled.img`
   width: 100%;

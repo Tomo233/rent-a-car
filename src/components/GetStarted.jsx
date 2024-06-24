@@ -4,8 +4,8 @@ import Paragraph from "./Paragraph";
 import Span from "./Span";
 import Overlay from "./Overlay";
 import BasicModal from "./BasicModal";
-import LoginForm from "./LoginForm";
 import Button from "./Button";
+import LoginForm from "../features/authentication/LoginForm";
 
 const StyledGetStarted = styled.div`
   position: relative;
