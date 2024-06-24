@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import Heading from "./Heading";
 import Span from "./Span";
 import Button from "./Button";
@@ -8,7 +9,7 @@ const StyledForm = styled.form`
   display: grid;
   grid-template-columns: 1fr;
   place-items: center;
-  gap: 10px;
+  gap: 15px;
   border-radius: 10px;
   background-color: white;
 `;
@@ -45,7 +46,45 @@ const GoogleFlex = styled.div`
   background-color: white;
 `;
 
+const ButtonParent = styled.div`
+  padding-bottom: 30px;
+`;
+
+const ToggleLink = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+`;
+
 function LoginForm() {
+  const [isSignUpPage, setIsSignUpPage] = useState(false);
+
+  const handleForm = (e) => {
+    e.preventDefault();
+    setIsSignUpPage((prev) => !prev);
+  };
+
+  if (isSignUpPage) {
+    return (
+      <StyledForm>
+        <Heading as="h2">Sign Up</Heading>
+        <StyledInput type="text" placeholder="User Name" />
+        <StyledInput type="email" placeholder="Email" />
+        <StyledInput type="password" placeholder="Password" />
+        <StyledInput type="password" placeholder="Confirm Password" />
+        <FlexContainer>
+          <p>Do have an account ?</p>
+          <ToggleLink onClick={handleForm}>
+            <Span>Login</Span>
+          </ToggleLink>
+        </FlexContainer>
+        <ButtonParent>
+          <Button>SignUp</Button>
+        </ButtonParent>
+      </StyledForm>
+    );
+  }
+
   return (
     <StyledForm>
       <Heading as="h2">Login</Heading>
@@ -53,9 +92,12 @@ function LoginForm() {
       <StyledInput type="password" placeholder="Password" />
       <Span>forgot password?</Span>
       <Button>Login</Button>
-      <p>
-        Do not have an account ? <Span>Sign up</Span>
-      </p>
+      <FlexContainer>
+        <p>Do not have an account ?</p>
+        <ToggleLink onClick={handleForm}>
+          <Span>Sign Up</Span>
+        </ToggleLink>
+      </FlexContainer>
       <p>Or</p>
       <GoogleButton>
         <FlexContainer>
