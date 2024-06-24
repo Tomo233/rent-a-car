@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { useState } from "react";
 import Heading from "../../components/Heading";
@@ -64,7 +65,7 @@ const ErrorLabel = styled.label`
   letter-spacing: 1px;
 `;
 
-function LoginForm() {
+function LoginForm({ handleClose }) {
   const [isSignUpPage, setIsSignUpPage] = useState(false);
   const { signup, isLoading } = useSignup();
 
@@ -73,6 +74,7 @@ function LoginForm() {
     getValues,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const handleSignUp = (data, e) => {
@@ -80,6 +82,8 @@ function LoginForm() {
     console.log(data);
     const { signUpEmail, signUpPassword } = data;
     signup(signUpEmail, signUpPassword);
+    reset(data);
+    handleClose();
   };
 
   if (isSignUpPage) {

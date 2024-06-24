@@ -29,7 +29,7 @@ export default function BasicModal({ button, children }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>{children}</Box>
+        <Box sx={style}>{cloneElement(children, { handleClose })}</Box>
       </Modal>
     </div>
   );
