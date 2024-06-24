@@ -5,6 +5,7 @@ import Span from "../../components/Span";
 import Button from "../../components/Button";
 import FlexContainer from "../../components/FlexContainer";
 import { useForm } from "react-hook-form";
+import { useSignup } from "./useSignup";
 
 const StyledForm = styled.form`
   display: grid;
@@ -65,6 +66,8 @@ const ErrorLabel = styled.label`
 
 function LoginForm() {
   const [isSignUpPage, setIsSignUpPage] = useState(false);
+  const { signup, isLoading } = useSignup();
+
   const {
     register,
     getValues,
@@ -74,6 +77,9 @@ function LoginForm() {
 
   const handleSignUp = (data, e) => {
     e.preventDefault();
+    console.log(data);
+    const { signUpEmail, signUpPassword } = data;
+    signup(signUpEmail, signUpPassword);
   };
 
   if (isSignUpPage) {
@@ -84,19 +90,36 @@ function LoginForm() {
         <StyledInput
           type="text"
           placeholder="User Name"
-          {...register("userName", { required: "Required Field" })}
+          {...register("userName", {
+            required: "Required Field",
+          })}
+          minLength={5}
+          maxLength={30}
+          disabled={isLoading}
         />
         <ErrorLabel>{errors?.signUpEmail?.message || ""}</ErrorLabel>
         <StyledInput
           type="email"
           placeholder="Email"
-          {...register("signUpEmail", { required: "Required Field" })}
+          {...register("signUpEmail", {
+            required: "Required Field",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "invalid email address",
+            },
+          })}
+          minLength={5}
+          maxLength={30}
+          disabled={isLoading}
         />
         <ErrorLabel>{errors?.signUpPassword?.message || ""}</ErrorLabel>
         <StyledInput
           type="password"
           placeholder="Password"
           {...register("signUpPassword", { required: "Required Field" })}
+          minLength={5}
+          maxLength={30}
+          disabled={isLoading}
         />
         <ErrorLabel>{errors?.confirmPassword?.message || ""}</ErrorLabel>
         <StyledInput
@@ -111,6 +134,9 @@ function LoginForm() {
               );
             },
           })}
+          minLength={5}
+          maxLength={30}
+          disabled={isLoading}
         />
         <FlexContainer>
           <p>Do have an account ?</p>
@@ -118,6 +144,7 @@ function LoginForm() {
             onClick={() => {
               setIsSignUpPage((prev) => !prev);
             }}
+            disabled={isLoading}
           >
             <Span>Login</Span>
           </ToggleLink>

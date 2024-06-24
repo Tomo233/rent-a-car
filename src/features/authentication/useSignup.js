@@ -4,9 +4,13 @@ import toast from "react-hot-toast";
 
 export function useSignup() {
   const { mutate: signup, isLoading } = useMutation({
-    mutationFn: (data) => signUp(data),
+    mutationFn: (signUpEmail, signUpPassword) =>
+      signUp(signUpEmail, signUpPassword),
     onSuccess: () => {
       toast.success("Account successfully created!");
+    },
+    onError: (error) => {
+      toast.error(`Something went wrong while signing up: ${error.message}`);
     },
   });
   return { signup, isLoading };
