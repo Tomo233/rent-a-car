@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useGetUser } from "../features/authentication/useGetUser";
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -18,9 +19,11 @@ const User = styled.p`
 `;
 
 function UserAndAvatar() {
+  const { user } = useGetUser();
+  console.log(user);
   return (
     <StyledUserAvatar>
-      <User>Tomo Bratic</User>
+      <User>{user.email}</User>
       <UserImage src="/default-user.png" alt="userImage" />
     </StyledUserAvatar>
   );

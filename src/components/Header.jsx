@@ -8,7 +8,8 @@ import BasicModal from "./BasicModal";
 import Container from "./Container";
 import MuiButton from "@mui/material/Button";
 import LoginForm from "../features/authentication/LoginForm";
-// import UserAndAvatar from "./UserAndAvatar";
+import UserAndAvatar from "./UserAndAvatar";
+import { useGetUser } from "../features/authentication/useGetUser";
 
 const StyledHeader = styled.header`
   padding-top: 15px;
@@ -30,6 +31,8 @@ const button = <StyledButton>Login / SignUp</StyledButton>;
 
 function Header() {
   const { pathname } = useLocation();
+  const { user, isLoadingUser } = useGetUser();
+
   const isHomePage = pathname === "/";
 
   return (
@@ -40,10 +43,13 @@ function Header() {
             <Logo />
             <HeaderList />
           </FlexContainerWithGap>
-          {/* <UserAndAvatar /> */}
-          <BasicModal button={button}>
-            <LoginForm />
-          </BasicModal>
+          {isLoadingUser || !user ? (
+            <BasicModal button={button}>
+              <LoginForm />
+            </BasicModal>
+          ) : (
+            <UserAndAvatar />
+          )}
         </FlexContainer>
       </Container>
     </StyledHeader>

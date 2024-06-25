@@ -39,3 +39,16 @@ export async function login({ email, password }) {
     throw error;
   }
 }
+
+export async function getUser() {
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return user;
+}
