@@ -6,6 +6,7 @@ import Overlay from "./Overlay";
 import BasicModal from "./BasicModal";
 import Button from "./Button";
 import LoginForm from "../features/authentication/LoginForm";
+import { useGetUser } from "../features/authentication/useGetUser";
 
 const StyledGetStarted = styled.div`
   position: relative;
@@ -36,6 +37,7 @@ const Box = styled.div`
 const button = <Button>Get Started</Button>;
 
 function GetStarted() {
+  const { user } = useGetUser();
   return (
     <StyledGetStarted>
       <Road src="./images.jpg" alt="" />
@@ -51,9 +53,11 @@ function GetStarted() {
           seamless travel andexclusive deals. Join savvy travelers for
           personalized service.
         </Paragraph>
-        <BasicModal button={button}>
-          <LoginForm />
-        </BasicModal>
+        {!user && (
+          <BasicModal button={button}>
+            <LoginForm />
+          </BasicModal>
+        )}
       </Box>
     </StyledGetStarted>
   );

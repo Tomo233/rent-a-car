@@ -6,6 +6,7 @@ import Paragraph from "./Paragraph";
 import BasicModal from "./BasicModal";
 import Button from "./Button";
 import LoginForm from "../features/authentication/LoginForm";
+import { useGetUser } from "../features/authentication/useGetUser";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -22,16 +23,19 @@ const RoadImage = styled.img`
 const TextBox = styled.div`
   text-align: center;
   margin-top: 16rem;
-  margin-bottom: 140px;
+  margin-bottom: ${(props) =>
+    props.isloggedin === "true" ? "190px" : "140px"};
 `;
 
 const button = <Button>Login / Sign Up</Button>;
 
 function HeroSection() {
+  const { user } = useGetUser();
+
   return (
     <section>
       <RoadImage src="/road.jpg" alt="" />
-      <TextBox>
+      <TextBox isloggedin={user ? "true" : "false"}>
         <Heading as="h1" color="white">
           Cruise into Your Perfect Ride
         </Heading>
@@ -42,10 +46,13 @@ function HeroSection() {
           cater to every traveler&apos;s needs. Experience convenience and
           reliability as you embark on your next journey with us.
         </Paragraph>
-        <BasicModal button={button}>
-          <LoginForm />
-        </BasicModal>
+        {!user && (
+          <BasicModal button={button}>
+            <LoginForm />
+          </BasicModal>
+        )}
       </TextBox>
+
       <SearchForm />
     </section>
   );
