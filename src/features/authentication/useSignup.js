@@ -3,7 +3,7 @@ import { signUp } from "../../services/apiAuthentication";
 import toast from "react-hot-toast";
 
 export function useSignup() {
-  const { mutate: signup, isLoading } = useMutation({
+  const { mutate: signup, isLoading: isSigning } = useMutation({
     mutationFn: (signUpEmail, signUpPassword) =>
       signUp(signUpEmail, signUpPassword),
     onSuccess: () => {
@@ -13,5 +13,5 @@ export function useSignup() {
       toast.error(`Something went wrong while signing up: ${error.message}`);
     },
   });
-  return { signup, isLoading };
+  return { signup, isSigning };
 }

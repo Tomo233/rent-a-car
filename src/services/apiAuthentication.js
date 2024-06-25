@@ -5,8 +5,8 @@ export async function signUp(signUpEmail, signUpPassword) {
   console.log(signUpPassword);
   try {
     let { data, error } = await supabase.auth.signUp({
-      email: "tomo12b@gmail.com",
-      password: "tomo5555555555",
+      email: signUpEmail,
+      password: signUpPassword,
     });
 
     if (error) {
@@ -17,6 +17,25 @@ export async function signUp(signUpEmail, signUpPassword) {
     return data;
   } catch (error) {
     console.error("Sign-up error:", error.message);
+    throw error;
+  }
+}
+
+export async function login({ email, password }) {
+  try {
+    let { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.error("Login error:", error.message);
+      throw new Error(`Login Error: ${error.message}`);
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Login error:", error);
     throw error;
   }
 }

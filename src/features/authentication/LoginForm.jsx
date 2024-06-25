@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import FlexContainer from "../../components/FlexContainer";
 import { useForm } from "react-hook-form";
 import { useSignup } from "./useSignup";
+import { useLogin } from "./useLogin";
 
 const StyledForm = styled.form`
   display: grid;
@@ -67,7 +68,8 @@ const ErrorLabel = styled.label`
 
 function LoginForm({ handleClose }) {
   const [isSignUpPage, setIsSignUpPage] = useState(false);
-  const { signup, isLoading } = useSignup();
+  const { signup, isSigning } = useSignup();
+  const { login, isLoading } = useLogin();
 
   const {
     register,
@@ -77,18 +79,22 @@ function LoginForm({ handleClose }) {
     reset,
   } = useForm();
 
-  const handleSignUp = (data, e) => {
-    e.preventDefault();
-    console.log(data);
-    const { signUpEmail, signUpPassword } = data;
-    signup(signUpEmail, signUpPassword);
-    reset(data);
+  const handleForm = (data) => {
+    const { signUpEmail, signUpPassword, email, password } = data;
+
+    if (isSignUpPage) {
+      signup({ email: signUpEmail, password: signUpPassword });
+    } else {
+      login({ email, password });
+    }
+
+    reset();
     handleClose();
   };
 
   if (isSignUpPage) {
     return (
-      <StyledForm onSubmit={handleSubmit(handleSignUp)}>
+      <StyledForm onSubmit={handleSubmit(handleForm)}>
         <Heading as="h2">Sign Up</Heading>
         <ErrorLabel>{errors?.userName?.message || ""}</ErrorLabel>
         <StyledInput
@@ -99,7 +105,7 @@ function LoginForm({ handleClose }) {
           })}
           minLength={5}
           maxLength={30}
-          disabled={isLoading}
+          disabled={isSigning}
         />
         <ErrorLabel>{errors?.signUpEmail?.message || ""}</ErrorLabel>
         <StyledInput
@@ -109,12 +115,12 @@ function LoginForm({ handleClose }) {
             required: "Required Field",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "invalid email address",
+              message: "Invalid email address",
             },
           })}
           minLength={5}
           maxLength={30}
-          disabled={isLoading}
+          disabled={isSigning}
         />
         <ErrorLabel>{errors?.signUpPassword?.message || ""}</ErrorLabel>
         <StyledInput
@@ -123,7 +129,7 @@ function LoginForm({ handleClose }) {
           {...register("signUpPassword", { required: "Required Field" })}
           minLength={5}
           maxLength={30}
-          disabled={isLoading}
+          disabled={isSigning}
         />
         <ErrorLabel>{errors?.confirmPassword?.message || ""}</ErrorLabel>
         <StyledInput
@@ -134,21 +140,22 @@ function LoginForm({ handleClose }) {
             validate: (value) => {
               return (
                 value === getValues("signUpPassword") ||
-                "passwords does not match"
+                "Passwords do not match"
               );
             },
           })}
           minLength={5}
           maxLength={30}
-          disabled={isLoading}
+          disabled={isSigning}
         />
         <FlexContainer>
-          <p>Do have an account ?</p>
+          <p>Do you have an account?</p>
           <ToggleLink
             onClick={() => {
+              reset();
               setIsSignUpPage((prev) => !prev);
             }}
-            disabled={isLoading}
+            disabled={isSigning}
           >
             <Span>Login</Span>
           </ToggleLink>
@@ -161,34 +168,38 @@ function LoginForm({ handleClose }) {
   }
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit(handleForm)}>
       <Heading as="h2">Login</Heading>
       <ErrorLabel>{errors?.email?.message || ""}</ErrorLabel>
       <StyledInput
         type="email"
         placeholder="Email"
         {...register("email", { required: "Required Field" })}
+        disabled={isLoading}
       />
       <ErrorLabel>{errors?.password?.message || ""}</ErrorLabel>
       <StyledInput
         type="password"
         placeholder="Password"
         {...register("password", { required: "Required Field" })}
+        disabled={isLoading}
       />
-      <Span>forgot password?</Span>
+      <Span>Forgot password?</Span>
       <Button>Login</Button>
       <FlexContainer>
-        <p>Do not have an account ?</p>
+        <p>Do not have an account?</p>
         <ToggleLink
           onClick={() => {
+            reset();
             setIsSignUpPage((prev) => !prev);
           }}
+          disabled={isLoading}
         >
           <Span>Sign Up</Span>
         </ToggleLink>
       </FlexContainer>
       <p>Or</p>
-      <GoogleButton>
+      <GoogleButton disabled={isLoading}>
         <FlexContainer>
           <GoogleFlex>
             <img src="./googleLogo.jpg" alt="" height="25px" />
