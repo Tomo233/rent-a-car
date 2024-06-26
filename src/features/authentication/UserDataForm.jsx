@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
+import { useLogout } from "./useLogout";
 
 const StyledSettingsForm = styled.div`
   display: flex;
@@ -46,7 +47,11 @@ const Label = styled.label`
   font-weight: 500;
 `;
 
-function SettingsForm() {
+function UserDataForm() {
+  const { logout, isLoading } = useLogout();
+
+  if (isLoading) return <p>logging out</p>;
+
   return (
     <StyledSettingsForm>
       <ChangeAvatar>
@@ -88,7 +93,7 @@ function SettingsForm() {
 
           <Flex gap="10px">
             <Button>Save</Button>
-            <Button>Logout</Button>
+            <Button onClick={logout}>Logout</Button>
           </Flex>
         </Grid>
       </ChangeUserData>
@@ -96,4 +101,4 @@ function SettingsForm() {
   );
 }
 
-export default SettingsForm;
+export default UserDataForm;

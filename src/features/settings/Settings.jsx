@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Heading from "../../components/Heading";
-import SettingsForm from "./SettingsForm";
+import UserDataForm from "../authentication/UserDataForm";
 
 const StyledSettings = styled.div`
   margin-top: 85px;
@@ -20,7 +20,7 @@ function Settings() {
       <HeadingParent>
         <Heading as="h3">Account settings</Heading>
       </HeadingParent>
-      <SettingsForm />
+      <UserDataForm />
     </StyledSettings>
   );
 }
