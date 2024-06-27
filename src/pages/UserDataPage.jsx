@@ -1,9 +1,9 @@
-import Settings from "../features/settings/Settings";
+import UserData from "../features/authentication/UserData";
 
 function SettingsPage() {
   return (
     <>
-      <Settings />
+      <UserData />
     </>
   );
 }

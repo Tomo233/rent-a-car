@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Heading from "../../components/Heading";
-import UserDataForm from "../authentication/UserDataForm";
+import UserDataForm from "./UserDataForm";
 
 const StyledSettings = styled.div`
   margin-top: 85px;
@@ -14,7 +14,7 @@ const HeadingParent = styled.div`
   padding: 30px;
 `;
 
-function Settings() {
+function UserData() {
   return (
     <StyledSettings>
       <HeadingParent>
@@ -25,4 +25,4 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default UserData;
