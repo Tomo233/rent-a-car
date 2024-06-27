@@ -83,7 +83,7 @@ function LoginForm({ handleClose }) {
     const { signUpEmail, signUpPassword, email, password } = data;
 
     if (isSignUpPage) {
-      signup({ email: signUpEmail, password: signUpPassword });
+      signup({ signUpEmail, signUpPassword });
     } else {
       login({ email, password });
     }
