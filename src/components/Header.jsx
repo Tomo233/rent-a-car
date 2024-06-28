@@ -8,8 +8,8 @@ import BasicModal from "./BasicModal";
 import Container from "./Container";
 import MuiButton from "@mui/material/Button";
 import LoginForm from "../features/authentication/LoginForm";
-import UserAndAvatar from "./UserAndAvatar";
 import { useGetUser } from "../features/authentication/useGetUser";
+import UserAndAvatar from "../features/authentication/UserAndAvatar";
 
 const StyledHeader = styled.header`
   padding-top: 15px;

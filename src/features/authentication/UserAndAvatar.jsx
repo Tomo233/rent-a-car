@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useGetUser } from "../features/authentication/useGetUser";
+import { useGetUser } from "./useGetUser";
 import { Link } from "react-router-dom";
-import FlexContainer from "./FlexContainer";
+import FlexContainer from "../../components/FlexContainer";
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -22,12 +22,12 @@ const User = styled.p`
 
 function UserAndAvatar() {
   const { user } = useGetUser();
-  console.log(user);
+  const { userName } = user.user_metadata;
   return (
     <StyledUserAvatar>
-      <Link to="/settings">
+      <Link to="/user">
         <FlexContainer>
-          <User>{user.email}</User>
+          <User>{userName}</User>
           <UserImage src="/default-user.png" alt="userImage" />
         </FlexContainer>
       </Link>

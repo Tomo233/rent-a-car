@@ -80,10 +80,11 @@ function LoginForm({ handleClose }) {
   } = useForm();
 
   const handleForm = (data) => {
-    const { signUpEmail, signUpPassword, email, password } = data;
+    const { signUpEmail, signUpPassword, email, password, phone, userName } =
+      data;
 
     if (isSignUpPage) {
-      signup({ signUpEmail, signUpPassword });
+      signup({ signUpEmail, signUpPassword, phone, userName });
     } else {
       login({ email, password });
     }
@@ -116,6 +117,21 @@ function LoginForm({ handleClose }) {
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               message: "Invalid email address",
+            },
+          })}
+          minLength={5}
+          maxLength={30}
+          disabled={isSigning}
+        />
+        <ErrorLabel>{errors?.phone?.message || ""}</ErrorLabel>
+        <StyledInput
+          type="tel"
+          placeholder="Phone Number"
+          {...register("phone", {
+            required: "Required Field",
+            pattern: {
+              value: /^\+?[1-9][0-9]{7,14}$/,
+              message: "Invalid phone number",
             },
           })}
           minLength={5}

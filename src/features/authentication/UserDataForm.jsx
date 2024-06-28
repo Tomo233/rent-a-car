@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import { useLogout } from "./useLogout";
+import { useGetUser } from "./useGetUser";
 
 const StyledSettingsForm = styled.div`
   display: flex;
@@ -48,10 +49,13 @@ const Label = styled.label`
 `;
 
 function UserDataForm() {
+  const { user } = useGetUser();
   const { logout, isLoading } = useLogout();
 
   if (isLoading) return <p>logging out</p>;
 
+  const { email, phone, userName } = user?.user_metadata || "";
+  console.log(user);
   return (
     <StyledSettingsForm>
       <ChangeAvatar>
@@ -69,10 +73,24 @@ function UserDataForm() {
             <Heading as="h3" $notaligned={true}>
               User Data
             </Heading>
-            <StyledInput type="text" placeholder="User Name" />
-            <StyledInput type="email" placeholder="Email" />
-            <StyledInput type="number" placeholder="Phone number" />
-            <StyledInput type="number" placeholder="Phone number" />
+            <StyledInput
+              type="text"
+              placeholder="User Name"
+              disabled={true}
+              value={userName || ""}
+            />
+            <StyledInput
+              type="email"
+              placeholder="Email"
+              disabled={true}
+              value={email || ""}
+            />
+            <StyledInput
+              type="tel"
+              placeholder="Phone number"
+              disabled={true}
+              value={phone || ""}
+            />
           </div>
 
           <div>
