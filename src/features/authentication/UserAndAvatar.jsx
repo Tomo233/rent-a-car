@@ -22,13 +22,17 @@ const User = styled.p`
 
 function UserAndAvatar() {
   const { user } = useGetUser();
-  const { userName } = user.user_metadata;
+  const { userName, avatarUrl } = user.user_metadata;
+
   return (
     <StyledUserAvatar>
       <Link to="/user">
         <FlexContainer>
           <User>{userName}</User>
-          <UserImage src="/default-user.png" alt="userImage" />
+          <UserImage
+            src={avatarUrl ? avatarUrl : "/default-user.png"}
+            alt="userImage"
+          />
         </FlexContainer>
       </Link>
     </StyledUserAvatar>

@@ -10,16 +10,10 @@ export async function signUp({
 }) {
   try {
     const uniqueId = uuidv4();
-    let fileName;
-    let filePath;
-
-    if (avatar) {
-      fileName = `${uniqueId}_${avatar?.name}`;
-      filePath = `https://ieffmbujdqbtydbuhuiw.supabase.co/storage/v1/object/public/avatars/${fileName}`;
-    } else {
-      fileName = null;
-      filePath = null;
-    }
+    const fileName = avatar ? `${uniqueId}_${avatar.name}` : null;
+    const filePath = avatar
+      ? `https://ieffmbujdqbtydbuhuiw.supabase.co/storage/v1/object/public/avatars/${fileName}`
+      : null;
 
     let { data, error } = await supabase.auth.signUp({
       email: signUpEmail,
