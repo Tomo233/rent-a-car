@@ -103,7 +103,6 @@ function LoginForm({ handleClose }) {
     const avatar = file[0];
 
     if (isSignUpPage) {
-      console.log(avatar[0]);
       signup({ signUpEmail, signUpPassword, phone, userName, avatar });
     } else {
       login({ email, password });

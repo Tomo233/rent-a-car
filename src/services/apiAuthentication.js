@@ -10,8 +10,16 @@ export async function signUp({
 }) {
   try {
     const uniqueId = uuidv4();
-    const fileName = `${uniqueId}_${avatar.name}`;
-    const filePath = `https://ieffmbujdqbtydbuhuiw.supabase.co/storage/v1/object/public/avatars/${fileName}`;
+    let fileName;
+    let filePath;
+
+    if (avatar) {
+      fileName = `${uniqueId}_${avatar?.name}`;
+      filePath = `https://ieffmbujdqbtydbuhuiw.supabase.co/storage/v1/object/public/avatars/${fileName}`;
+    } else {
+      fileName = null;
+      filePath = null;
+    }
 
     let { data, error } = await supabase.auth.signUp({
       email: signUpEmail,
@@ -31,13 +39,15 @@ export async function signUp({
     }
 
     // Upload the avatar to storage
-    const { error: storageError } = await supabase.storage
-      .from("avatars")
-      .upload(fileName, avatar);
+    if (avatar) {
+      const { error: storageError } = await supabase.storage
+        .from("avatars")
+        .upload(fileName, avatar);
 
-    if (storageError) {
-      console.error("Error with storage:", storageError.message);
-      throw new Error(`Error with storage: ${storageError.message}`);
+      if (storageError) {
+        console.error("Error with storage:", storageError.message);
+        throw new Error(`Error with storage: ${storageError.message}`);
+      }
     }
 
     return data;
