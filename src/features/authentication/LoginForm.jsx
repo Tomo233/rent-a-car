@@ -25,6 +25,16 @@ const StyledInput = styled.input`
   width: 250px;
   height: 45px;
 `;
+const FileInput = styled.input.attrs({ type: "file" })`
+  width: 35%;
+  &::-webkit-file-upload-button {
+    background-color: var(--color-primary-blue);
+    border: none;
+    height: 45px;
+    color: white;
+    cursor: pointer;
+  }
+`;
 
 const GoogleButton = styled.button`
   border: none;
@@ -80,11 +90,21 @@ function LoginForm({ handleClose }) {
   } = useForm();
 
   const handleForm = (data) => {
-    const { signUpEmail, signUpPassword, email, password, phone, userName } =
-      data;
+    const {
+      signUpEmail,
+      signUpPassword,
+      email,
+      password,
+      phone,
+      userName,
+      file,
+    } = data;
+
+    const avatar = file[0];
 
     if (isSignUpPage) {
-      signup({ signUpEmail, signUpPassword, phone, userName });
+      console.log(avatar[0]);
+      signup({ signUpEmail, signUpPassword, phone, userName, avatar });
     } else {
       login({ email, password });
     }
@@ -138,6 +158,7 @@ function LoginForm({ handleClose }) {
           maxLength={30}
           disabled={isSigning}
         />
+        <FileInput type="file" {...register("file")} disabled={isSigning} />
         <ErrorLabel>{errors?.signUpPassword?.message || ""}</ErrorLabel>
         <StyledInput
           type="password"

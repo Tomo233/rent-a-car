@@ -1,14 +1,26 @@
 import supabase from "./supabase";
+import { v4 as uuidv4 } from "uuid";
 
-export async function signUp({ signUpEmail, signUpPassword, phone, userName }) {
+export async function signUp({
+  signUpEmail,
+  signUpPassword,
+  phone,
+  userName,
+  avatar,
+}) {
   try {
+    const uniqueId = uuidv4();
+    const fileName = `${uniqueId}_${avatar.name}`;
+    const filePath = `https://ieffmbujdqbtydbuhuiw.supabase.co/storage/v1/object/public/avatars/${fileName}`;
+
     let { data, error } = await supabase.auth.signUp({
       email: signUpEmail,
       password: signUpPassword,
       options: {
         data: {
-          phone: phone,
-          userName: userName,
+          phone,
+          userName,
+          avatarUrl: filePath,
         },
       },
     });
@@ -16,6 +28,16 @@ export async function signUp({ signUpEmail, signUpPassword, phone, userName }) {
     if (error) {
       console.error("Error while signing up:", error.message);
       throw new Error(`Error while signing up: ${error.message}`);
+    }
+
+    // Upload the avatar to storage
+    const { error: storageError } = await supabase.storage
+      .from("avatars")
+      .upload(fileName, avatar);
+
+    if (storageError) {
+      console.error("Error with storage:", storageError.message);
+      throw new Error(`Error with storage: ${storageError.message}`);
     }
 
     return data;

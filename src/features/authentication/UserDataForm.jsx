@@ -54,14 +54,14 @@ function UserDataForm() {
 
   if (isLoading) return <p>logging out</p>;
 
-  const { email, phone, userName } = user?.user_metadata || "";
-  console.log(user);
+  const { email, phone, userName, avatarUrl } = user?.user_metadata || "";
+
   return (
     <StyledSettingsForm>
       <ChangeAvatar>
         <Flex gap="10px">
           <div style={{ backgroundColor: "black" }}>
-            <img src="./default-user.png" height="150px" alt="" />
+            <img src={avatarUrl} height="150px" alt="" />
           </div>
           <Button type="short">remove avatar</Button>
           <Button type="short">change avatar</Button>
