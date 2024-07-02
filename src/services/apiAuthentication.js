@@ -90,3 +90,30 @@ export async function logout() {
     throw new Error(error.message);
   }
 }
+
+export async function changeAvatar(avatar) {
+  const uniqueId = uuidv4();
+  const fileName = avatar ? `${uniqueId}_${avatar.name}` : null;
+  const filePath = avatar
+    ? `https://ieffmbujdqbtydbuhuiw.supabase.co/storage/v1/object/public/avatars/${fileName}`
+    : null;
+  const { error: storageError } = await supabase.storage
+    .from("avatars")
+    .upload(fileName, avatar);
+
+  if (storageError) {
+    console.error("Error with storage:", storageError.message);
+    throw new Error(`Error with storage: ${storageError.message}`);
+  }
+
+  const { data, error } = await supabase.auth.updateUser({
+    data: { avatarUrl: filePath },
+  });
+
+  if (error) {
+    console.error("Login error:", error.message);
+    throw new Error(`Login Error: ${error.message}`);
+  }
+
+  return data;
+}

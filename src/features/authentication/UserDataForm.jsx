@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
+import FileInput from "../../components/FileInput";
 import { useLogout } from "./useLogout";
 import { useGetUser } from "./useGetUser";
+import { useUpdateUserAvatar } from "./useUpdateUserAvatar";
 
 const StyledSettingsForm = styled.div`
   display: flex;
@@ -51,10 +53,16 @@ const Label = styled.label`
 function UserDataForm() {
   const { user } = useGetUser();
   const { logout, isLoading } = useLogout();
+  const { updateUser, isLoading: isUpdatingUser } = useUpdateUserAvatar();
 
-  if (isLoading) return <p>logging out</p>;
+  if (isLoading || isUpdatingUser) return <p>loading</p>;
 
   const { email, phone, userName, avatarUrl } = user?.user_metadata || "";
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    updateUser(selectedFile);
+  };
 
   return (
     <StyledSettingsForm>
@@ -68,7 +76,9 @@ function UserDataForm() {
             </div>
           )}
           <Button type="short">remove avatar</Button>
-          <Button type="short">change avatar</Button>
+          <FileInput onChange={handleFileChange} />
+
+          {/* <Button type="short" onClick={() => updateUser()}>change avatar</Button> */}
         </Flex>
       </ChangeAvatar>
       <ChangeUserData>

@@ -8,6 +8,7 @@ import FlexContainer from "../../components/FlexContainer";
 import { useForm } from "react-hook-form";
 import { useSignup } from "./useSignup";
 import { useLogin } from "./useLogin";
+import FileInput from "../../components/FileInput";
 
 const StyledForm = styled.form`
   display: grid;
@@ -24,16 +25,6 @@ const StyledInput = styled.input`
   border: none;
   width: 250px;
   height: 45px;
-`;
-const FileInput = styled.input.attrs({ type: "file" })`
-  width: 35%;
-  &::-webkit-file-upload-button {
-    background-color: var(--color-primary-blue);
-    border: none;
-    height: 45px;
-    color: white;
-    cursor: pointer;
-  }
 `;
 
 const GoogleButton = styled.button`
@@ -97,7 +88,7 @@ function LoginForm({ handleClose }) {
       password,
       phone,
       userName,
-      file,
+      file = [],
     } = data;
 
     const avatar = file[0];
