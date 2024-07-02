@@ -5,13 +5,13 @@ import FileInput from "../../components/FileInput";
 import { useLogout } from "./useLogout";
 import { useGetUser } from "./useGetUser";
 import { useUpdateUserAvatar } from "./useUpdateUserAvatar";
+import { useDeleteUserAvatar } from "./useDeleteUserAvatar";
 import toast from "react-hot-toast";
 
 const StyledSettingsForm = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 200px;
 `;
 
 const StyledInput = styled.input`
@@ -55,9 +55,9 @@ function UserDataForm() {
   const { user } = useGetUser();
   const { logout, isLoading } = useLogout();
   const { updateUser, isLoading: isUpdatingUser } = useUpdateUserAvatar();
+  const { deleteAvatar, isDeleting } = useDeleteUserAvatar();
 
-  if (isLoading || isUpdatingUser) return <p>loading</p>;
-
+  if (isLoading || isUpdatingUser || isDeleting) return <p>loading</p>;
   const { email, phone, userName, avatarUrl } = user?.user_metadata || "";
 
   const handleFileChange = (e) => {
@@ -75,13 +75,15 @@ function UserDataForm() {
       <ChangeAvatar>
         <Flex gap="10px">
           {avatarUrl ? (
-            <img src={avatarUrl} height="150px" alt="" />
+            <img src={avatarUrl} height="125px" alt="" />
           ) : (
             <div style={{ backgroundColor: "black" }}>
-              <img src="/default-user.png" height="150px" alt="" />
+              <img src="/default-user.png" height="125px" alt="" />
             </div>
           )}
-          <Button type="short">remove avatar</Button>
+          <Button type="short" onClick={deleteAvatar}>
+            remove avatar
+          </Button>
           <FileInput onChange={handleFileChange} />
 
           {/* <Button type="short" onClick={() => updateUser()}>change avatar</Button> */}

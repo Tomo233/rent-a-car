@@ -117,3 +117,16 @@ export async function changeAvatar(avatar) {
 
   return data;
 }
+
+export async function deleteAvatar() {
+  const { data, error } = await supabase.auth.updateUser({
+    data: { avatarUrl: null },
+  });
+
+  if (error) {
+    console.error("Login error:", error.message);
+    throw new Error(`Login Error: ${error.message}`);
+  }
+
+  return data;
+}
