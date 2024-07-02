@@ -11,6 +11,9 @@ export function useUpdateUserAvatar() {
       toast.success("Avatar successfully changed");
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
+    onError: (err) => {
+      toast.error(`error while changing avatar try again - ${err.message}`);
+    },
   });
 
   return { updateUser, isLoading };

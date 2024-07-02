@@ -5,6 +5,7 @@ import FileInput from "../../components/FileInput";
 import { useLogout } from "./useLogout";
 import { useGetUser } from "./useGetUser";
 import { useUpdateUserAvatar } from "./useUpdateUserAvatar";
+import toast from "react-hot-toast";
 
 const StyledSettingsForm = styled.div`
   display: flex;
@@ -61,6 +62,11 @@ function UserDataForm() {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+
+    if (!selectedFile.type.startsWith("image/")) {
+      toast.error("Please select a valid image file");
+      return;
+    }
     updateUser(selectedFile);
   };
 
