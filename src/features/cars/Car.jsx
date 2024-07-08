@@ -84,8 +84,6 @@ function Car() {
   let difference = new Date(endDate).getTime() - new Date(startDate).getTime();
   let daysDifference = difference / (1000 * 3600 * 24);
 
-  console.log(daysDifference);
-
   return (
     <StyledCar>
       <CarFlex>

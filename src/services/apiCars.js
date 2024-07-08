@@ -123,6 +123,7 @@ export async function getCarById(id) {
 
 export async function bookCarById(
   carId,
+  userId,
   { startDate, endDate, startTime, endTime }
 ) {
   try {
@@ -133,6 +134,7 @@ export async function bookCarById(
         endDate,
         startTime,
         endTime,
+        user_id: userId,
       },
     ]);
 
