@@ -23,8 +23,7 @@ const RoadImage = styled.img`
 const TextBox = styled.div`
   text-align: center;
   margin-top: 16rem;
-  margin-bottom: ${(props) =>
-    props.isloggedin === "true" ? "190px" : "140px"};
+  margin-bottom: ${(props) => (props.$isloggedin ? "190px" : "140px")};
 `;
 
 const button = <Button>Login / Sign Up</Button>;
@@ -35,7 +34,7 @@ function HeroSection() {
   return (
     <section>
       <RoadImage src="/road.jpg" alt="" />
-      <TextBox isloggedin={user ? "true" : "false"}>
+      <TextBox $isloggedin={!!user}>
         <Heading as="h1" color="white">
           Cruise into Your Perfect Ride
         </Heading>

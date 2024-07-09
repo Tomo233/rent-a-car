@@ -2,7 +2,7 @@ import supabase from "./supabase";
 
 export async function getReservations(userId) {
   try {
-    if (!userId) return;
+    if (!userId) return null;
 
     let { data, error } = await supabase
       .from("reservations")
