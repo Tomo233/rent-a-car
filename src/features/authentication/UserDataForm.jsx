@@ -37,12 +37,12 @@ const ChangeUserData = styled.div`
 const Flex = styled.div`
   display: flex;
   align-items: center;
-  gap: ${(props) => (props.gap ? `${props.gap}` : "")};
+  gap: ${(props) => props.$gap || "0px"};
 `;
 
 const Grid = styled.div`
   display: grid;
-  gap: ${(props) => (props.gap ? props.gap : "")};
+  gap: ${(props) => props.$gap || "0px"};
 `;
 
 const Label = styled.label`
@@ -73,7 +73,7 @@ function UserDataForm() {
   return (
     <StyledSettingsForm>
       <ChangeAvatar>
-        <Flex gap="10px">
+        <Flex $gap="10px">
           {avatarUrl ? (
             <img src={avatarUrl} height="125px" alt="" />
           ) : (
@@ -85,12 +85,10 @@ function UserDataForm() {
             remove avatar
           </Button>
           <FileInput onChange={handleFileChange} />
-
-          {/* <Button type="short" onClick={() => updateUser()}>change avatar</Button> */}
         </Flex>
       </ChangeAvatar>
       <ChangeUserData>
-        <Grid gap="35px">
+        <Grid $gap="35px">
           <div>
             <Heading as="h3" $notaligned={true}>
               User Data
@@ -119,19 +117,19 @@ function UserDataForm() {
             <Heading as="h3" $notaligned={true}>
               Change password
             </Heading>
-            <Flex gap="30px">
-              <Grid gap="5px">
+            <Flex $gap="30px">
+              <Grid $gap="5px">
                 <Label>Old Password</Label>
                 <StyledInput type="password" placeholder="********" />
               </Grid>
-              <Grid gap="5px">
+              <Grid $gap="5px">
                 <Label>New Password</Label>
                 <StyledInput type="password" placeholder="********" />
               </Grid>
             </Flex>
           </div>
 
-          <Flex gap="10px">
+          <Flex $gap="10px">
             <Button>Save</Button>
             <Button onClick={logout}>Logout</Button>
           </Flex>
