@@ -201,7 +201,13 @@ function LoginForm({ handleClose }) {
       <StyledInput
         type="email"
         placeholder="Email"
-        {...register("email", { required: "Required Field" })}
+        {...register("email", {
+          required: "Required Field",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Invalid email address",
+          },
+        })}
         disabled={isLoading}
       />
       <ErrorLabel>{errors?.password?.message || ""}</ErrorLabel>
