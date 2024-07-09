@@ -58,6 +58,8 @@ function Car() {
 
   if (isLoading || isBooking) return <Loader />;
 
+  if (!data) return <p>car does not exist</p>;
+
   const {
     image,
     name,

@@ -1,13 +1,20 @@
 import supabase from "./supabase";
 
-export async function getReservations() {
+export async function getReservations(userId) {
   try {
-    let { data, error } = await supabase.from("reservations").select(`
+    if (!userId) return;
+
+    let { data, error } = await supabase
+      .from("reservations")
+      .select(
+        `
       *,
       cars (
         *
       )
-    `);
+    `
+      )
+      .eq("user_id", userId);
 
     if (error) {
       console.error(error);

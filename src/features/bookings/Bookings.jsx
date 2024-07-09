@@ -7,10 +7,11 @@ function Bookings() {
   const { data, isLoading } = useReservations();
   if (isLoading) return <Loader />;
 
-  console.log(data);
+  if (!data) return <p>no bookings to display</p>;
+
   return (
     <CarGrid>
-      {data.map((item) => (
+      {data?.map((item) => (
         <CarItem car={item.cars} key={item.id} />
       ))}
     </CarGrid>

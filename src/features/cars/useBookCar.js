@@ -11,7 +11,7 @@ export const useBookCar = function () {
   const { formData } = useCarContext();
   const navigate = useNavigate();
   const { user } = useGetUser();
-  const userId = user.id;
+  const userId = user?.id;
 
   const { mutate: bookCar, isLoading: isBooking } = useMutation({
     mutationFn: () => bookCarById(carId, userId, formData),
