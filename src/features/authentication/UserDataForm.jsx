@@ -130,7 +130,6 @@ function UserDataForm() {
           </div>
 
           <Flex $gap="10px">
-            <Button>Save</Button>
             <Button onClick={logout}>Logout</Button>
           </Flex>
         </Grid>
