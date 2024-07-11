@@ -8,7 +8,9 @@ import BasicModal from "../../components/BasicModal";
 import Heading from "../../components/Heading";
 import { useCarById } from "./useCarById";
 import { useBookCar } from "./useBookCar";
+import { useCarBookings } from "../bookings/useCarBookings";
 import { useCarContext } from "../../context/CarContext";
+import toast from "react-hot-toast";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -51,14 +53,16 @@ const ModalGrid = styled.div`
 `;
 
 function Car() {
-  const { data, isLoading } = useCarById();
+  const { data, isLoading: carLoading } = useCarById();
+  const { data: reservations, isLoading: reservationsLoading } =
+    useCarBookings();
   const { bookCar, isBooking } = useBookCar();
   const { formData } = useCarContext();
   const { startDate, endDate, startTime, endTime } = formData;
 
-  if (isLoading || isBooking) return <Loader />;
+  if (carLoading || reservationsLoading || isBooking) return <Loader />;
 
-  if (!data) return <p>car does not exist</p>;
+  if (!data) return <p>Car does not exist</p>;
 
   const {
     image,
@@ -86,6 +90,36 @@ function Car() {
   let difference = new Date(endDate).getTime() - new Date(startDate).getTime();
   let daysDifference = difference / (1000 * 3600 * 24);
 
+  // Check if the car is reserved for the selected date range
+  const isReserved = reservations.some((reservation) => {
+    const resStartDate = new Date(reservation.startDate);
+    const resEndDate = new Date(reservation.endDate);
+    const selStartDate = new Date(startDate);
+    const selEndDate = new Date(endDate);
+
+    return (
+      (selStartDate >= resStartDate && selStartDate <= resEndDate) ||
+      (selEndDate >= resStartDate && selEndDate <= resEndDate) ||
+      (selStartDate <= resStartDate && selEndDate >= resEndDate)
+    );
+  });
+
+  if (isReserved) {
+    console.log(
+      "Car is reserved for the selected date:",
+      startDate,
+      "to",
+      endDate
+    );
+  } else {
+    console.log(
+      "Car is available for the selected date:",
+      startDate,
+      "to",
+      endDate
+    );
+  }
+
   return (
     <StyledCar>
       <CarFlex>
@@ -106,24 +140,37 @@ function Car() {
                 <CarFlex>
                   <span>Price :</span>
 
-                  <BasicModal button={button}>
-                    <ModalContent>
-                      <ModalGrid>
-                        <Heading as="h3">
-                          {name} {model}
-                        </Heading>
-                        <p>
-                          Date : {startDate} - {endDate}
-                        </p>
-                        <p>
-                          Time : {startTime} - {endTime}
-                        </p>
-                        <p>{daysDifference} days</p>
-                        <p>Price : {price * daysDifference}$</p>
-                        <Button onClick={handleReserve}>Book</Button>
-                      </ModalGrid>
-                    </ModalContent>
-                  </BasicModal>
+                  {isReserved ? (
+                    <Button
+                      type="short"
+                      onClick={() => {
+                        toast("Car is booked for this date", {
+                          icon: "🚙",
+                        });
+                      }}
+                    >
+                      {price}$/Dan
+                    </Button>
+                  ) : (
+                    <BasicModal button={button}>
+                      <ModalContent>
+                        <ModalGrid>
+                          <Heading as="h3">
+                            {name} {model}
+                          </Heading>
+                          <p>
+                            Date : {startDate} - {endDate}
+                          </p>
+                          <p>
+                            Time : {startTime} - {endTime}
+                          </p>
+                          <p>{daysDifference} days</p>
+                          <p>Price : {price * daysDifference}$</p>
+                          <Button onClick={handleReserve}>Book</Button>
+                        </ModalGrid>
+                      </ModalContent>
+                    </BasicModal>
+                  )}
                 </CarFlex>
               </StyledListItem>
             </ul>

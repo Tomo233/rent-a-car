@@ -1,10 +1,10 @@
 import CarGrid from "../../components/CarGrid";
 import Loader from "../../components/Loader";
 import CarItem from "../cars/CarItem";
-import { useReservations } from "./useReservations";
+import { useBookings } from "./useBookings";
 
 function Bookings() {
-  const { data, isLoading } = useReservations();
+  const { data, isLoading } = useBookings();
   if (isLoading) return <Loader />;
 
   if (!data) return <p>no bookings to display</p>;
