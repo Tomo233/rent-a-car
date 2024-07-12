@@ -90,35 +90,35 @@ function Car() {
   let difference = new Date(endDate).getTime() - new Date(startDate).getTime();
   let daysDifference = difference / (1000 * 3600 * 24);
 
-  // Check if the car is reserved for the selected date range
+  // Check if the car is reserved for the selected date and time range
   const isReserved = reservations.some((reservation) => {
-    const resStartDate = new Date(reservation.startDate);
-    const resEndDate = new Date(reservation.endDate);
-    const selStartDate = new Date(startDate);
-    const selEndDate = new Date(endDate);
+    const resStartDateTime = new Date(
+      reservation.startDate + "T" + reservation.startTime
+    );
+    const resEndDateTime = new Date(
+      reservation.endDate + "T" + reservation.endTime
+    );
+    const selStartDateTime = new Date(startDate + "T" + startTime);
+    const selEndDateTime = new Date(endDate + "T" + endTime);
 
     return (
-      (selStartDate >= resStartDate && selStartDate <= resEndDate) ||
-      (selEndDate >= resStartDate && selEndDate <= resEndDate) ||
-      (selStartDate <= resStartDate && selEndDate >= resEndDate)
+      // Check if there is an overlap in date ranges
+      (selStartDateTime >= resStartDateTime &&
+        selStartDateTime <= resEndDateTime) ||
+      (selEndDateTime >= resStartDateTime &&
+        selEndDateTime <= resEndDateTime) ||
+      (selStartDateTime <= resStartDateTime &&
+        selEndDateTime >= resEndDateTime) ||
+      // Check if there is an overlap in time ranges on the same start or end date
+      (startDate === reservation.startDate &&
+        ((startTime >= reservation.startTime &&
+          startTime <= reservation.endTime) ||
+          (endTime >= reservation.startTime &&
+            endTime <= reservation.endTime) ||
+          (startTime <= reservation.startTime &&
+            endTime >= reservation.endTime)))
     );
   });
-
-  if (isReserved) {
-    console.log(
-      "Car is reserved for the selected date:",
-      startDate,
-      "to",
-      endDate
-    );
-  } else {
-    console.log(
-      "Car is available for the selected date:",
-      startDate,
-      "to",
-      endDate
-    );
-  }
 
   return (
     <StyledCar>

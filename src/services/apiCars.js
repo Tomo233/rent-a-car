@@ -79,16 +79,17 @@ export async function getCars(formData, sort, filters, rangeFilters) {
         const formEnd = new Date(formEndDate);
 
         // Basic date overlap check
-        const dateOverlap = formStart <= resEnd && formEnd >= resStart;
+        const dateOverlap = formStart < resEnd && formEnd > resStart;
 
         // Additional time overlap checks
         const startTimeOverlap =
           formStartDate === resEndDate && formStartTime <= resEndTime;
+
         const endTimeOverlap =
           formEndDate === resStartDate && formEndTime >= resStartTime;
 
         // Determine if there is a valid overlap
-        return dateOverlap && !(startTimeOverlap || endTimeOverlap);
+        return dateOverlap || startTimeOverlap || endTimeOverlap;
       });
 
       // Include the car if no reservation overlaps with the formData dates and times
@@ -101,7 +102,6 @@ export async function getCars(formData, sort, filters, rangeFilters) {
     throw error;
   }
 }
-
 export async function getSomeCars({ from, to }) {
   let { data, error } = await supabase.from("cars").select("*").range(from, to);
 

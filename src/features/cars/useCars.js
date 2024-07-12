@@ -18,7 +18,7 @@ export function useCars() {
     data: cars,
     error,
   } = useQuery({
-    queryKey: ["cars", sort, filters, rangeFilters],
+    queryKey: ["cars", sort, filters, rangeFilters, formData],
     queryFn: () => getCars(formData, sort, filters, rangeFilters),
   });
   return { cars, error, isLoading };
