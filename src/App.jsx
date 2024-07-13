@@ -12,6 +12,7 @@ import { CarProvider } from "./context/CarContext";
 import { Toaster } from "react-hot-toast";
 import BookingsPage from "./pages/BookingsPage";
 import UserDataPage from "./pages/UserDataPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,8 +29,14 @@ function App() {
         <ReactQueryDevtools />
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />}>
-              <Route index element={<Home />} />
+            <Route index element={<Home />} />
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route path="/cars" element={<CarsPage />} />
               <Route path="/bookings" element={<BookingsPage />} />
               <Route path="/user" element={<UserDataPage />} />
