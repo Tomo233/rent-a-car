@@ -91,32 +91,19 @@ function Car() {
   let daysDifference = difference / (1000 * 3600 * 24);
 
   // Check if the car is reserved for the selected date and time range
+  const selStartDateTime = new Date(`${startDate} ${startTime}`);
+  const selEndDateTime = new Date(`${endDate} ${endTime}`);
+
   const isReserved = reservations.some((reservation) => {
     const resStartDateTime = new Date(
-      reservation.startDate + "T" + reservation.startTime
+      `${reservation.startDate} ${reservation.startTime}`
     );
     const resEndDateTime = new Date(
-      reservation.endDate + "T" + reservation.endTime
+      `${reservation.endDate} ${reservation.endTime}`
     );
-    const selStartDateTime = new Date(startDate + "T" + startTime);
-    const selEndDateTime = new Date(endDate + "T" + endTime);
 
     return (
-      // Check if there is an overlap in date ranges
-      (selStartDateTime >= resStartDateTime &&
-        selStartDateTime <= resEndDateTime) ||
-      (selEndDateTime >= resStartDateTime &&
-        selEndDateTime <= resEndDateTime) ||
-      (selStartDateTime <= resStartDateTime &&
-        selEndDateTime >= resEndDateTime) ||
-      // Check if there is an overlap in time ranges on the same start or end date
-      (startDate === reservation.startDate &&
-        ((startTime >= reservation.startTime &&
-          startTime <= reservation.endTime) ||
-          (endTime >= reservation.startTime &&
-            endTime <= reservation.endTime) ||
-          (startTime <= reservation.startTime &&
-            endTime >= reservation.endTime)))
+      selStartDateTime < resEndDateTime && selEndDateTime > resStartDateTime
     );
   });
 
