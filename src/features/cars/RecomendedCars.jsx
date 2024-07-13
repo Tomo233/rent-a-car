@@ -27,7 +27,7 @@ function RecomendedCars() {
       </Heading>
       <FlexContainer>
         {data.map((car) => (
-          <CarItem key={car.id} car={car} usedOnRecommended={true} />
+          <CarItem key={car.id} car={car} />
         ))}
       </FlexContainer>
       <Line />

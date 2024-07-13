@@ -4,7 +4,6 @@ import FlexContainer from "../../components/FlexContainer";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 const CarImageParent = styled.div`
   margin-bottom: 50px;
@@ -23,7 +22,7 @@ const Car = styled.div`
   height: 300px;
 `;
 
-function CarItem({ car, usedOnRecommended }) {
+function CarItem({ car }) {
   const {
     id,
     image,
@@ -55,16 +54,7 @@ function CarItem({ car, usedOnRecommended }) {
         <Button
           type="short"
           onClick={() => {
-            {
-              usedOnRecommended
-                ? toast(
-                    "Search for date to see if car is booked for another user",
-                    {
-                      icon: "🚙",
-                    }
-                  )
-                : navigate(`/cars/${id}`);
-            }
+            navigate(`/cars/${id}`);
           }}
         >
           {price}$/Dan
