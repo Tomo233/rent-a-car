@@ -6,7 +6,7 @@ import Paragraph from "./Paragraph";
 import BasicModal from "./BasicModal";
 import Button from "./Button";
 import LoginForm from "../features/authentication/LoginForm";
-import { useGetUser } from "../features/authentication/useGetUser";
+import { useUser } from "../features/authentication/useUser";
 
 const RoadImage = styled.img`
   width: 100%;
@@ -29,7 +29,7 @@ const TextBox = styled.div`
 const button = <Button>Login / Sign Up</Button>;
 
 function HeroSection() {
-  const { user } = useGetUser();
+  const { user } = useUser();
 
   return (
     <section>

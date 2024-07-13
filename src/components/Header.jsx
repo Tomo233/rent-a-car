@@ -8,7 +8,7 @@ import BasicModal from "./BasicModal";
 import Container from "./Container";
 import MuiButton from "@mui/material/Button";
 import LoginForm from "../features/authentication/LoginForm";
-import { useGetUser } from "../features/authentication/useGetUser";
+import { useUser } from "../features/authentication/useUser";
 import UserAndAvatar from "../features/authentication/UserAndAvatar";
 
 const StyledHeader = styled.header`
@@ -31,7 +31,7 @@ const button = <StyledButton>Login / SignUp</StyledButton>;
 
 function Header() {
   const { pathname } = useLocation();
-  const { user, isLoadingUser } = useGetUser();
+  const { user, isLoadingUser } = useUser();
 
   const isHomePage = pathname === "/";
 

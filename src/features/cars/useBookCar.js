@@ -3,14 +3,14 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCarContext } from "../../context/CarContext";
 import { bookCarById } from "../../services/apiCars";
-import { useGetUser } from "../authentication/useGetUser";
+import { useUser } from "../authentication/useUser";
 
 export const useBookCar = function () {
   const { carId } = useParams();
   const queryClient = useQueryClient();
   const { formData } = useCarContext();
   const navigate = useNavigate();
-  const { user } = useGetUser();
+  const { user } = useUser();
   const userId = user?.id;
 
   const { mutate: bookCar, isLoading: isBooking } = useMutation({

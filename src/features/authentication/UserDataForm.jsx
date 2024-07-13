@@ -3,7 +3,7 @@ import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import FileInput from "../../components/FileInput";
 import { useLogout } from "./useLogout";
-import { useGetUser } from "./useGetUser";
+import { useUser } from "./useUser";
 import { useUpdateUserAvatar } from "./useUpdateUserAvatar";
 import { useDeleteUserAvatar } from "./useDeleteUserAvatar";
 import toast from "react-hot-toast";
@@ -52,7 +52,7 @@ const Label = styled.label`
 `;
 
 function UserDataForm() {
-  const { user } = useGetUser();
+  const { user } = useUser();
   const { logout, isLoading } = useLogout();
   const { updateUser, isLoading: isUpdatingUser } = useUpdateUserAvatar();
   const { deleteAvatar, isDeleting } = useDeleteUserAvatar();

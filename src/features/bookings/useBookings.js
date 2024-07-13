@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getBookings } from "../../services/apiBookings";
-import { useGetUser } from "../authentication/useGetUser";
+import { useUser } from "../authentication/useUser";
 
 export function useBookings() {
-  const { user } = useGetUser();
+  const { user } = useUser();
   const userId = user?.id;
   const { data, isLoading, error } = useQuery({
     queryKey: ["reservations"],

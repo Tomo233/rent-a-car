@@ -6,7 +6,7 @@ import Overlay from "./Overlay";
 import BasicModal from "./BasicModal";
 import Button from "./Button";
 import LoginForm from "../features/authentication/LoginForm";
-import { useGetUser } from "../features/authentication/useGetUser";
+import { useUser } from "../features/authentication/useUser";
 
 const StyledGetStarted = styled.div`
   position: relative;
@@ -37,7 +37,7 @@ const Box = styled.div`
 const button = <Button>Get Started</Button>;
 
 function GetStarted() {
-  const { user } = useGetUser();
+  const { user } = useUser();
   return (
     <StyledGetStarted>
       <Road src="./images.jpg" alt="" />

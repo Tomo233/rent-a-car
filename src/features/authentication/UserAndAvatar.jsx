@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useGetUser } from "./useGetUser";
+import { useUser } from "./useUser";
 import { Link } from "react-router-dom";
 import FlexContainer from "../../components/FlexContainer";
 
@@ -21,7 +21,7 @@ const User = styled.p`
 `;
 
 function UserAndAvatar() {
-  const { user } = useGetUser();
+  const { user } = useUser();
   const { userName, avatarUrl } = user.user_metadata;
 
   return (
