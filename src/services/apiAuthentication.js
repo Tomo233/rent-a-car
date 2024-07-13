@@ -118,15 +118,53 @@ export async function changeAvatar(avatar) {
   return data;
 }
 
-export async function deleteAvatar() {
-  const { data, error } = await supabase.auth.updateUser({
-    data: { avatarUrl: null },
-  });
+// export async function deleteAvatar() {
+//   const { data, error } = await supabase.auth.updateUser({
+//     data: { avatarUrl: null },
+//   });
 
-  if (error) {
-    console.error("Login error:", error.message);
-    throw new Error(`Login Error: ${error.message}`);
+//   if (error) {
+//     console.error("Login error:", error.message);
+//     throw new Error(`Login Error: ${error.message}`);
+//   }
+
+//   return data;
+// }
+
+// export async function deleteAvatar() {
+//   const { data, error } = await supabase.storage
+//     .from("avatar")
+//     .remove(["avatar.jpg"]);
+
+//   if (error) {
+//     console.error("Error deleting image:", error.message);
+//   } else {
+//     console.log("Image deleted successfully:", data);
+//   }
+// }
+export async function deleteAvatar(imageName) {
+  try {
+    const { data: storage, error: storageError } = await supabase.storage
+      .from("avatars")
+      .remove([imageName]);
+
+    if (storageError) {
+      console.error("Error deleting image:", storageError.message);
+      return;
+    }
+
+    const { data, error } = await supabase.auth.updateUser({
+      data: { avatarUrl: null },
+    });
+
+    if (error) {
+      console.error("Login error:", error.message);
+      throw new Error(`Login Error: ${error.message}`);
+    }
+
+    console.log("Image deleted successfully:", storage);
+    return data;
+  } catch (error) {
+    console.error("Unexpected error:", error);
   }
-
-  return data;
 }

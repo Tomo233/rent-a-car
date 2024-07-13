@@ -58,6 +58,7 @@ function UserDataForm() {
   const { deleteAvatar, isDeleting } = useDeleteUserAvatar();
 
   if (isLoading || isUpdatingUser || isDeleting) return <p>loading</p>;
+
   const { email, phone, userName, avatarUrl } = user?.user_metadata || "";
 
   const handleFileChange = (e) => {
@@ -68,6 +69,14 @@ function UserDataForm() {
       return;
     }
     updateUser(selectedFile);
+  };
+
+  const handleDeleteAvatar = () => {
+    const imageName = avatarUrl?.split("/").at(-1);
+
+    if (!imageName) return;
+
+    deleteAvatar(imageName);
   };
 
   return (
@@ -81,7 +90,7 @@ function UserDataForm() {
               <img src="/default-user.png" height="125px" alt="" />
             </div>
           )}
-          <Button type="short" onClick={deleteAvatar}>
+          <Button type="short" onClick={handleDeleteAvatar}>
             remove avatar
           </Button>
           <FileInput onChange={handleFileChange} />
