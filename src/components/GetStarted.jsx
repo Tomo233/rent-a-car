@@ -40,7 +40,7 @@ function GetStarted() {
   const { user } = useUser();
   return (
     <StyledGetStarted>
-      <Road src="./images.jpg" alt="" />
+      <Road src="./get-started-bmw.jpg" alt="" />
       <Overlay />
       <Box>
         <Heading as="h2" color="white">

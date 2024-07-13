@@ -235,7 +235,7 @@ function LoginForm({ handleClose }) {
       <GoogleButton disabled={isLoading}>
         <FlexContainer>
           <GoogleFlex>
-            <img src="./googleLogo.jpg" alt="" height="25px" />
+            <img src="./google-logo.jpg" alt="" height="25px" />
           </GoogleFlex>
           <GoogleSpan>Login With Google</GoogleSpan>
         </FlexContainer>
