@@ -6,6 +6,7 @@ import FlexContainer from "../../components/FlexContainer";
 import Button from "../../components/Button";
 import BasicModal from "../../components/BasicModal";
 import Heading from "../../components/Heading";
+import ListItem from "../../components/ListItem";
 import { useCarById } from "./useCarById";
 import { useBookCar } from "./useBookCar";
 import { useCarBookingsByCarId } from "../bookings/useCarBookingsByCarId";
@@ -17,27 +18,14 @@ const StyledCar = styled.div`
   margin-top: 50px;
 `;
 
-const StyledHeading = styled.h3`
-  font-size: 28px;
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-  font-weight: 500;
-`;
-
 const CarFlex = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
 `;
 
-const CarInfo = styled.div`
+const CarContent = styled.div`
   margin-top: 15px;
-`;
-
-const StyledListItem = styled.li`
-  font-size: 19px;
-  color: var(--color-primary-gray);
-  padding-bottom: 20px;
 `;
 
 const ModalContent = styled.div`
@@ -116,17 +104,17 @@ function Car() {
         <div>
           <img src={image} alt={name} width="700px" />
         </div>
-        <CarInfo>
+        <CarContent>
           <div>
-            <StyledHeading>
+            <Heading for="car">
               {name} {model}
-            </StyledHeading>
+            </Heading>
             <ul>
-              <StyledListItem>+387 66 357 126</StyledListItem>
-              <StyledListItem>rental@gmail.com</StyledListItem>
-              <StyledListItem>Lokacija : {location}</StyledListItem>
+              <ListItem>+387 66 357 126</ListItem>
+              <ListItem>rental@gmail.com</ListItem>
+              <ListItem>Lokacija : {location}</ListItem>
 
-              <StyledListItem>
+              <ListItem>
                 <CarFlex>
                   <span>Price :</span>
 
@@ -162,40 +150,42 @@ function Car() {
                     </BasicModal>
                   )}
                 </CarFlex>
-              </StyledListItem>
+              </ListItem>
             </ul>
           </div>
-        </CarInfo>
+        </CarContent>
       </CarFlex>
       <Line />
-      <CarInfo>
+      <CarContent>
         <FlexContainer>
           <div>
-            <StyledHeading>Opste informacije</StyledHeading>
+            <Heading for="car">Opste informacije</Heading>
             <ul>
-              <StyledListItem>Car: {name}</StyledListItem>
-              <StyledListItem>Car Model: {model}</StyledListItem>
-              <StyledListItem>Engine: {engine}</StyledListItem>
-              <StyledListItem>Horse Power: {horsepower}</StyledListItem>
-              <StyledListItem>Transmission: {transmission}</StyledListItem>
-              <StyledListItem>FuelType: {fuelType}</StyledListItem>
-              <StyledListItem>Model Year: {year}</StyledListItem>
-              <StyledListItem>Mileage: {mileage}</StyledListItem>
+              <ListItem>Car: {name}</ListItem>
+              <ListItem>Car Model: {model}</ListItem>
+              <ListItem>Engine: {engine}</ListItem>
+              <ListItem>Horse Power: {horsepower}</ListItem>
+              <ListItem>Transmission: {transmission}</ListItem>
+              <ListItem>FuelType: {fuelType}</ListItem>
+              <ListItem>Model Year: {year}</ListItem>
+              <ListItem>Mileage: {mileage}</ListItem>
             </ul>
           </div>
           <Map lat={lat} lng={lng} />
         </FlexContainer>
-      </CarInfo>
+      </CarContent>
 
       <Line />
-      <CarInfo>
-        <StyledHeading>Dodatne informacije</StyledHeading>
+      <CarContent>
+        <Heading for="car" $notaligned={true}>
+          Dodatne informacije
+        </Heading>
         <ul>
           {features.map((f) => (
-            <StyledListItem key={f}>{f}</StyledListItem>
+            <ListItem key={f}>{f}</ListItem>
           ))}
         </ul>
-      </CarInfo>
+      </CarContent>
     </StyledCar>
   );
 }

@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import BookingsPage from "./pages/BookingsPage";
 import UserDataPage from "./pages/UserDataPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Booking from "./features/bookings/Booking";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,9 +39,10 @@ function App() {
               }
             >
               <Route path="/cars" element={<CarsPage />} />
-              <Route path="/bookings" element={<BookingsPage />} />
-              <Route path="/user" element={<UserDataPage />} />
               <Route path="/cars/:carId" element={<Car />} />
+              <Route path="/bookings" element={<BookingsPage />} />
+              <Route path="/bookings/:bookingId" element={<Booking />} />
+              <Route path="/user" element={<UserDataPage />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>

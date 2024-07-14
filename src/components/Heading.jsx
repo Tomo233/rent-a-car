@@ -20,6 +20,14 @@ const Heading = styled.h2`
     css`
       font-size: 20px;
     `}
+  ${(props) =>
+    props.for === "car" &&
+    css`
+      font-size: 28px;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      font-weight: 500;
+    `}
       
   color: ${(props) => (props.color === "white" ? "#fff" : "#000")};
   text-align: ${(props) => (props.$notaligned ? "start" : "center")};
