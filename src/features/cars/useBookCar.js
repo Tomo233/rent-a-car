@@ -14,7 +14,7 @@ export const useBookCar = function () {
   const userId = user?.id;
 
   const { mutate: bookCar, isLoading: isBooking } = useMutation({
-    mutationFn: () => bookCarById(carId, userId, formData),
+    mutationFn: (carPrice) => bookCarById(carId, userId, formData, carPrice),
     onSuccess: () => {
       toast.success("car is successfully reserved");
       queryClient.invalidateQueries({ queryKey: ["car"] });

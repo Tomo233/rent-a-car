@@ -83,13 +83,11 @@ function Car() {
     lng,
   } = data;
 
-  const handleReserve = () => {
-    bookCar();
-  };
   const button = <Button type="short">{price}$/Dan</Button>;
 
   let difference = new Date(endDate).getTime() - new Date(startDate).getTime();
   let daysDifference = difference / (1000 * 3600 * 24);
+  const carPrice = price * daysDifference;
 
   // Check if the car is reserved for the selected date and time range
   const selStartDateTime = new Date(`${startDate} ${startTime}`);
@@ -107,6 +105,10 @@ function Car() {
       selStartDateTime < resEndDateTime && selEndDateTime > resStartDateTime
     );
   });
+
+  const handleReserve = () => {
+    bookCar(carPrice);
+  };
 
   return (
     <StyledCar>
@@ -153,7 +155,7 @@ function Car() {
                             Time : {startTime} - {endTime}
                           </p>
                           <p>{daysDifference} days</p>
-                          <p>Price : {price * daysDifference}$</p>
+                          <p>Price : {carPrice}$</p>
                           <Button onClick={handleReserve}>Book</Button>
                         </ModalGrid>
                       </ModalContent>

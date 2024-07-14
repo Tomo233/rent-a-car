@@ -4,7 +4,6 @@ import FlexContainer from "../../components/FlexContainer";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import BasicModal from "../../components/BasicModal";
 
 const CarImage = styled.img`
   width: 200px;
@@ -71,7 +70,7 @@ function CarItem({ car, booking = [] }) {
             <p>{location}</p>
           </div>
 
-          {booking ? (
+          {booking.length > 0 ? (
             <Button type="short">More Info</Button>
           ) : (
             <Button

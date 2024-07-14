@@ -124,7 +124,8 @@ export async function getCarById(id) {
 export async function bookCarById(
   carId,
   userId,
-  { startDate, endDate, startTime, endTime }
+  { startDate, endDate, startTime, endTime },
+  carPrice
 ) {
   try {
     const { data, error } = await supabase.from("reservations").insert([
@@ -135,6 +136,7 @@ export async function bookCarById(
         startTime,
         endTime,
         user_id: userId,
+        price: carPrice,
       },
     ]);
 
