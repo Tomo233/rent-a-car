@@ -4,8 +4,8 @@ import Loader from "../../components/Loader";
 import Map from "../../components/Map";
 import FlexContainer from "../../components/FlexContainer";
 import ListItem from "../../components/ListItem";
-import { useCarById } from "../cars/useCarById";
 import Heading from "../../components/Heading";
+import { useBookingById } from "./useBookingById";
 
 const StyledBooking = styled.div`
   margin-top: 50px;
@@ -27,11 +27,11 @@ const Content = styled.div`
 `;
 
 function Booking() {
-  const { data, isLoading: carLoading } = useCarById();
+  const { booking, isLoadingBooking } = useBookingById();
 
-  if (carLoading) return <Loader />;
+  if (isLoadingBooking) return <Loader />;
 
-  if (!data) return <p>Car does not exist</p>;
+  if (!booking) return <p>Booking does not exist</p>;
 
   const {
     image,
@@ -40,16 +40,16 @@ function Booking() {
     features,
     engine,
     model,
-    price,
     mileage,
     year,
-    location,
     transmission,
     fuelType,
     lat,
     lng,
     street,
-  } = data;
+  } = booking.at(0).cars;
+
+  const { startDate, endDate, startTime, endTime, price } = booking.at(0);
 
   return (
     <StyledBooking>
@@ -73,13 +73,13 @@ function Booking() {
                     <Span> Adresa preuzimanja:</Span> {street}
                   </ListItem>
                   <ListItem>
-                    <Span> Vreme preuzimanja:</Span> {model}
+                    <Span> Vreme preuzimanja:</Span> {startTime} | {startDate}
                   </ListItem>
                   <ListItem>
-                    <Span>Vreme povratka:</Span> {engine}
+                    <Span>Vreme povratka:</Span> {endTime} | {endDate}
                   </ListItem>
                   <ListItem>
-                    <Span>Cijena: </Span> 500$
+                    <Span>Cijena: </Span> {price}$
                   </ListItem>
                 </ul>
               </Content>
@@ -128,7 +128,7 @@ function Booking() {
               Dodatne informacije
             </Heading>
             <ul>
-              {features.map((f) => (
+              {features?.map((f) => (
                 <ListItem key={f}>{f}</ListItem>
               ))}
             </ul>

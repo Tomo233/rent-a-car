@@ -3,10 +3,10 @@ import { getCarById } from "../../services/apiCars";
 import { useParams } from "react-router-dom";
 
 export const useCarById = function () {
-  // const { carId } = useParams();
+  const { carId } = useParams();
   const { isLoading, data, error } = useQuery({
-    queryKey: ["car", 5],
-    queryFn: () => getCarById(5),
+    queryKey: ["car", carId],
+    queryFn: () => getCarById(carId),
   });
 
   return { data, isLoading, error };

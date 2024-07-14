@@ -37,13 +37,34 @@ export async function getCarBookings(carId) {
       .eq("car_id", carId);
 
     if (error) {
-      console.error("Error fetching reservations:", error);
+      console.error("Error fetching bookings:", error);
       return [];
     }
 
     return data;
   } catch (error) {
-    console.error("Error fetching reservations:", error.message);
+    console.error("Error fetching bookings:", error.message);
+    throw error;
+  }
+}
+
+export async function getBookingById(bookingId) {
+  try {
+    if (!bookingId) return null;
+
+    let { data, error } = await supabase
+      .from("reservations")
+      .select("*,cars(*)")
+      .eq("id", bookingId);
+
+    if (error) {
+      console.error("Error fetching booking:", error);
+      return [];
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching booking:", error.message);
     throw error;
   }
 }
