@@ -6,7 +6,7 @@ export function useBookings() {
   const { user } = useUser();
   const userId = user?.id;
   const { data, isLoading, error } = useQuery({
-    queryKey: ["reservations"],
+    queryKey: ["bookings"],
     queryFn: () => getBookings(userId),
   });
 

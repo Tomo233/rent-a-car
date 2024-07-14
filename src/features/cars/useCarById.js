@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 export const useCarById = function () {
   const { carId } = useParams();
   const { isLoading, data, error } = useQuery({
-    queryKey: ["car"],
+    queryKey: ["car", carId],
     queryFn: () => getCarById(carId),
   });
 

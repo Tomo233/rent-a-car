@@ -10,7 +10,7 @@ export function useLogout() {
     mutationFn: logoutApi,
     onSuccess: () => {
       toast.success("User is successfully logged out");
-      navigate(-1);
+      navigate("/");
       queryClient.removeQueries();
     },
   });

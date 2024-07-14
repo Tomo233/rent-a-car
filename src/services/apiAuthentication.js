@@ -117,31 +117,6 @@ export async function changeAvatar(avatar) {
 
   return data;
 }
-
-// export async function deleteAvatar() {
-//   const { data, error } = await supabase.auth.updateUser({
-//     data: { avatarUrl: null },
-//   });
-
-//   if (error) {
-//     console.error("Login error:", error.message);
-//     throw new Error(`Login Error: ${error.message}`);
-//   }
-
-//   return data;
-// }
-
-// export async function deleteAvatar() {
-//   const { data, error } = await supabase.storage
-//     .from("avatar")
-//     .remove(["avatar.jpg"]);
-
-//   if (error) {
-//     console.error("Error deleting image:", error.message);
-//   } else {
-//     console.log("Image deleted successfully:", data);
-//   }
-// }
 export async function deleteAvatar(imageName) {
   try {
     const { data: storage, error: storageError } = await supabase.storage

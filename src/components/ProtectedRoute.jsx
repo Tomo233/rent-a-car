@@ -13,7 +13,7 @@ function ProtectedRoute({ children }) {
   useEffect(() => {
     if (!isLoadingUser && authenticated !== "authenticated") {
       navigate("/");
-      toast.error("User is not logged in");
+      toast.error("You are not logged in");
     }
   }, [authenticated, isLoadingUser, navigate]);
 

@@ -1,4 +1,5 @@
 import Container from "../components/Container";
+import Footer from "../components/Footer";
 import GetStarted from "../components/GetStarted";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
@@ -17,6 +18,7 @@ function Home() {
         <GetStarted />
         <MostAskedQuestions />
       </Container>
+      <Footer />
     </>
   );
 }

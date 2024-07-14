@@ -8,9 +8,10 @@ import BasicModal from "../../components/BasicModal";
 import Heading from "../../components/Heading";
 import { useCarById } from "./useCarById";
 import { useBookCar } from "./useBookCar";
-import { useCarBookings } from "../bookings/useCarBookings";
+import { useCarBookingsByCarId } from "../bookings/useCarBookingsByCarId";
 import { useCarContext } from "../../context/CarContext";
 import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 const StyledCar = styled.div`
   margin-top: 50px;
@@ -53,9 +54,10 @@ const ModalGrid = styled.div`
 `;
 
 function Car() {
+  const { carId } = useParams();
   const { data, isLoading: carLoading } = useCarById();
   const { data: reservations, isLoading: reservationsLoading } =
-    useCarBookings();
+    useCarBookingsByCarId(carId);
   const { bookCar, isBooking } = useBookCar();
   const { formData } = useCarContext();
   const { startDate, endDate, startTime, endTime } = formData;
@@ -84,7 +86,6 @@ function Car() {
   const handleReserve = () => {
     bookCar();
   };
-
   const button = <Button type="short">{price}$/Dan</Button>;
 
   let difference = new Date(endDate).getTime() - new Date(startDate).getTime();
@@ -94,7 +95,7 @@ function Car() {
   const selStartDateTime = new Date(`${startDate} ${startTime}`);
   const selEndDateTime = new Date(`${endDate} ${endTime}`);
 
-  const isReserved = reservations.some((reservation) => {
+  const isReserved = reservations?.some((reservation) => {
     const resStartDateTime = new Date(
       `${reservation.startDate} ${reservation.startTime}`
     );
