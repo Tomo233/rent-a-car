@@ -38,26 +38,12 @@ const CancelButton = styled.button`
   font-weight: 600;
 `;
 
-function CarItem({ car, booking = [] }) {
+function CarItem({ car, booking = {} }) {
   const { id, image, name, horsepower, model, price, year, location } = car;
-  const { startDate, endDate, startTime, endTime } = booking;
+  const { id: bookingId } = booking;
   const navigate = useNavigate();
   return (
     <div>
-      {booking && (
-        <>
-          <FlexContainer>
-            <p>{startDate}</p>
-            <span>-</span>
-            <p>{endDate}</p>
-          </FlexContainer>
-          <FlexContainer>
-            <p>{startTime}</p>
-            <span>-</span>
-            <p>{endTime}</p>
-          </FlexContainer>
-        </>
-      )}
       <Car>
         <CarImage src={image} alt="" />
         <FlexContainer>
@@ -70,8 +56,13 @@ function CarItem({ car, booking = [] }) {
             <p>{location}</p>
           </div>
 
-          {booking.length > 0 ? (
-            <Button type="short">More Info</Button>
+          {Object.keys(booking).length > 0 ? (
+            <Button
+              type="short"
+              onClick={() => navigate(`/bookings/${bookingId}`)}
+            >
+              More Info
+            </Button>
           ) : (
             <Button
               type="short"
@@ -85,9 +76,11 @@ function CarItem({ car, booking = [] }) {
         </FlexContainer>
       </Car>
 
-      <FlexCenter>
-        <CancelButton>Cancel Booking</CancelButton>
-      </FlexCenter>
+      {Object.keys(booking).length > 0 && (
+        <FlexCenter>
+          <CancelButton>Cancel Booking</CancelButton>
+        </FlexCenter>
+      )}
     </div>
   );
 }

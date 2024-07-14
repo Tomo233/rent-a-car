@@ -6,6 +6,7 @@ import FlexContainer from "../../components/FlexContainer";
 import ListItem from "../../components/ListItem";
 import Heading from "../../components/Heading";
 import { useBookingById } from "./useBookingById";
+import { useUser } from "../authentication/useUser";
 
 const StyledBooking = styled.div`
   margin-top: 50px;
@@ -28,10 +29,11 @@ const Content = styled.div`
 
 function Booking() {
   const { booking, isLoadingBooking } = useBookingById();
+  const { user, isLoadingUser } = useUser();
 
-  if (isLoadingBooking) return <Loader />;
+  if (isLoadingBooking || isLoadingUser) return <Loader />;
 
-  if (!booking) return <p>Booking does not exist</p>;
+  if (!booking.length) return <p>Booking does not exist</p>;
 
   const {
     image,
@@ -49,7 +51,11 @@ function Booking() {
     street,
   } = booking.at(0).cars;
 
-  const { startDate, endDate, startTime, endTime, price } = booking.at(0);
+  const { startDate, endDate, startTime, endTime, price, user_id } =
+    booking.at(0);
+
+  if (user_id !== user.id)
+    return <p>You do not have any reservation for this booking</p>;
 
   return (
     <StyledBooking>

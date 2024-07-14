@@ -44,13 +44,12 @@ const ModalGrid = styled.div`
 function Car() {
   const { carId } = useParams();
   const { data, isLoading: carLoading } = useCarById();
-  const { data: reservations, isLoading: reservationsLoading } =
-    useCarBookingsByCarId(carId);
+  const { carBookings, isLoadingCarBookings } = useCarBookingsByCarId(carId);
   const { bookCar, isBooking } = useBookCar();
   const { formData } = useCarContext();
   const { startDate, endDate, startTime, endTime } = formData;
 
-  if (carLoading || reservationsLoading || isBooking) return <Loader />;
+  if (carLoading || isLoadingCarBookings || isBooking) return <Loader />;
 
   if (!data) return <p>Car does not exist</p>;
 
@@ -81,7 +80,7 @@ function Car() {
   const selStartDateTime = new Date(`${startDate} ${startTime}`);
   const selEndDateTime = new Date(`${endDate} ${endTime}`);
 
-  const isReserved = reservations?.some((reservation) => {
+  const isReserved = carBookings?.some((reservation) => {
     const resStartDateTime = new Date(
       `${reservation.startDate} ${reservation.startTime}`
     );
