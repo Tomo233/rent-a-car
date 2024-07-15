@@ -79,10 +79,10 @@ function Booking() {
                     <Span> Adresa preuzimanja:</Span> {street}
                   </ListItem>
                   <ListItem>
-                    <Span> Vreme preuzimanja:</Span> {startTime} | {startDate}
+                    <Span> Vreme preuzimanja:</Span> {startDate} | {startTime}
                   </ListItem>
                   <ListItem>
-                    <Span>Vreme povratka:</Span> {endTime} | {endDate}
+                    <Span>Vreme povratka:</Span> {endDate} | {endTime}
                   </ListItem>
                   <ListItem>
                     <Span>Cijena: </Span> {price}$

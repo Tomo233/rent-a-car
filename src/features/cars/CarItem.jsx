@@ -40,8 +40,13 @@ const CancelButton = styled.button`
 
 function CarItem({ car, booking = {} }) {
   const { id, image, name, horsepower, model, price, year, location } = car;
-  const { id: bookingId } = booking;
+  const { id: bookingId, startDate } = booking;
+  console.log(startDate);
   const navigate = useNavigate();
+  const today = new Date();
+
+  const isBeforeToday = new Date(startDate) > today;
+
   return (
     <div>
       <Car>
@@ -76,7 +81,7 @@ function CarItem({ car, booking = {} }) {
         </FlexContainer>
       </Car>
 
-      {Object.keys(booking).length > 0 && (
+      {Object.keys(booking).length > 0 && isBeforeToday && (
         <FlexCenter>
           <CancelButton>Cancel Booking</CancelButton>
         </FlexCenter>
