@@ -68,3 +68,21 @@ export async function getBookingById(bookingId) {
     throw error;
   }
 }
+
+export async function deleteBookingById(bookingId) {
+  try {
+    console.log(`Attempting to delete booking with ID: ${bookingId}`);
+    const { error } = await supabase
+      .from("reservations")
+      .delete()
+      .eq("id", bookingId);
+
+    if (error) {
+      console.error(`Error deleting booking: ${error.message}`);
+      throw new Error(`Error deleting booking: ${error.message}`);
+    }
+  } catch (error) {
+    console.error("Error deleting booking:", error.message);
+    throw error;
+  }
+}

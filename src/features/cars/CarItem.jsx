@@ -4,6 +4,7 @@ import FlexContainer from "../../components/FlexContainer";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useDeleteBooking } from "../bookings/useDeleteBooking";
 
 const CarImage = styled.img`
   width: 200px;
@@ -41,11 +42,11 @@ const CancelButton = styled.button`
 function CarItem({ car, booking = {} }) {
   const { id, image, name, horsepower, model, price, year, location } = car;
   const { id: bookingId, startDate } = booking;
-  console.log(startDate);
   const navigate = useNavigate();
   const today = new Date();
-
   const isBeforeToday = new Date(startDate) > today;
+
+  const { deleteBooking, isDeletingBooking } = useDeleteBooking();
 
   return (
     <div>
@@ -83,7 +84,12 @@ function CarItem({ car, booking = {} }) {
 
       {Object.keys(booking).length > 0 && isBeforeToday && (
         <FlexCenter>
-          <CancelButton>Cancel Booking</CancelButton>
+          <CancelButton
+            onClick={() => deleteBooking(bookingId)}
+            disabled={isDeletingBooking}
+          >
+            Cancel Booking
+          </CancelButton>
         </FlexCenter>
       )}
     </div>
