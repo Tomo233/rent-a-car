@@ -158,7 +158,7 @@ function Car() {
       <CarContent>
         <FlexContainer>
           <div>
-            <Heading for="car">Opste informacije</Heading>
+            <Heading headingfor="car">Opste informacije</Heading>
             <ul>
               <ListItem>Car: {name}</ListItem>
               <ListItem>Car Model: {model}</ListItem>

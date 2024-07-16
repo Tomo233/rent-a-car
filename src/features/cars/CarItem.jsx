@@ -3,8 +3,10 @@ import styled from "styled-components";
 import FlexContainer from "../../components/FlexContainer";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
+import Loader from "../../components/Loader";
 import { useNavigate } from "react-router-dom";
 import { useDeleteBooking } from "../bookings/useDeleteBooking";
+import { useEffect } from "react";
 
 const CarImage = styled.img`
   width: 200px;
@@ -41,18 +43,33 @@ const CancelButton = styled.button`
 
 function CarItem({ car, booking = {} }) {
   const { id, image, name, horsepower, model, price, year, location } = car;
-  const { id: bookingId, startDate } = booking;
+  const { id: bookingId, startDate, endDate, endTime } = booking;
+  const { deleteBooking, isDeletingBooking } = useDeleteBooking();
+
   const navigate = useNavigate();
+
   const today = new Date();
   const isBeforeToday = new Date(startDate) > today;
 
-  const { deleteBooking, isDeletingBooking } = useDeleteBooking();
+  useEffect(() => {
+    // Calculate the current date
+    const today = new Date();
 
+    // Calculate the booking end date and time
+    const bookingEndTime = new Date(`${endDate} ${endTime}`);
+
+    // Check if booking has expired
+    if (bookingEndTime < today) {
+      deleteBooking(bookingId);
+    }
+  }, [deleteBooking, bookingId, endDate, endTime]);
+
+  if (isDeletingBooking) return <Loader />;
   return (
     <div>
       <Car>
         <CarImage src={image} alt="" />
-        <FlexContainer>
+        <FlexContainer gap="0">
           <div>
             <Heading as="h3" $notaligned={true}>
               {name} {model}
@@ -88,7 +105,7 @@ function CarItem({ car, booking = {} }) {
             onClick={() => deleteBooking(bookingId)}
             disabled={isDeletingBooking}
           >
-            Cancel Booking
+            {isDeletingBooking ? "Canceling..." : "Cancel Booking"}
           </CancelButton>
         </FlexCenter>
       )}

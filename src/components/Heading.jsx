@@ -21,7 +21,7 @@ const Heading = styled.h2`
       font-size: 20px;
     `}
   ${(props) =>
-    props.for === "car" &&
+    props.headingfor === "car" &&
     css`
       font-size: 28px;
       margin-bottom: 10px;

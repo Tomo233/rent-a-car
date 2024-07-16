@@ -4,16 +4,17 @@ import toast from "react-hot-toast";
 
 export function useDeleteBooking() {
   const queryClient = useQueryClient();
-  const { mutate: deleteBooking, isLoading: isDeletingBooking } = useMutation({
+
+  const { mutate: deleteBooking, isPending: isDeletingBooking } = useMutation({
     mutationFn: deleteBookingByIdApi,
-    mutationKey: ["bookings"],
     onSuccess: () => {
-      toast.success("Booking successfully canceled");
+      toast.success("Booking successfully deleted");
       queryClient.invalidateQueries({ queryKey: ["bookings"] });
     },
     onError: (error) => {
-      toast.error(`Error while canceling booking: ${error.message}`);
+      toast.error(`Error while deleting booking: ${error.message}`);
     },
   });
+
   return { deleteBooking, isDeletingBooking };
 }
