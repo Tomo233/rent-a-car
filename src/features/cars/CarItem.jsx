@@ -29,18 +29,6 @@ const FlexCenter = styled.div`
   margin-top: 15px;
 `;
 
-const CancelButton = styled.button`
-  background-color: #fa3c3c;
-  border: none;
-  height: 50px;
-  color: #fff;
-  padding: 20px 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-`;
-
 function CarItem({ car, booking = {} }) {
   const { id, image, name, horsepower, model, price, year, location } = car;
   const { id: bookingId, startDate, endDate, endTime } = booking;
@@ -98,17 +86,6 @@ function CarItem({ car, booking = {} }) {
           )}
         </FlexContainer>
       </Car>
-
-      {Object.keys(booking).length > 0 && isBeforeToday && (
-        <FlexCenter>
-          <CancelButton
-            onClick={() => deleteBooking(bookingId)}
-            disabled={isDeletingBooking}
-          >
-            {isDeletingBooking ? "Canceling..." : "Cancel Booking"}
-          </CancelButton>
-        </FlexCenter>
-      )}
     </div>
   );
 }

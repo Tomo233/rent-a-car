@@ -7,6 +7,8 @@ import ListItem from "../../components/ListItem";
 import Heading from "../../components/Heading";
 import { useBookingById } from "./useBookingById";
 import { useUser } from "../authentication/useUser";
+import BasicModal from "../../components/BasicModal";
+import Button from "../../components/Button";
 
 const StyledBooking = styled.div`
   margin-top: 50px;
@@ -26,6 +28,38 @@ const Span = styled.span`
 const Content = styled.div`
   margin-top: 15px;
 `;
+
+const CancelButton = styled.button`
+  background-color: #fa3c3c;
+  border: none;
+  height: 50px;
+  color: #fff;
+  padding: 25px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+`;
+
+const ModalBookingContent = styled.div`
+  background-color: white;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+`;
+
+const GoBackButton = styled(Button)`
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 20px 5px;
+`;
+
+const button = <CancelButton>Cancel Booking</CancelButton>;
 
 function Booking() {
   const { booking, isLoadingBooking } = useBookingById();
@@ -86,6 +120,19 @@ function Booking() {
                   </ListItem>
                   <ListItem>
                     <Span>Cijena: </Span> {price}$
+                  </ListItem>
+
+                  <ListItem>
+                    <BasicModal button={button}>
+                      <ModalBookingContent>
+                        <Heading as="h3">Cancel Booking</Heading>
+                        <p>Are you sure you want to cancel this booking?</p>
+                        <FlexContainer>
+                          <CancelButton>Cancel</CancelButton>
+                          <GoBackButton>Go Back</GoBackButton>
+                        </FlexContainer>
+                      </ModalBookingContent>
+                    </BasicModal>
                   </ListItem>
                 </ul>
               </Content>
