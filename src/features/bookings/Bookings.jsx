@@ -1,6 +1,6 @@
 import CarGrid from "../../components/CarGrid";
 import Loader from "../../components/Loader";
-import CarItem from "../cars/CarItem";
+import BookingItem from "./BookingItem";
 import { useBookings } from "./useBookings";
 
 function Bookings() {
@@ -12,7 +12,12 @@ function Bookings() {
   return (
     <CarGrid>
       {data?.map((item) => (
-        <CarItem car={item.cars} key={item.id} isBooked={true} booking={item} />
+        <BookingItem
+          car={item.cars}
+          key={item.id}
+          isBooked={true}
+          booking={item}
+        />
       ))}
     </CarGrid>
   );
