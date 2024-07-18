@@ -7,8 +7,8 @@ import ListItem from "../../components/ListItem";
 import Heading from "../../components/Heading";
 import { useBookingById } from "./useBookingById";
 import { useUser } from "../authentication/useUser";
-import BasicModal from "../../components/BasicModal";
 import Button from "../../components/Button";
+import BasicModal from "../../components/BasicModal";
 
 const StyledBooking = styled.div`
   margin-top: 50px;
@@ -29,20 +29,7 @@ const Content = styled.div`
   margin-top: 15px;
 `;
 
-const CancelButton = styled.button`
-  background-color: #fa3c3c;
-  border: none;
-  height: 50px;
-  color: #fff;
-  padding: 25px 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 500;
-`;
-
-const ModalBookingContent = styled.div`
+const ModalContent = styled.div`
   background-color: white;
   height: 300px;
   display: flex;
@@ -50,16 +37,15 @@ const ModalBookingContent = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+
+  input {
+    width: 300px;
+    height: 45px;
+    text-align: center;
+  }
 `;
 
-const GoBackButton = styled(Button)`
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding: 20px 5px;
-`;
-
-const button = <CancelButton>Cancel Booking</CancelButton>;
+const button = <Button type="short">Finish Booking</Button>;
 
 function Booking() {
   const { booking, isLoadingBooking } = useBookingById();
@@ -91,6 +77,11 @@ function Booking() {
   if (user_id !== user.id)
     return <p>You do not have any reservation for this booking</p>;
 
+  const today = new Date();
+  const endDateTime = new Date(`${endDate} ${endTime}`);
+
+  const isFinished = today < endDateTime;
+
   return (
     <StyledBooking>
       <Grid>
@@ -121,19 +112,22 @@ function Booking() {
                   <ListItem>
                     <Span>Cijena: </Span> {price}$
                   </ListItem>
-
-                  {/* <ListItem>
-                    <BasicModal button={button}>
-                      <ModalBookingContent>
-                        <Heading as="h3">Cancel Booking</Heading>
-                        <p>Are you sure you want to cancel this booking?</p>
-                        <FlexContainer>
-                          <CancelButton>Cancel</CancelButton>
-                          <GoBackButton>Go Back</GoBackButton>
-                        </FlexContainer>
-                      </ModalBookingContent>
-                    </BasicModal>
-                  </ListItem> */}
+                  {isFinished && (
+                    <ListItem>
+                      <BasicModal button={button}>
+                        <ModalContent>
+                          <Heading as="h3">Finish Booking</Heading>
+                          <input
+                            type="text"
+                            placeholder="Please enter your feedback here..."
+                          />
+                          <FlexContainer>
+                            <Button>Send and Finish</Button>
+                          </FlexContainer>
+                        </ModalContent>
+                      </BasicModal>
+                    </ListItem>
+                  )}
                 </ul>
               </Content>
             </FlexContainer>

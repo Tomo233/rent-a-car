@@ -7,7 +7,9 @@ import Button from "../../components/Button";
 import CarDetails from "../cars/CarDetails";
 import Loader from "../../components/Loader";
 import FlexContainer from "../../components/FlexContainer";
+import BasicModal from "../../components/BasicModal";
 import { useDeleteBooking } from "./useDeleteBooking";
+import Heading from "../../components/Heading";
 
 const FlexCenter = styled.div`
   display: flex;
@@ -29,6 +31,27 @@ const CancelButton = styled.button`
   font-weight: 500;
 `;
 
+const ModalContent = styled.div`
+  background-color: white;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  input {
+    width: 300px;
+    height: 45px;
+    text-align: center;
+  }
+  button {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+`;
+
 function BookingItem({ car, booking }) {
   const { id: bookingId, startDate, endDate, startTime } = booking;
   const { deleteBooking, isDeletingBooking } = useDeleteBooking();
@@ -47,6 +70,9 @@ function BookingItem({ car, booking }) {
 
   if (isDeletingBooking) return <Loader />;
 
+  const button = <CancelButton>Cancel Booking</CancelButton>;
+  const closeButton = <Button type="short">Go Back</Button>;
+
   return (
     <div>
       <FlexContainer>
@@ -59,9 +85,17 @@ function BookingItem({ car, booking }) {
         </Button>
       </CarDetails>
       <FlexCenter>
-        <CancelButton onClick={handleCancelBooking}>
-          Cancel Booking
-        </CancelButton>
+        <BasicModal button={button} closeButton={closeButton}>
+          <ModalContent>
+            <Heading as="h3">Cancel Booking</Heading>
+            <p>Are you sure you want to cancel this booking?</p>
+            <FlexContainer>
+              <CancelButton onClick={handleCancelBooking}>
+                Yes,Cancel
+              </CancelButton>
+            </FlexContainer>
+          </ModalContent>
+        </BasicModal>
       </FlexCenter>
     </div>
   );

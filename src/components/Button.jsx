@@ -7,6 +7,7 @@ const Button = styled.button`
   font-weight: 600;
   letter-spacing: 2px;
   font-size: 16px;
+  border-radius: 3px;
   padding: ${(props) => (props.type === "short" ? "20px 5px" : "16px 50px")};
 `;
 
