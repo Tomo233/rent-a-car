@@ -122,7 +122,7 @@ function Booking() {
                     <Span>Cijena: </Span> {price}$
                   </ListItem>
 
-                  <ListItem>
+                  {/* <ListItem>
                     <BasicModal button={button}>
                       <ModalBookingContent>
                         <Heading as="h3">Cancel Booking</Heading>
@@ -133,7 +133,7 @@ function Booking() {
                         </FlexContainer>
                       </ModalBookingContent>
                     </BasicModal>
-                  </ListItem>
+                  </ListItem> */}
                 </ul>
               </Content>
             </FlexContainer>

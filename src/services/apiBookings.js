@@ -71,7 +71,6 @@ export async function getBookingById(bookingId) {
 
 export async function deleteBookingById(bookingId) {
   try {
-    console.log(`Attempting to delete booking with ID: ${bookingId}`);
     const { error } = await supabase
       .from("reservations")
       .delete()

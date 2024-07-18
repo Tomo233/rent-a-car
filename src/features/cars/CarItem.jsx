@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import { useNavigate } from "react-router-dom";
 import { useDeleteBooking } from "../bookings/useDeleteBooking";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const CarImage = styled.img`
   width: 200px;
@@ -29,30 +30,41 @@ const FlexCenter = styled.div`
   margin-top: 15px;
 `;
 
+const CancelButton = styled.button`
+  background-color: #fa3c3c;
+  border: none;
+  height: 50px;
+  color: #fff;
+  padding: 25px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+`;
+
 function CarItem({ car, booking = {} }) {
   const { id, image, name, horsepower, model, price, year, location } = car;
-  const { id: bookingId, startDate, endDate, endTime } = booking;
+  const { id: bookingId, startDate, startTime, endDate, endTime } = booking;
   const { deleteBooking, isDeletingBooking } = useDeleteBooking();
-
   const navigate = useNavigate();
 
-  const today = new Date();
-  const isBeforeToday = new Date(startDate) > today;
+  // const today = new Date();
+  // const isBeforeToday = new Date(startDate) > today;
 
-  useEffect(() => {
-    // Calculate the current date
+  const handleCancelBooking = () => {
     const today = new Date();
+    const startDateTime = new Date(`${startDate} ${startTime}`);
+    const isBeforeToday = startDateTime > today;
 
-    // Calculate the booking end date and time
-    const bookingEndTime = new Date(`${endDate} ${endTime}`);
-
-    // Check if booking has expired
-    if (bookingEndTime < today) {
-      deleteBooking(bookingId);
+    if (isBeforeToday) deleteBooking(bookingId);
+    else {
+      toast.error("Booking has started");
     }
-  }, [deleteBooking, bookingId, endDate, endTime]);
+  };
 
   if (isDeletingBooking) return <Loader />;
+
   return (
     <div>
       <Car>
@@ -86,6 +98,11 @@ function CarItem({ car, booking = {} }) {
           )}
         </FlexContainer>
       </Car>
+      <FlexCenter>
+        <CancelButton onClick={handleCancelBooking}>
+          Cancel Booking
+        </CancelButton>
+      </FlexCenter>
     </div>
   );
 }
