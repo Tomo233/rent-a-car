@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import CarDetails from "../cars/CarDetails";
-import { useDeleteBooking } from "./useDeleteBooking";
-import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
-import styled from "styled-components";
+import FlexContainer from "../../components/FlexContainer";
+import { useDeleteBooking } from "./useDeleteBooking";
 
 const FlexCenter = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const CancelButton = styled.button`
 `;
 
 function BookingItem({ car, booking }) {
-  const { id: bookingId, startDate, startTime } = booking;
+  const { id: bookingId, startDate, endDate, startTime } = booking;
   const { deleteBooking, isDeletingBooking } = useDeleteBooking();
   const navigate = useNavigate();
 
@@ -48,6 +49,10 @@ function BookingItem({ car, booking }) {
 
   return (
     <div>
+      <FlexContainer>
+        <p>{startDate}</p>
+        <p>{endDate}</p>
+      </FlexContainer>
       <CarDetails car={car}>
         <Button type="short" onClick={() => navigate(`/bookings/${bookingId}`)}>
           More Info
