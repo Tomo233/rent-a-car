@@ -12,6 +12,11 @@ const StyledForm = styled.form`
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   height: 120px;
   width: 100%;
+
+  @media (max-width: 992px) {
+    margin-bottom: 300px;
+    height: 400px;
+  }
 `;
 
 const FormFlex = styled.div`
@@ -20,6 +25,13 @@ const FormFlex = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
+
+  @media (max-width: 992px) {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 `;
 
 const FormGrid = styled.div`
@@ -33,6 +45,14 @@ const StyledInput = styled.input`
   color: black;
   font-size: 18px;
   text-align: center;
+
+  @media (max-width: 1200px) {
+    width: 100px;
+  }
+  @media (max-width: 992px) {
+    width: 300px;
+    height: 55px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -43,11 +63,27 @@ const StyledLabel = styled.label`
 const TimeInput = styled.input`
   color: black;
   height: 40px;
+  @media (max-width: 992px) {
+    width: 300px;
+    height: 55px;
+  }
 `;
 
 const StyledSelect = styled(Select)`
   border: 1px solid var(--color-border-gray) !important;
   width: 190px;
+
+  @media (max-width: 992px) {
+    width: 300px;
+    height: 55px;
+  }
+`;
+
+const SearchButton = styled(Button)`
+  @media (max-width: 992px) {
+    width: 85%;
+    margin-bottom: 25px;
+  }
 `;
 
 function SearchForm() {
@@ -85,7 +121,7 @@ function SearchForm() {
 
   return (
     <StyledForm onSubmit={handleSubmit(handleForm)}>
-      <FormFlex>
+      <FormFlex className="e">
         <FormGrid>
           <StyledLabel>{errors?.location?.message || "Location"}</StyledLabel>
           <FormControl>
@@ -93,7 +129,7 @@ function SearchForm() {
             <StyledSelect
               labelId="location-label"
               id="location"
-              defaultValue="" // Set the default value
+              defaultValue=""
               {...register("location", { required: "Required Field" })}
             >
               <MenuItem value="Belgrade">Belgrade</MenuItem>
@@ -103,16 +139,12 @@ function SearchForm() {
             </StyledSelect>
           </FormControl>
         </FormGrid>
-        <FormGrid>
-          <FlexContainer>
+
+        <FlexContainer>
+          <FormGrid>
             <StyledLabel>
               {errors?.startDate?.message || "Start Date"}
             </StyledLabel>
-            <StyledLabel>
-              {errors?.startTime?.message || "Start Time"}
-            </StyledLabel>
-          </FlexContainer>
-          <FlexContainer>
             <StyledInput
               type="date"
               {...register("startDate", {
@@ -125,18 +157,21 @@ function SearchForm() {
                 },
               })}
             />
+          </FormGrid>
+          <FormGrid>
+            <StyledLabel>
+              {errors?.startTime?.message || "Start Time"}
+            </StyledLabel>
             <TimeInput
               type="time"
               {...register("startTime", { required: "Required Field" })}
             />
-          </FlexContainer>
-        </FormGrid>
-        <FormGrid>
-          <FlexContainer>
+          </FormGrid>
+        </FlexContainer>
+
+        <FlexContainer>
+          <FormGrid>
             <StyledLabel>{errors?.endTime?.message || "End Time"}</StyledLabel>
-            <StyledLabel>{errors?.endDate?.message || "End Date"}</StyledLabel>
-          </FlexContainer>
-          <FlexContainer>
             <TimeInput
               type="time"
               {...register("endTime", {
@@ -152,6 +187,9 @@ function SearchForm() {
                 },
               })}
             />
+          </FormGrid>
+          <FormGrid>
+            <StyledLabel>{errors?.endDate?.message || "End Date"}</StyledLabel>
             <StyledInput
               type="date"
               {...register("endDate", {
@@ -161,9 +199,9 @@ function SearchForm() {
                   "End date is before start date",
               })}
             />
-          </FlexContainer>
-        </FormGrid>
-        <Button>Search</Button>
+          </FormGrid>
+        </FlexContainer>
+        <SearchButton>Search</SearchButton>
       </FormFlex>
       <Line />
     </StyledForm>

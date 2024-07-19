@@ -24,6 +24,10 @@ const TextBox = styled.div`
   text-align: center;
   margin-top: 16rem;
   margin-bottom: ${(props) => (props.$isloggedin ? "190px" : "140px")};
+
+  @media (max-width: 992px) {
+    margin-bottom: 150px;
+  }
 `;
 
 const button = <Button>Login / Sign Up</Button>;
