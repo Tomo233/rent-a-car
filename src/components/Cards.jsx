@@ -106,11 +106,14 @@ const questionsAndAnswers = [
   },
 ];
 
+const StyledFAQ = styled(TableContainer)``;
+
 export default function FAQ() {
   return (
-    <TableContainer
+    <StyledFAQ
       component={Paper}
-      style={{ width: "700px", maxHeight: "400px" }}
+      style={{ width: "900px", maxHeight: "400px" }}
+      className="container"
     >
       <Table aria-label="FAQ table">
         <TableBody>
@@ -119,6 +122,6 @@ export default function FAQ() {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </StyledFAQ>
   );
 }
