@@ -80,6 +80,9 @@ function SearchForm() {
     navigate("cars");
   };
 
+  const today = new Date();
+  const startDateTime = new Date(`${startDate} ${startTime}`);
+
   return (
     <StyledForm onSubmit={handleSubmit(handleForm)}>
       <FormFlex>
@@ -112,7 +115,15 @@ function SearchForm() {
           <FlexContainer>
             <StyledInput
               type="date"
-              {...register("startDate", { required: "Required Field" })}
+              {...register("startDate", {
+                required: "Required Field",
+                validate: () => {
+                  return (
+                    startDateTime >= today ||
+                    "start date cannot be before today"
+                  );
+                },
+              })}
             />
             <TimeInput
               type="time"
