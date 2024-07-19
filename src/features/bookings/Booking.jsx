@@ -8,7 +8,8 @@ import Heading from "../../components/Heading";
 import { useBookingById } from "./useBookingById";
 import { useUser } from "../authentication/useUser";
 import Button from "../../components/Button";
-import BasicModal from "../../components/BasicModal";
+import { useDeleteBooking } from "./useDeleteBooking";
+import { useParams } from "react-router-dom";
 
 const StyledBooking = styled.div`
   margin-top: 50px;
@@ -29,29 +30,15 @@ const Content = styled.div`
   margin-top: 15px;
 `;
 
-const ModalContent = styled.div`
-  background-color: white;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-
-  input {
-    width: 300px;
-    height: 45px;
-    text-align: center;
-  }
-`;
-
-const button = <Button type="short">Finish Booking</Button>;
-
 function Booking() {
   const { booking, isLoadingBooking } = useBookingById();
   const { user, isLoadingUser } = useUser();
+  const { deleteBooking, isDeletingBooking } = useDeleteBooking(
+    "Booking is successfully finished"
+  );
+  const { bookingId } = useParams();
 
-  if (isLoadingBooking || isLoadingUser) return <Loader />;
+  if (isLoadingBooking || isLoadingUser || isDeletingBooking) return <Loader />;
 
   if (!booking.length) return <p>Booking does not exist</p>;
 
@@ -114,18 +101,13 @@ function Booking() {
                   </ListItem>
                   {isFinished && (
                     <ListItem>
-                      <BasicModal button={button}>
-                        <ModalContent>
-                          <Heading as="h3">Finish Booking</Heading>
-                          <input
-                            type="text"
-                            placeholder="Please enter your feedback here..."
-                          />
-                          <FlexContainer>
-                            <Button>Send and Finish</Button>
-                          </FlexContainer>
-                        </ModalContent>
-                      </BasicModal>
+                      <Button
+                        type="short"
+                        onClick={() => deleteBooking(bookingId)}
+                      >
+                        Finish Booking
+                      </Button>
+                      ;
                     </ListItem>
                   )}
                 </ul>

@@ -54,7 +54,9 @@ const ModalContent = styled.div`
 
 function BookingItem({ car, booking }) {
   const { id: bookingId, startDate, endDate, startTime } = booking;
-  const { deleteBooking, isDeletingBooking } = useDeleteBooking();
+  const { deleteBooking, isDeletingBooking } = useDeleteBooking(
+    "Booking is successfully canceled"
+  );
   const navigate = useNavigate();
 
   const handleCancelBooking = () => {
