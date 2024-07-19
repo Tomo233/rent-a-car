@@ -4,7 +4,7 @@ import { useState } from "react";
 import Heading from "../../components/Heading";
 import Span from "../../components/Span";
 import Button from "../../components/Button";
-import FlexContainer from "../../components/FlexContainer";
+import Flex from "../../components/Flex";
 import { useForm } from "react-hook-form";
 import { useSignup } from "./useSignup";
 import { useLogin } from "./useLogin";
@@ -175,7 +175,7 @@ function LoginForm({ handleClose }) {
           maxLength={30}
           disabled={isSigning}
         />
-        <FlexContainer>
+        <Flex>
           <p>Do you have an account?</p>
           <ToggleLink
             onClick={() => {
@@ -186,7 +186,7 @@ function LoginForm({ handleClose }) {
           >
             <Span>Login</Span>
           </ToggleLink>
-        </FlexContainer>
+        </Flex>
         <ButtonParent>
           <Button>SignUp</Button>
         </ButtonParent>
@@ -219,7 +219,7 @@ function LoginForm({ handleClose }) {
       />
       <Span>Forgot password?</Span>
       <Button>Login</Button>
-      <FlexContainer>
+      <Flex>
         <p>Do not have an account?</p>
         <ToggleLink
           onClick={() => {
@@ -230,15 +230,15 @@ function LoginForm({ handleClose }) {
         >
           <Span>Sign Up</Span>
         </ToggleLink>
-      </FlexContainer>
+      </Flex>
       <p>Or</p>
       <GoogleButton disabled={isLoading}>
-        <FlexContainer>
+        <Flex>
           <GoogleFlex>
             <img src="./google-logo.jpg" alt="" height="25px" />
           </GoogleFlex>
           <GoogleSpan>Login With Google</GoogleSpan>
-        </FlexContainer>
+        </Flex>
       </GoogleButton>
     </StyledForm>
   );

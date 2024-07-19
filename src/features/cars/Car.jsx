@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Line from "../../components/Line";
 import Loader from "../../components/Loader";
 import Map from "../../components/Map";
-import FlexContainer from "../../components/FlexContainer";
+import Flex from "../../components/Flex";
 import Button from "../../components/Button";
 import BasicModal from "../../components/BasicModal";
 import Heading from "../../components/Heading";
@@ -18,20 +18,11 @@ const StyledCar = styled.div`
   margin-top: 50px;
 `;
 
-const CarFlex = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 30px;
-`;
-
 const CarContent = styled.div`
   margin-top: 15px;
 `;
 
 const ModalContent = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: white;
   height: 300px;
 `;
@@ -99,7 +90,7 @@ function Car() {
 
   return (
     <StyledCar>
-      <CarFlex>
+      <Flex gap="30px" justify="normal">
         <div>
           <img src={image} alt={name} width="700px" />
         </div>
@@ -114,7 +105,7 @@ function Car() {
               <ListItem>Lokacija : {location}</ListItem>
 
               <ListItem>
-                <CarFlex>
+                <Flex gap="30px" justify="normal">
                   <span>Price :</span>
 
                   {isReserved ? (
@@ -131,32 +122,34 @@ function Car() {
                   ) : (
                     <BasicModal button={button}>
                       <ModalContent>
-                        <ModalGrid>
-                          <Heading as="h3">
-                            {name} {model}
-                          </Heading>
-                          <p>
-                            Date : {startDate} - {endDate}
-                          </p>
-                          <p>
-                            Time : {startTime} - {endTime}
-                          </p>
-                          <p>{daysDifference} days</p>
-                          <p>Price : {carPrice}$</p>
-                          <Button onClick={handleReserve}>Book</Button>
-                        </ModalGrid>
+                        <Flex justify="center">
+                          <ModalGrid>
+                            <Heading as="h3">
+                              {name} {model}
+                            </Heading>
+                            <p>
+                              Date : {startDate} - {endDate}
+                            </p>
+                            <p>
+                              Time : {startTime} - {endTime}
+                            </p>
+                            <p>{daysDifference} days</p>
+                            <p>Price : {carPrice}$</p>
+                            <Button onClick={handleReserve}>Book</Button>
+                          </ModalGrid>
+                        </Flex>
                       </ModalContent>
                     </BasicModal>
                   )}
-                </CarFlex>
+                </Flex>
               </ListItem>
             </ul>
           </div>
         </CarContent>
-      </CarFlex>
+      </Flex>
       <Line />
       <CarContent>
-        <FlexContainer>
+        <Flex>
           <div>
             <Heading headingfor="car">Opste informacije</Heading>
             <ul>
@@ -171,7 +164,7 @@ function Car() {
             </ul>
           </div>
           <Map lat={lat} lng={lng} />
-        </FlexContainer>
+        </Flex>
       </CarContent>
 
       <Line />

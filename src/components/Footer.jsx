@@ -7,6 +7,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Flex from "./Flex";
 
 const StyledFooter = styled.footer`
   margin-top: 200px;
@@ -19,12 +20,6 @@ const Grid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
   height: 100%;
-`;
-
-const FooterFlex = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
 `;
 
 const StyledIcon = styled.div`
@@ -47,12 +42,12 @@ function Footer() {
       <Container>
         <Grid>
           <div>
-            <FooterFlex>
+            <Flex justify="normal" gap="15px">
               <Logo />
               <Heading as="h3" color="white">
                 <Span>Car</Span> Rental
               </Heading>
-            </FooterFlex>
+            </Flex>
             <P>
               Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
               consectetur adiPisicing elit. Possimus, voluPtate.

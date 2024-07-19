@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useUser } from "./useUser";
 import { Link } from "react-router-dom";
-import FlexContainer from "../../components/FlexContainer";
+import Flex from "../../components/Flex";
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -27,13 +27,13 @@ function UserAndAvatar() {
   return (
     <StyledUserAvatar>
       <Link to="/user">
-        <FlexContainer>
+        <Flex>
           <User>{userName}</User>
           <UserImage
             src={avatarUrl ? avatarUrl : "/default-user.png"}
             alt="userImage"
           />
-        </FlexContainer>
+        </Flex>
       </Link>
     </StyledUserAvatar>
   );

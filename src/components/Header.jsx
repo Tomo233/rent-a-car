@@ -1,24 +1,20 @@
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 
-import FlexContainer from "./FlexContainer";
+import MuiButton from "@mui/material/Button";
 import HeaderList from "./HeaderList";
 import Logo from "./Logo";
 import BasicModal from "./BasicModal";
 import Container from "./Container";
-import MuiButton from "@mui/material/Button";
 import LoginForm from "../features/authentication/LoginForm";
-import { useUser } from "../features/authentication/useUser";
 import UserAndAvatar from "../features/authentication/UserAndAvatar";
+import Flex from "./Flex";
+import { useUser } from "../features/authentication/useUser";
 
 const StyledHeader = styled.header`
   padding-top: 15px;
   background-color: ${(props) =>
     props.$ishomepage ? "transparent" : "#171717"};
-`;
-
-const FlexContainerWithGap = styled(FlexContainer)`
-  gap: ${(props) => props.$gap};
 `;
 
 const StyledButton = styled(MuiButton)`
@@ -38,11 +34,11 @@ function Header() {
   return (
     <StyledHeader $ishomepage={isHomePage}>
       <Container>
-        <FlexContainer>
-          <FlexContainerWithGap $gap="50px">
+        <Flex>
+          <Flex $gap="50px">
             <Logo />
             <HeaderList />
-          </FlexContainerWithGap>
+          </Flex>
           {isLoadingUser || !user ? (
             <BasicModal button={button}>
               <LoginForm />
@@ -50,7 +46,7 @@ function Header() {
           ) : (
             <UserAndAvatar />
           )}
-        </FlexContainer>
+        </Flex>
       </Container>
     </StyledHeader>
   );

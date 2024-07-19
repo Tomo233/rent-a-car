@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import FlexContainer from "../../components/FlexContainer";
+import Flex from "../../components/Flex";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import CarDetails from "./CarDetails";
@@ -10,7 +10,7 @@ function CarItem({ car }) {
 
   return (
     <div>
-      <FlexContainer gap="0">
+      <Flex>
         <CarDetails car={car}>
           <Button
             type="short"
@@ -21,7 +21,7 @@ function CarItem({ car }) {
             {price}$/Dan
           </Button>
         </CarDetails>
-      </FlexContainer>
+      </Flex>
     </div>
   );
 }

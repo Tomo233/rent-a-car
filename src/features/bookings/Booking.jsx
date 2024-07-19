@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Line from "../../components/Line";
 import Loader from "../../components/Loader";
 import Map from "../../components/Map";
-import FlexContainer from "../../components/FlexContainer";
+import Flex from "../../components/Flex";
 import ListItem from "../../components/ListItem";
 import Heading from "../../components/Heading";
 import { useBookingById } from "./useBookingById";
@@ -81,7 +81,7 @@ function Booking() {
         </div>
         <div>
           <div>
-            <FlexContainer>
+            <Flex>
               <Content>
                 <Heading for="car" $notaligned={true}>
                   Detalji iznajmljivanja
@@ -112,11 +112,11 @@ function Booking() {
                   )}
                 </ul>
               </Content>
-            </FlexContainer>
+            </Flex>
           </div>
           <Line />
           <div>
-            <FlexContainer>
+            <Flex>
               <Content>
                 <Heading for="car" $notaligned={true}>
                   Opste informacije
@@ -148,7 +148,7 @@ function Booking() {
                   </ListItem>
                 </ul>
               </Content>
-            </FlexContainer>
+            </Flex>
           </div>
 
           <Line />

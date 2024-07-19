@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Heading from "./Heading";
 import Span from "./Span";
-import FlexContainer from "./FlexContainer";
 import Line from "./Line";
+import Flex from "./Flex";
 
 const Item = styled.div`
   max-width: 400px;
@@ -16,7 +16,7 @@ const Item = styled.div`
   }
 `;
 
-const Flex = styled(FlexContainer)`
+const ResponsiveFlex = styled(Flex)`
   @media (max-width: 992px) {
     justify-content: center;
   }
@@ -39,7 +39,7 @@ function HowWeWork() {
       <Heading as="h2">
         How We <Span>Work</Span>
       </Heading>
-      <Flex>
+      <ResponsiveFlex>
         <Item>
           <Image src="/support.png" alt="" />
           <Heading as="h3">Customized Fleet Selection</Heading>
@@ -76,7 +76,7 @@ function HowWeWork() {
             the convenience of stress-free car rentals.
           </Paragraph>
         </Item>
-      </Flex>
+      </ResponsiveFlex>
       <Line />
     </section>
   );

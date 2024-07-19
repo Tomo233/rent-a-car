@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import Heading from "../../components/Heading";
-import FlexContainer from "../../components/FlexContainer";
+import Flex from "../../components/Flex";
 
 const Car = styled.div`
   border: 2px solid var(--color-border-gray);
@@ -23,7 +23,7 @@ function CarDetails({ car, children }) {
   return (
     <Car>
       <CarImage src={image} alt="" />
-      <FlexContainer>
+      <Flex>
         <div>
           <Heading as="h3" $notaligned={true}>
             {name} {model}
@@ -33,7 +33,7 @@ function CarDetails({ car, children }) {
           <p>{location}</p>
         </div>
         {children}
-      </FlexContainer>
+      </Flex>
     </Car>
   );
 }

@@ -6,17 +6,10 @@ import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import CarDetails from "../cars/CarDetails";
 import Loader from "../../components/Loader";
-import FlexContainer from "../../components/FlexContainer";
+import Flex from "../../components/Flex";
 import BasicModal from "../../components/BasicModal";
 import { useDeleteBooking } from "./useDeleteBooking";
 import Heading from "../../components/Heading";
-
-const FlexCenter = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-`;
 
 const CancelButton = styled.button`
   background-color: #fa3c3c;
@@ -77,28 +70,29 @@ function BookingItem({ car, booking }) {
 
   return (
     <div>
-      <FlexContainer>
+      <Flex>
         <p>{startDate}</p>
         <p>{endDate}</p>
-      </FlexContainer>
+      </Flex>
       <CarDetails car={car}>
         <Button type="short" onClick={() => navigate(`/bookings/${bookingId}`)}>
           More Info
         </Button>
       </CarDetails>
-      <FlexCenter>
+
+      <Flex justify="center" style={{ marginTop: "15px" }}>
         <BasicModal button={button} closeButton={closeButton}>
           <ModalContent>
             <Heading as="h3">Cancel Booking</Heading>
             <p>Are you sure you want to cancel this booking?</p>
-            <FlexContainer>
+            <Flex>
               <CancelButton onClick={handleCancelBooking}>
                 Yes,Cancel
               </CancelButton>
-            </FlexContainer>
+            </Flex>
           </ModalContent>
         </BasicModal>
-      </FlexCenter>
+      </Flex>
     </div>
   );
 }
