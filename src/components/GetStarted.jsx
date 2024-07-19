@@ -34,6 +34,22 @@ const Box = styled.div`
   transform: translate(-50%, -50%);
 `;
 
+const ResponsiveHeading = styled(Heading)`
+  @media (max-width: 992px) {
+    font-size: 35px;
+  }
+`;
+
+const ResponsiveParagraph = styled(Paragraph)`
+  @media (max-width: 1200px) {
+    font-size: 20px;
+  }
+  @media (max-width: 992px) {
+    font-size: 16px;
+    max-width: 500px;
+  }
+`;
+
 const button = <Button>Get Started</Button>;
 
 function GetStarted() {
@@ -43,16 +59,16 @@ function GetStarted() {
       <Road src="./get-started-bmw.jpg" alt="" />
       <Overlay />
       <Box>
-        <Heading as="h2" color="white">
+        <ResponsiveHeading as="h2" color="white">
           Get Started With Our App
-        </Heading>
-        <Paragraph>
+        </ResponsiveHeading>
+        <ResponsiveParagraph>
           Start now for seamless travel with exclusive deals. Join savy
           travelers for personalized service. Say goodbye to hassle -
           <Span> sign up </Span>for convenience and affordability.Begin now for
           seamless travel andexclusive deals. Join savvy travelers for
           personalized service.
-        </Paragraph>
+        </ResponsiveParagraph>
         {!user && (
           <BasicModal button={button}>
             <LoginForm />

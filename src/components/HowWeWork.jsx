@@ -4,15 +4,28 @@ import Span from "./Span";
 import FlexContainer from "./FlexContainer";
 import Line from "./Line";
 
-const CarImage = styled.img`
-  width: 150px;
-  display: block;
-  margin: 12px auto;
-`;
-
 const Item = styled.div`
   max-width: 400px;
   margin-top: 30px;
+
+  @media (max-width: 1550px) {
+    width: 250px;
+  }
+  @media (max-width: 992px) {
+    width: 500px;
+  }
+`;
+
+const Flex = styled(FlexContainer)`
+  @media (max-width: 992px) {
+    justify-content: center;
+  }
+`;
+
+const Image = styled.img`
+  width: 150px;
+  display: block;
+  margin: 12px auto;
 `;
 
 const Paragraph = styled.p`
@@ -26,9 +39,9 @@ function HowWeWork() {
       <Heading as="h2">
         How We <Span>Work</Span>
       </Heading>
-      <FlexContainer>
+      <Flex>
         <Item>
-          <CarImage src="/support.png" alt="" />
+          <Image src="/support.png" alt="" />
           <Heading as="h3">Customized Fleet Selection</Heading>
           <Paragraph>
             We boast a diverse array of vehicles meticulously curated to cater
@@ -40,7 +53,7 @@ function HowWeWork() {
           </Paragraph>
         </Item>
         <Item>
-          <CarImage src="./support.png" alt="" />
+          <Image src="./support.png" alt="" />
           <Heading as="h3">Outstanding Customer Support</Heading>
           <Paragraph>
             Your rental journey with us is underpinned by unparalleled support
@@ -52,7 +65,7 @@ function HowWeWork() {
           </Paragraph>
         </Item>
         <Item>
-          <CarImage src="./support.png" alt="" />
+          <Image src="./support.png" alt="" />
           <Heading as="h3">Outstanding Customer Support</Heading>
           <Paragraph>
             We uphold a commitment to clarity and flexibility, setting the
@@ -63,7 +76,7 @@ function HowWeWork() {
             the convenience of stress-free car rentals.
           </Paragraph>
         </Item>
-      </FlexContainer>
+      </Flex>
       <Line />
     </section>
   );

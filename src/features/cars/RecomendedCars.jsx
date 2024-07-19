@@ -5,8 +5,8 @@ import Line from "../../components/Line";
 import Heading from "../../components/Heading";
 import { useSomeCars } from "./useSomeCars";
 import { randomNum } from "../../utils/helpers";
-import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
+import CarDetails from "./CarDetails";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
@@ -27,7 +27,7 @@ function RecomendedCars() {
       </Heading>
       <FlexContainer>
         {data.map((car) => (
-          <CarItem key={car.id} car={car} />
+          <CarDetails key={car.id} car={car} />
         ))}
       </FlexContainer>
       <Line />
