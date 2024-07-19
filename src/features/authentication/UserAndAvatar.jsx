@@ -3,13 +3,6 @@ import { useUser } from "./useUser";
 import { Link } from "react-router-dom";
 import Flex from "../../components/Flex";
 
-const StyledUserAvatar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-`;
-
 const UserImage = styled.img`
   width: 40px;
 `;
@@ -25,7 +18,7 @@ function UserAndAvatar() {
   const { userName, avatarUrl } = user.user_metadata;
 
   return (
-    <StyledUserAvatar>
+    <Flex gap="15px">
       <Link to="/user">
         <Flex>
           <User>{userName}</User>
@@ -35,7 +28,7 @@ function UserAndAvatar() {
           />
         </Flex>
       </Link>
-    </StyledUserAvatar>
+    </Flex>
   );
 }
 

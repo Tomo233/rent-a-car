@@ -8,12 +8,7 @@ import { useUser } from "./useUser";
 import { useUpdateUserAvatar } from "./useUpdateUserAvatar";
 import { useDeleteUserAvatar } from "./useDeleteUserAvatar";
 import toast from "react-hot-toast";
-
-const StyledSettingsForm = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+import Grid from "../../components/Grid";
 
 const StyledInput = styled.input`
   height: 45px;
@@ -30,11 +25,6 @@ const ChangeAvatar = styled.div`
 const ChangeUserData = styled.div`
   margin-top: 80px;
   padding-bottom: 30px;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  gap: ${(props) => props.$gap || "0px"};
 `;
 
 const Label = styled.label`
@@ -72,7 +62,7 @@ function UserDataForm() {
   };
 
   return (
-    <StyledSettingsForm>
+    <Flex>
       <ChangeAvatar>
         <Flex $gap="10px" align="center" justify="normal">
           {avatarUrl ? (
@@ -90,7 +80,7 @@ function UserDataForm() {
       </ChangeAvatar>
       <ChangeUserData>
         <Flex gap="30px" direction="column">
-          <Grid $gap="35px">
+          <Grid gap="35px">
             <div>
               <Heading as="h3" $notaligned={true}>
                 User Data
@@ -137,7 +127,7 @@ function UserDataForm() {
           </Grid>
         </Flex>
       </ChangeUserData>
-    </StyledSettingsForm>
+    </Flex>
   );
 }
 

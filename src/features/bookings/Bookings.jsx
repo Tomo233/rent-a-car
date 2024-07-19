@@ -1,4 +1,4 @@
-import CarGrid from "../../components/CarGrid";
+import Grid from "../../components/Grid";
 import Loader from "../../components/Loader";
 import BookingItem from "./BookingItem";
 import { useBookings } from "./useBookings";
@@ -10,7 +10,7 @@ function Bookings() {
   if (data.length === 0) return <p>no bookings to display</p>;
 
   return (
-    <CarGrid>
+    <Grid gap="50px" columns="3">
       {data?.map((item) => (
         <BookingItem
           car={item.cars}
@@ -19,7 +19,7 @@ function Bookings() {
           booking={item}
         />
       ))}
-    </CarGrid>
+    </Grid>
   );
 }
 

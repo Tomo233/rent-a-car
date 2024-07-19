@@ -14,7 +14,7 @@ import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 
 import SortBy from "./SortBy";
-import FlexContainer from "./FlexContainer";
+import Flex from "./Flex";
 import { useCarContext } from "../context/CarContext";
 
 const StyledFilters = styled.div`
@@ -108,11 +108,11 @@ export default function Filter({ filters, sortOptions }) {
   };
 
   return (
-    <FlexContainer>
+    <Flex>
       <StyledButton onClick={toggleDrawer(true)}>
-        <FlexContainer>
+        <Flex>
           <FilterListIcon /> <span>Filter</span>
-        </FlexContainer>
+        </Flex>
       </StyledButton>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 350 }} role="presentation">
@@ -167,6 +167,6 @@ export default function Filter({ filters, sortOptions }) {
         setSortValue={setSortValue}
         options={sortOptions}
       />
-    </FlexContainer>
+    </Flex>
   );
 }

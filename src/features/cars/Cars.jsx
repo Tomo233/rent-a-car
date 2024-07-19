@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
 import { useCars } from "./useCars";
-import CarGrid from "../../components/CarGrid";
+import Grid from "../../components/Grid";
 
 const StyledCars = styled.section`
   margin-top: 100px;
@@ -17,11 +17,11 @@ function Cars() {
 
   return (
     <StyledCars>
-      <CarGrid>
+      <Grid gap="50px" columns="3">
         {cars?.map((car) => (
           <CarItem car={car} key={car.id} />
         ))}
-      </CarGrid>
+      </Grid>
     </StyledCars>
   );
 }

@@ -27,11 +27,6 @@ const CancelButton = styled.button`
 const ModalContent = styled.div`
   background-color: white;
   height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
 
   input {
     width: 300px;
@@ -83,12 +78,14 @@ function BookingItem({ car, booking }) {
       <Flex justify="center" style={{ marginTop: "15px" }}>
         <BasicModal button={button} closeButton={closeButton}>
           <ModalContent>
-            <Heading as="h3">Cancel Booking</Heading>
-            <p>Are you sure you want to cancel this booking?</p>
-            <Flex>
-              <CancelButton onClick={handleCancelBooking}>
-                Yes,Cancel
-              </CancelButton>
+            <Flex gap="30px" justify="center" direction="column">
+              <Heading as="h3">Cancel Booking</Heading>
+              <p>Are you sure you want to cancel this booking?</p>
+              <Flex>
+                <CancelButton onClick={handleCancelBooking}>
+                  Yes,Cancel
+                </CancelButton>
+              </Flex>
             </Flex>
           </ModalContent>
         </BasicModal>

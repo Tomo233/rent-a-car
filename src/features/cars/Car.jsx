@@ -1,17 +1,19 @@
 import styled from "styled-components";
+import toast from "react-hot-toast";
 import Line from "../../components/Line";
 import Loader from "../../components/Loader";
 import Map from "../../components/Map";
 import Flex from "../../components/Flex";
+import Grid from "../../components/Grid";
 import Button from "../../components/Button";
 import BasicModal from "../../components/BasicModal";
 import Heading from "../../components/Heading";
 import ListItem from "../../components/ListItem";
+
 import { useCarById } from "./useCarById";
 import { useBookCar } from "./useBookCar";
 import { useCarBookingsByCarId } from "../bookings/useCarBookingsByCarId";
 import { useCarContext } from "../../context/CarContext";
-import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
 const StyledCar = styled.div`
@@ -25,11 +27,6 @@ const CarContent = styled.div`
 const ModalContent = styled.div`
   background-color: white;
   height: 300px;
-`;
-
-const ModalGrid = styled.div`
-  display: grid;
-  gap: 15px;
 `;
 
 function Car() {
@@ -123,7 +120,7 @@ function Car() {
                     <BasicModal button={button}>
                       <ModalContent>
                         <Flex justify="center">
-                          <ModalGrid>
+                          <Grid gap="15px">
                             <Heading as="h3">
                               {name} {model}
                             </Heading>
@@ -136,7 +133,7 @@ function Car() {
                             <p>{daysDifference} days</p>
                             <p>Price : {carPrice}$</p>
                             <Button onClick={handleReserve}>Book</Button>
-                          </ModalGrid>
+                          </Grid>
                         </Flex>
                       </ModalContent>
                     </BasicModal>

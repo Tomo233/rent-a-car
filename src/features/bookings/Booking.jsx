@@ -5,21 +5,15 @@ import Map from "../../components/Map";
 import Flex from "../../components/Flex";
 import ListItem from "../../components/ListItem";
 import Heading from "../../components/Heading";
-import { useBookingById } from "./useBookingById";
-import { useUser } from "../authentication/useUser";
 import Button from "../../components/Button";
+import Grid from "../../components/Grid";
+import { useBookingById } from "./useBookingById";
 import { useDeleteBooking } from "./useDeleteBooking";
+import { useUser } from "../authentication/useUser";
 import { useParams } from "react-router-dom";
 
 const StyledBooking = styled.div`
   margin-top: 50px;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  place-items: center;
 `;
 
 const Span = styled.span`
@@ -71,7 +65,7 @@ function Booking() {
 
   return (
     <StyledBooking>
-      <Grid>
+      <Grid gap="30px" columns="2">
         <div>
           <img src={image} alt={name} width="700px" />
           <Line />

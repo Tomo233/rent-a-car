@@ -8,18 +8,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Flex from "./Flex";
+import Grid from "./Grid";
 
 const StyledFooter = styled.footer`
   margin-top: 200px;
   background-color: #171717;
   height: 300px;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  place-items: center;
-  height: 100%;
 `;
 
 const StyledIcon = styled.div`
@@ -40,7 +34,7 @@ function Footer() {
   return (
     <StyledFooter>
       <Container>
-        <Grid>
+        <Grid columns="3">
           <div>
             <Flex justify="normal" gap="15px">
               <Logo />

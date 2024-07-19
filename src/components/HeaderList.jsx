@@ -1,10 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
-const StyledList = styled.ul`
-  display: flex;
-  gap: 50px;
-`;
+import Flex from "./Flex";
 
 const ListItem = styled(NavLink)`
   color: white;
@@ -15,11 +11,11 @@ const ListItem = styled(NavLink)`
 
 function HeaderList() {
   return (
-    <StyledList>
+    <Flex gap="50px">
       <ListItem to="/aboutUs">About Us</ListItem>
       {/* <ListItem to="cars">Cars</ListItem> */}
       <ListItem to="/bookings">Bookings</ListItem>
-    </StyledList>
+    </Flex>
   );
 }
 

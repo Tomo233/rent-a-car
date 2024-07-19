@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import FlexContainer from "./FlexContainer";
 import Button from "./Button";
+import Flex from "./Flex";
+import Grid from "./Grid";
 import Line from "./Line";
+
 import { useForm } from "react-hook-form";
 import { useCarContext } from "../context/CarContext";
 import { useNavigate } from "react-router-dom";
@@ -19,24 +21,13 @@ const StyledForm = styled.form`
   }
 `;
 
-const FormFlex = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-
+const ResponsiveFlex = styled(Flex)`
   @media (max-width: 992px) {
     display: grid;
     place-items: center;
     grid-template-columns: 1fr;
     gap: 30px;
   }
-`;
-
-const FormGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
 `;
 
 const StyledInput = styled.input`
@@ -121,8 +112,8 @@ function SearchForm() {
 
   return (
     <StyledForm onSubmit={handleSubmit(handleForm)}>
-      <FormFlex className="e">
-        <FormGrid>
+      <ResponsiveFlex className="e">
+        <Grid>
           <StyledLabel>{errors?.location?.message || "Location"}</StyledLabel>
           <FormControl>
             <InputLabel id="location-label">Location</InputLabel>
@@ -138,10 +129,10 @@ function SearchForm() {
               <MenuItem value="Zagreb">Zagreb</MenuItem>
             </StyledSelect>
           </FormControl>
-        </FormGrid>
+        </Grid>
 
-        <FlexContainer>
-          <FormGrid>
+        <Flex gap="10px">
+          <Grid>
             <StyledLabel>
               {errors?.startDate?.message || "Start Date"}
             </StyledLabel>
@@ -157,8 +148,8 @@ function SearchForm() {
                 },
               })}
             />
-          </FormGrid>
-          <FormGrid>
+          </Grid>
+          <Grid>
             <StyledLabel>
               {errors?.startTime?.message || "Start Time"}
             </StyledLabel>
@@ -166,11 +157,11 @@ function SearchForm() {
               type="time"
               {...register("startTime", { required: "Required Field" })}
             />
-          </FormGrid>
-        </FlexContainer>
+          </Grid>
+        </Flex>
 
-        <FlexContainer>
-          <FormGrid>
+        <Flex gap="10px">
+          <Grid>
             <StyledLabel>{errors?.endTime?.message || "End Time"}</StyledLabel>
             <TimeInput
               type="time"
@@ -187,8 +178,8 @@ function SearchForm() {
                 },
               })}
             />
-          </FormGrid>
-          <FormGrid>
+          </Grid>
+          <Grid>
             <StyledLabel>{errors?.endDate?.message || "End Date"}</StyledLabel>
             <StyledInput
               type="date"
@@ -199,10 +190,10 @@ function SearchForm() {
                   "End date is before start date",
               })}
             />
-          </FormGrid>
-        </FlexContainer>
+          </Grid>
+        </Flex>
         <SearchButton>Search</SearchButton>
-      </FormFlex>
+      </ResponsiveFlex>
       <Line />
     </StyledForm>
   );
