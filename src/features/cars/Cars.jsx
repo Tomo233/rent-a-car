@@ -2,27 +2,12 @@ import styled from "styled-components";
 import CarItem from "./CarItem";
 import Loader from "../../components/Loader";
 import { useCars } from "./useCars";
-import Grid from "../../components/Grid";
+import ResponsiveGrid from "../../components/ResponsiveGrid";
 
 const StyledCars = styled.section`
   margin-top: 100px;
 `;
 
-const ResponsiveGrid = styled(Grid)`
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  @media (max-width: 992px) {
-    grid-template-columns: repeat(1, 1fr);
-    gap: 30px;
-  }
-
-  @media (min-width: 320px) and (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
 function Cars() {
   const { cars, isLoading } = useCars();
 

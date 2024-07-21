@@ -59,7 +59,7 @@ function CarDetails({ car, children, isRecommended = false }) {
   return (
     <Car className="e" isRecommended={isRecommended}>
       <CarImage src={image} alt="" />
-      <Flex wrap="nowrap">
+      <Flex wrap="wrap">
         <div>
           <Heading as="h3" $notaligned={true}>
             {name} {model}

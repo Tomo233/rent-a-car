@@ -1,5 +1,5 @@
-import Grid from "../../components/Grid";
 import Loader from "../../components/Loader";
+import ResponsiveGrid from "../../components/ResponsiveGrid";
 import BookingItem from "./BookingItem";
 import { useBookings } from "./useBookings";
 
@@ -10,7 +10,7 @@ function Bookings() {
   if (data.length === 0) return <p>no bookings to display</p>;
 
   return (
-    <Grid gap="50px" columns="3">
+    <ResponsiveGrid gap="50px" columns="3">
       {data?.map((item) => (
         <BookingItem
           car={item.cars}
@@ -19,7 +19,7 @@ function Bookings() {
           booking={item}
         />
       ))}
-    </Grid>
+    </ResponsiveGrid>
   );
 }
 
