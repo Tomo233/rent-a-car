@@ -15,6 +15,7 @@ import "react-range-slider-input/dist/style.css";
 
 import SortBy from "./SortBy";
 import Flex from "./Flex";
+import CustomButton from "./Button";
 import { useCarContext } from "../context/CarContext";
 
 const StyledFilters = styled.div`
@@ -159,6 +160,9 @@ export default function Filter({ filters, sortOptions }) {
                 </StyledRangeItem>
               );
             })}
+            <Flex justify="center" onClick={() => setOpen(false)}>
+              <CustomButton>Close</CustomButton>
+            </Flex>
           </List>
         </Box>
       </Drawer>

@@ -29,6 +29,23 @@ const ModalContent = styled.div`
   height: 300px;
 `;
 
+const CarImage = styled.img`
+  width: 700px;
+
+  @media (max-width: 1200px) {
+    width: 400px;
+  }
+`;
+
+const ResponsiveFlex = styled(Flex)`
+  @media (max-width: 768px) {
+    flex-wrap: nowrap;
+  }
+  @media (max-width: 700px) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+`;
 function Car() {
   const { carId } = useParams();
   const { data, isLoading: carLoading } = useCarById();
@@ -87,9 +104,9 @@ function Car() {
 
   return (
     <StyledCar>
-      <Flex gap="30px" justify="normal">
+      <ResponsiveFlex gap="30px" justify="normal">
         <div>
-          <img src={image} alt={name} width="700px" />
+          <CarImage src={image} alt={name} />
         </div>
         <CarContent>
           <div>
@@ -143,7 +160,7 @@ function Car() {
             </ul>
           </div>
         </CarContent>
-      </Flex>
+      </ResponsiveFlex>
       <Line />
       <CarContent>
         <Flex>
