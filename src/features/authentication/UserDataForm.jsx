@@ -16,21 +16,68 @@ const StyledInput = styled.input`
   border: 1px solid var(--color-border-gray);
   border-radius: 5px;
   padding-left: 10px;
+
+  @media (max-width: 480px) {
+    width: 250px;
+  }
 `;
 
 const ChangeAvatar = styled.div`
   margin-left: 20px;
+
+  @media (max-width: 1550px) {
+    margin: 30px auto;
+  }
 `;
 
 const ChangeUserData = styled.div`
   margin-top: 80px;
   padding-bottom: 30px;
+  @media (max-width: 1550px) {
+    margin: 30px auto;
+  }
 `;
 
 const Label = styled.label`
   margin-bottom: 5px;
   color: var(--color-primary-blue);
   font-weight: 500;
+`;
+
+const ResponsiveFormFlex = styled(Flex)`
+  @media (max-width: 1550px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+`;
+
+const ResponsiveAvatarFlex = styled(Flex)`
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+const UserDataGrid = styled(Grid)`
+  @media (max-width: 1550px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    place-items: center;
+  }
+`;
+
+const UserDataHeading = styled(Heading)`
+  @media (max-width: 992px) {
+    text-align: center;
+  }
+`;
+
+const LogoutButtonFlex = styled(Flex)`
+  width: 100%;
+
+  @media (max-width: 1550px) {
+    text-align: center;
+    justify-content: center;
+  }
 `;
 
 function UserDataForm() {
@@ -62,9 +109,9 @@ function UserDataForm() {
   };
 
   return (
-    <Flex>
+    <ResponsiveFormFlex>
       <ChangeAvatar>
-        <Flex $gap="10px" align="center" justify="normal">
+        <ResponsiveAvatarFlex gap="10px" align="center" justify="normal">
           {avatarUrl ? (
             <img src={avatarUrl} height="125px" alt="" />
           ) : (
@@ -76,15 +123,16 @@ function UserDataForm() {
             remove avatar
           </Button>
           <FileInput onChange={handleFileChange} />
-        </Flex>
+        </ResponsiveAvatarFlex>
       </ChangeAvatar>
+
       <ChangeUserData>
-        <Flex gap="30px" direction="column">
-          <Grid gap="35px">
-            <div>
-              <Heading as="h3" $notaligned={true}>
-                User Data
-              </Heading>
+        <Flex gap="30px" direction="column" wrap="wrap">
+          <div style={{ width: "100%" }}>
+            <UserDataHeading as="h3" $notaligned={true}>
+              User Data
+            </UserDataHeading>
+            <UserDataGrid columns={2} items="start">
               <StyledInput
                 type="text"
                 placeholder="User Name"
@@ -103,31 +151,33 @@ function UserDataForm() {
                 disabled={true}
                 value={phone || ""}
               />
-            </div>
+            </UserDataGrid>
+          </div>
 
-            <div>
-              <Heading as="h3" $notaligned={true}>
+          <div>
+            <Grid items="normal">
+              <UserDataHeading as="h3" $notaligned={true}>
                 Change password
-              </Heading>
-              <Flex gap="30px" justify="normal">
-                <Grid gap="5px">
+              </UserDataHeading>
+              <UserDataGrid columns={2}>
+                <Grid gap="5px" items="start">
                   <Label>Old Password</Label>
                   <StyledInput type="password" placeholder="********" />
                 </Grid>
-                <Grid gap="5px">
+                <Grid gap="5px" items="start">
                   <Label>New Password</Label>
                   <StyledInput type="password" placeholder="********" />
                 </Grid>
-              </Flex>
-            </div>
+              </UserDataGrid>
+            </Grid>
+          </div>
 
-            <Flex gap="10px">
-              <Button onClick={logout}>Logout</Button>
-            </Flex>
-          </Grid>
+          <LogoutButtonFlex gap="10px" justify="normal">
+            <Button onClick={logout}>Logout</Button>
+          </LogoutButtonFlex>
         </Flex>
       </ChangeUserData>
-    </Flex>
+    </ResponsiveFormFlex>
   );
 }
 
