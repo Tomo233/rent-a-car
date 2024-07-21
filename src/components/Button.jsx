@@ -9,6 +9,10 @@ const Button = styled.button`
   font-size: 16px;
   border-radius: 3px;
   padding: ${(props) => (props.type === "short" ? "20px 5px" : "16px 50px")};
+
+  @media (max-width: 600px) {
+    padding: 15px 25px !important;
+  }
 `;
 
 export default Button;

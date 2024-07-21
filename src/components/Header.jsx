@@ -21,6 +21,10 @@ const StyledButton = styled(MuiButton)`
   border: 1px solid white !important;
   background-color: transparent !important;
   color: white !important;
+
+  @media (max-width: 600px) {
+    display: none !important;
+  }
 `;
 
 const button = <StyledButton>Login / SignUp</StyledButton>;
@@ -35,7 +39,7 @@ function Header() {
     <StyledHeader $ishomepage={isHomePage}>
       <Container>
         <Flex>
-          <Flex $gap="50px">
+          <Flex gap="20px">
             <Logo />
             <HeaderList />
           </Flex>

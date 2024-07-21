@@ -13,6 +13,10 @@ const Heading = styled.h2`
     css`
       font-size: 45px;
       margin: 30px 0;
+
+      @media (max-width: 480px) {
+        font-size: 30px;
+      }
     `}
       
   ${(props) =>

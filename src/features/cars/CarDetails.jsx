@@ -8,6 +8,16 @@ const Car = styled.div`
   padding: 20px;
   width: 400px;
   height: 300px;
+
+  @media (max-width: 1500px) {
+    width: 350px;
+  }
+  @media (max-width: 1325px) {
+    width: 600px;
+  }
+  @media (max-width: 992px) {
+    width: 600px;
+  }
 `;
 
 const CarImage = styled.img`

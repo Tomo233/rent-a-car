@@ -16,12 +16,17 @@ const StyledForm = styled.form`
   width: 100%;
 
   @media (max-width: 992px) {
-    margin-bottom: 300px;
+    margin-bottom: 200px;
     height: 400px;
+  }
+  @media (max-width: 768px) {
+    height: 600px;
   }
 `;
 
 const ResponsiveFlex = styled(Flex)`
+  height: 100%;
+  width: 100%;
   @media (max-width: 992px) {
     display: grid;
     place-items: center;
@@ -44,6 +49,11 @@ const StyledInput = styled.input`
     width: 300px;
     height: 55px;
   }
+
+  @media (max-width: 480px) {
+    width: 200px;
+    height: 45px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -58,6 +68,10 @@ const TimeInput = styled.input`
     width: 300px;
     height: 55px;
   }
+  @media (max-width: 480px) {
+    width: 200px;
+    height: 45px;
+  }
 `;
 
 const StyledSelect = styled(Select)`
@@ -68,12 +82,28 @@ const StyledSelect = styled(Select)`
     width: 300px;
     height: 55px;
   }
+
+  @media (max-width: 480px) {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+  }
 `;
 
 const SearchButton = styled(Button)`
   @media (max-width: 992px) {
     width: 85%;
     margin-bottom: 25px;
+  }
+  @media (max-width: 768px) {
+    width: 200px;
+  }
+`;
+
+const DateFlex = styled(Flex)`
+  @media (max-width: 768px) {
+    display: grid;
+    gap: 30px;
   }
 `;
 
@@ -112,8 +142,8 @@ function SearchForm() {
 
   return (
     <StyledForm onSubmit={handleSubmit(handleForm)}>
-      <ResponsiveFlex className="e">
-        <Grid>
+      <ResponsiveFlex justify="space-around">
+        <Grid items="start">
           <StyledLabel>{errors?.location?.message || "Location"}</StyledLabel>
           <FormControl>
             <InputLabel id="location-label">Location</InputLabel>
@@ -131,7 +161,7 @@ function SearchForm() {
           </FormControl>
         </Grid>
 
-        <Flex gap="10px">
+        <DateFlex gap="10px">
           <Grid>
             <StyledLabel>
               {errors?.startDate?.message || "Start Date"}
@@ -158,9 +188,9 @@ function SearchForm() {
               {...register("startTime", { required: "Required Field" })}
             />
           </Grid>
-        </Flex>
+        </DateFlex>
 
-        <Flex gap="10px">
+        <DateFlex gap="15px">
           <Grid>
             <StyledLabel>{errors?.endTime?.message || "End Time"}</StyledLabel>
             <TimeInput
@@ -191,7 +221,7 @@ function SearchForm() {
               })}
             />
           </Grid>
-        </Flex>
+        </DateFlex>
         <SearchButton>Search</SearchButton>
       </ResponsiveFlex>
       <Line />

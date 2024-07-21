@@ -10,6 +10,21 @@ import Flex from "../../components/Flex";
 
 const StyledRecommendedCars = styled.section`
   margin-top: 100px;
+
+  @media (max-width: 992px) {
+    margin-top: 0;
+  }
+`;
+const ResponsiveFlex = styled(Flex)`
+  @media (max-width: 600px) {
+    justify-content: center;
+    gap: 50px;
+  }
+
+  @media (max-width: 1325px) {
+    justify-content: center;
+    gap: 50px;
+  }
 `;
 
 function RecomendedCars() {
@@ -25,11 +40,11 @@ function RecomendedCars() {
       <Heading as="h2">
         <Span>Recommended</Span> Cars
       </Heading>
-      <Flex>
+      <ResponsiveFlex>
         {data.map((car) => (
           <CarDetails key={car.id} car={car} />
         ))}
-      </Flex>
+      </ResponsiveFlex>
       <Line />
     </StyledRecommendedCars>
   );

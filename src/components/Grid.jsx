@@ -6,7 +6,7 @@ const Grid = styled.div`
   grid-template-rows: ${({ rows = "auto" }) => rows};
   gap: ${({ gap = "0" }) => gap};
   place-items: ${({ items = "center" }) => items};
-  height: 100%;
+  height: ${({ height = "auto" }) => height};
 `;
 
 export default Grid;

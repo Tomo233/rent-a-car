@@ -16,14 +16,16 @@ const StyledGetStarted = styled.div`
 
 const Road = styled.img`
   display: block;
-  width: 100%;
-  height: 800px;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -1;
+
+  @media (max-width: 768px) {
+    height: 450px;
+  }
 `;
 
 const Box = styled.div`
@@ -38,6 +40,12 @@ const ResponsiveHeading = styled(Heading)`
   @media (max-width: 992px) {
     font-size: 35px;
   }
+  @media (max-width: 600px) {
+    font-size: 25px;
+  }
+  @media (max-width: 320px) {
+    font-size: 20px;
+  }
 `;
 
 const ResponsiveParagraph = styled(Paragraph)`
@@ -46,11 +54,24 @@ const ResponsiveParagraph = styled(Paragraph)`
   }
   @media (max-width: 992px) {
     font-size: 16px;
-    max-width: 500px;
+    max-width: 600px;
+  }
+  @media (max-width: 768px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 500px) {
+    max-width: 220px;
   }
 `;
 
-const button = <Button>Get Started</Button>;
+const ResponsiveButton = styled(Button)`
+  @media (max-width: 768px) {
+    padding: 12px 35px;
+  }
+`;
+
+const button = <ResponsiveButton>Get Started</ResponsiveButton>;
 
 function GetStarted() {
   const { user } = useUser();

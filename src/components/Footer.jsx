@@ -14,6 +14,10 @@ const StyledFooter = styled.footer`
   margin-top: 200px;
   background-color: #171717;
   height: 300px;
+
+  @media (max-width: 992px) {
+    height: 300px;
+  }
 `;
 
 const StyledIcon = styled.div`
@@ -26,19 +30,36 @@ const P = styled.p`
   color: white;
 `;
 
-const AlignedHeading = styled(Heading)`
-  text-align: start;
+const ResponsiveGrid = styled(Grid)`
+  @media (max-width: 690px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ResponsiveFooterContent = styled.div`
+  p {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+`;
+
+const ResponsiveHeading = styled(Heading)`
+  @media (max-width: 690px) {
+    text-align: center;
+    margin-bottom: 10px;
+  }
 `;
 
 function Footer() {
   return (
     <StyledFooter>
       <Container>
-        <Grid columns="3">
-          <div>
-            <Flex justify="normal" gap="15px">
+        <ResponsiveGrid columns="3" height="100%" gap="15px">
+          <ResponsiveFooterContent>
+            <Flex justify="normal" gap="5px">
               <Logo />
-              <Heading as="h3" color="white">
+              <Heading as="h3" color="white" $notaligned={true}>
                 <Span>Car</Span> Rental
               </Heading>
             </Flex>
@@ -46,27 +67,27 @@ function Footer() {
               Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
               consectetur adiPisicing elit. Possimus, voluPtate.
             </P>
-          </div>
+          </ResponsiveFooterContent>
           <div>
-            <AlignedHeading as="h3" color="white">
-              Popular <Span>Rental Cars</Span>
-            </AlignedHeading>
+            <ResponsiveHeading as="h3" color="white" $notaligned={true}>
+              Popular <Span>Cars</Span>
+            </ResponsiveHeading>
             <P>Luxury Car Rental</P>
             <P>All Car/Sedan Sizes</P>
             <P>Electric Car Rental</P>
           </div>
-          <div>
-            <AlignedHeading as="h3" color="white">
+          <ResponsiveFooterContent>
+            <ResponsiveHeading as="h3" color="white" $notaligned={true}>
               Contact
-            </AlignedHeading>
+            </ResponsiveHeading>
             <P>Email: rental@gmail.com</P>
             <P>Telefon: +387 66 357 126</P>
             <StyledIcon as={InstagramIcon} fontSize="" />
             <StyledIcon as={LinkedInIcon} fontSize="" />
             <StyledIcon as={FacebookIcon} fontSize="" />
             <StyledIcon as={TwitterIcon} fontSize="" />
-          </div>
-        </Grid>
+          </ResponsiveFooterContent>
+        </ResponsiveGrid>
       </Container>
     </StyledFooter>
   );
