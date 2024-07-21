@@ -13,6 +13,9 @@ const Button = styled.button`
   @media (max-width: 600px) {
     padding: 15px 25px !important;
   }
+  @media (max-width: 320px) {
+    padding: 15px 3px !important;
+  }
 `;
 
 export default Button;

@@ -6,7 +6,7 @@ const Flex = styled.div`
   align-items: ${({ align = "center" }) => align};
   gap: ${({ gap = "0" }) => gap};
   flex-direction: ${({ direction = "row" }) => direction};
-  flex-wrap: wrap;
+  flex-wrap: ${({ wrap = "wrap" }) => wrap};
 `;
 
 export default Flex;
