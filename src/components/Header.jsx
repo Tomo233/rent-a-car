@@ -39,7 +39,7 @@ function Header() {
     <StyledHeader $ishomepage={isHomePage}>
       <Container>
         <Flex>
-          <Flex gap="20px">
+          <Flex $gap="20px">
             <Logo />
             <HeaderList />
           </Flex>

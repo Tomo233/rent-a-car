@@ -11,7 +11,7 @@ function MostAskedQuestions() {
       <Heading as="h2">
         Most Asked <Span>Question</Span>
       </Heading>
-      <Flex justify={"center"}>
+      <Flex $justify="center">
         <Cards />
       </Flex>
     </section>

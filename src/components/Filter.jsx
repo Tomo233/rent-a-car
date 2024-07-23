@@ -160,7 +160,7 @@ export default function Filter({ filters, sortOptions }) {
                 </StyledRangeItem>
               );
             })}
-            <Flex justify="center" onClick={() => setOpen(false)}>
+            <Flex $justify="center" onClick={() => setOpen(false)}>
               <CustomButton>Close</CustomButton>
             </Flex>
           </List>

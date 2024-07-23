@@ -10,7 +10,7 @@ const Car = styled.div`
   height: 330px;
 
   ${(props) =>
-    props.isRecommended
+    props.isrecommended
       ? css`
           @media (max-width: 1500px) {
             width: 350px;
@@ -53,11 +53,11 @@ const CarImage = styled.img`
   margin-bottom: 50px;
 `;
 
-function CarDetails({ car, children, isRecommended = false }) {
+function CarDetails({ car, children, isrecommended = false }) {
   const { image, name, horsepower, model, year, location } = car;
 
   return (
-    <Car isRecommended={isRecommended}>
+    <Car isrecommended={isrecommended}>
       <CarImage src={image} alt="" />
       <Flex>
         <div>

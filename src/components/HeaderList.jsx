@@ -11,9 +11,8 @@ const ListItem = styled(NavLink)`
 
 function HeaderList() {
   return (
-    <Flex gap="50px">
+    <Flex $gap="50px">
       <ListItem to="/aboutUs">About Us</ListItem>
-      {/* <ListItem to="cars">Cars</ListItem> */}
       <ListItem to="/bookings">Bookings</ListItem>
     </Flex>
   );

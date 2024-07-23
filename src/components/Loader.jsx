@@ -13,7 +13,7 @@ const StyledCircularProgress = styled(CircularProgress)`
 function Loader() {
   return (
     <StyledLoader>
-      <Flex justify="center">
+      <Flex $justify="center">
         <StyledCircularProgress />
       </Flex>
     </StyledLoader>

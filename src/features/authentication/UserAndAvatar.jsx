@@ -18,7 +18,7 @@ function UserAndAvatar() {
   const { userName, avatarUrl } = user.user_metadata;
 
   return (
-    <Flex gap="15px">
+    <Flex $gap="15px">
       <Link to="/user">
         <Flex>
           <User>{userName}</User>

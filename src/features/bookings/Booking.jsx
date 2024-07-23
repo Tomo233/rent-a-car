@@ -65,7 +65,7 @@ function Booking() {
 
   return (
     <StyledBooking>
-      <Grid gap="30px" columns="2">
+      <Grid $gap="30px" $columns="2">
         <div>
           <img src={image} alt={name} width="700px" />
           <Line />

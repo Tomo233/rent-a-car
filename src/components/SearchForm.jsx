@@ -142,8 +142,8 @@ function SearchForm() {
 
   return (
     <StyledForm onSubmit={handleSubmit(handleForm)}>
-      <ResponsiveFlex justify="space-around">
-        <Grid items="start">
+      <ResponsiveFlex $justify="space-around">
+        <Grid $items="start">
           <StyledLabel>{errors?.location?.message || "Location"}</StyledLabel>
           <FormControl>
             <InputLabel id="location-label">Location</InputLabel>
@@ -161,7 +161,7 @@ function SearchForm() {
           </FormControl>
         </Grid>
 
-        <DateFlex gap="10px">
+        <DateFlex $gap="10px">
           <Grid>
             <StyledLabel>
               {errors?.startDate?.message || "Start Date"}
@@ -190,7 +190,7 @@ function SearchForm() {
           </Grid>
         </DateFlex>
 
-        <DateFlex gap="15px">
+        <DateFlex $gap="15px">
           <Grid>
             <StyledLabel>{errors?.endTime?.message || "End Time"}</StyledLabel>
             <TimeInput

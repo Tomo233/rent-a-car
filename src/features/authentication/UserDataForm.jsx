@@ -109,9 +109,9 @@ function UserDataForm() {
   };
 
   return (
-    <ResponsiveFormFlex>
+    <ResponsiveFormFlex $justify="normal">
       <ChangeAvatar>
-        <ResponsiveAvatarFlex gap="10px" align="center" justify="normal">
+        <ResponsiveAvatarFlex $gap="10px" $align="center" $justify="normal">
           {avatarUrl ? (
             <img src={avatarUrl} height="125px" alt="" />
           ) : (
@@ -127,12 +127,12 @@ function UserDataForm() {
       </ChangeAvatar>
 
       <ChangeUserData>
-        <Flex gap="30px" direction="column" wrap="wrap">
+        <Flex $gap="30px" $direction="column" $wrap="wrap">
           <div style={{ width: "100%" }}>
             <UserDataHeading as="h3" $notaligned={true}>
               User Data
             </UserDataHeading>
-            <UserDataGrid columns={2} items="start">
+            <UserDataGrid columns={2} $items="start">
               <StyledInput
                 type="text"
                 placeholder="User Name"
@@ -155,16 +155,16 @@ function UserDataForm() {
           </div>
 
           <div>
-            <Grid items="normal">
+            <Grid $items="normal">
               <UserDataHeading as="h3" $notaligned={true}>
                 Change password
               </UserDataHeading>
               <UserDataGrid columns={2}>
-                <Grid gap="5px" items="start">
+                <Grid $gap="5px" $items="start">
                   <Label>Old Password</Label>
                   <StyledInput type="password" placeholder="********" />
                 </Grid>
-                <Grid gap="5px" items="start">
+                <Grid $gap="5px" $items="start">
                   <Label>New Password</Label>
                   <StyledInput type="password" placeholder="********" />
                 </Grid>
@@ -172,7 +172,7 @@ function UserDataForm() {
             </Grid>
           </div>
 
-          <LogoutButtonFlex gap="10px" justify="normal">
+          <LogoutButtonFlex $gap="10px" $justify="normal">
             <Button onClick={logout}>Logout</Button>
           </LogoutButtonFlex>
         </Flex>

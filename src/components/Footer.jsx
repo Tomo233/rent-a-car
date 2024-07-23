@@ -55,9 +55,9 @@ function Footer() {
   return (
     <StyledFooter>
       <Container>
-        <ResponsiveGrid columns="3" height="100%" gap="15px">
+        <ResponsiveGrid $columns="3" $height="100%" $gap="15px">
           <ResponsiveFooterContent>
-            <Flex justify="normal" gap="5px">
+            <Flex $justify="normal" $gap="5px">
               <Logo />
               <Heading as="h3" color="white" $notaligned={true}>
                 <Span>Car</Span> Rental

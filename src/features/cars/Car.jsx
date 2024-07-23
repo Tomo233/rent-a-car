@@ -104,7 +104,7 @@ function Car() {
 
   return (
     <StyledCar>
-      <ResponsiveFlex gap="30px" justify="normal">
+      <ResponsiveFlex $gap="30px" $justify="normal">
         <div>
           <CarImage src={image} alt={name} />
         </div>
@@ -119,7 +119,7 @@ function Car() {
               <ListItem>Lokacija : {location}</ListItem>
 
               <ListItem>
-                <Flex gap="30px" justify="normal">
+                <Flex $gap="30px" $justify="normal">
                   <span>Price :</span>
 
                   {isReserved ? (
@@ -136,8 +136,8 @@ function Car() {
                   ) : (
                     <BasicModal button={button}>
                       <ModalContent>
-                        <Flex justify="center">
-                          <Grid gap="15px">
+                        <Flex $justify="center">
+                          <Grid $gap="15px">
                             <Heading as="h3">
                               {name} {model}
                             </Heading>

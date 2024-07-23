@@ -17,7 +17,7 @@ function Cars() {
 
   return (
     <StyledCars>
-      <ResponsiveGrid gap="50px" columns="3">
+      <ResponsiveGrid $gap="50px" $columns="3">
         {cars?.map((car) => (
           <CarItem car={car} key={car.id} />
         ))}

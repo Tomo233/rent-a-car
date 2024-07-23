@@ -39,10 +39,7 @@ const GoogleSpan = styled.span`
   margin-right: 5px;
 `;
 
-const GoogleFlex = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const GoogleFlex = styled(Flex)`
   width: 40px;
   height: 45px;
   background-color: white;
@@ -103,7 +100,7 @@ function LoginForm({ handleClose }) {
   if (isSignUpPage) {
     return (
       <StyledForm onSubmit={handleSubmit(handleForm)}>
-        <Grid gap="15px">
+        <Grid $gap="15px">
           <Heading as="h2">Sign Up</Heading>
           <ErrorLabel>{errors?.userName?.message || ""}</ErrorLabel>
           <StyledInput
@@ -173,7 +170,7 @@ function LoginForm({ handleClose }) {
             maxLength={30}
             disabled={isSigning}
           />
-          <Flex gap="5px">
+          <Flex $gap="5px">
             <p>Do you have an account?</p>
             <ToggleLink
               onClick={() => {
@@ -195,7 +192,7 @@ function LoginForm({ handleClose }) {
 
   return (
     <StyledForm onSubmit={handleSubmit(handleForm)}>
-      <Grid gap="15px">
+      <Grid $gap="15px">
         <Heading as="h2">Login</Heading>
         <ErrorLabel>{errors?.email?.message || ""}</ErrorLabel>
         <StyledInput
@@ -219,7 +216,7 @@ function LoginForm({ handleClose }) {
         />
         <Span>Forgot password?</Span>
         <Button>Login</Button>
-        <Flex gap="5px">
+        <Flex $gap="5px">
           <p>Do not have an account?</p>
           <ToggleLink
             onClick={() => {
@@ -233,8 +230,8 @@ function LoginForm({ handleClose }) {
         </Flex>
         <p>Or</p>
         <GoogleButton disabled={isLoading}>
-          <Flex>
-            <GoogleFlex>
+          <Flex $gap="10px">
+            <GoogleFlex $justify="center">
               <img src="./google-logo.jpg" alt="" height="25px" />
             </GoogleFlex>
             <GoogleSpan>Login With Google</GoogleSpan>
