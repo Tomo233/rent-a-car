@@ -7,7 +7,7 @@ import Logo from "./Logo";
 import BasicModal from "./BasicModal";
 import Container from "./Container";
 import LoginForm from "../features/authentication/LoginForm";
-import UserAndAvatar from "../features/authentication/UserAndAvatar";
+import ProfileMenu from "../features/authentication/ProfileMenu";
 import Flex from "./Flex";
 import { useUser } from "../features/authentication/useUser";
 
@@ -48,7 +48,9 @@ function Header() {
               <LoginForm />
             </BasicModal>
           ) : (
-            <UserAndAvatar />
+            <>
+              <ProfileMenu />
+            </>
           )}
         </Flex>
       </Container>

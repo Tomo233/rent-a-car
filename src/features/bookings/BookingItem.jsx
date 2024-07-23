@@ -78,7 +78,12 @@ function BookingItem({ car, booking }) {
       <Flex $justify="center" style={{ marginTop: "15px" }}>
         <BasicModal button={button} closeButton={closeButton}>
           <ModalContent>
-            <Flex $gap="30px" $justify="center" $direction="column">
+            <Flex
+              $gap="30px"
+              $justify="center"
+              $direction="column"
+              $height="100%"
+            >
               <Heading as="h3">Cancel Booking</Heading>
               <p>Are you sure you want to cancel this booking?</p>
               <Flex>

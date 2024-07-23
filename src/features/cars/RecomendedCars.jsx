@@ -42,7 +42,7 @@ function RecomendedCars() {
       </Heading>
       <ResponsiveFlex>
         {data.map((car) => (
-          <CarDetails key={car.id} car={car} isrecommended="true" />
+          <CarDetails key={car.id} car={car} $isRecommended="true" />
         ))}
       </ResponsiveFlex>
       <Line />

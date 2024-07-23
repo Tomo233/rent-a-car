@@ -7,6 +7,7 @@ const Flex = styled.div`
   gap: ${({ $gap = "0" }) => $gap};
   flex-direction: ${({ $direction = "row" }) => $direction};
   flex-wrap: ${({ $wrap = "nowrap" }) => $wrap};
+  height: ${({ $height = "auto" }) => $height};
 `;
 
 export default Flex;
