@@ -13,12 +13,18 @@ const P = styled.p`
   margin: 25px 0;
 `;
 
+const StyledHeading = styled(Heading)`
+  @media (max-width: 400px) {
+    font-size: 50px;
+  }
+`;
+
 function Fallback({ error, resetErrorBoundary }) {
   return (
     <>
       <GlobalStyles />
       <StyledErrorBoundary>
-        <Heading as="h1">Something went wrong</Heading>
+        <StyledHeading as="h1">Something went wrong</StyledHeading>
         <P>{error.message}</P>
         <Button onClick={resetErrorBoundary}>Try again</Button>
       </StyledErrorBoundary>

@@ -57,7 +57,7 @@ function CarDetails({ car, children, isRecommended = false }) {
   const { image, name, horsepower, model, year, location } = car;
 
   return (
-    <Car className="e" isRecommended={isRecommended}>
+    <Car isRecommended={isRecommended}>
       <CarImage src={image} alt="" />
       <Flex>
         <div>
