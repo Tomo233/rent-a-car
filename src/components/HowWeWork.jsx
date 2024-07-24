@@ -19,6 +19,7 @@ const Item = styled.div`
 const ResponsiveFlex = styled(Flex)`
   @media (max-width: 992px) {
     justify-content: center;
+    flex-wrap: wrap;
   }
 `;
 

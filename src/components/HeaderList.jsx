@@ -2,6 +2,12 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Flex from "./Flex";
 
+const StyledHeaderList = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 const ListItem = styled(NavLink)`
   color: white;
   font-size: 16px;
@@ -11,10 +17,12 @@ const ListItem = styled(NavLink)`
 
 function HeaderList() {
   return (
-    <Flex $gap="50px">
-      <ListItem to="/aboutUs">About Us</ListItem>
-      <ListItem to="/bookings">Bookings</ListItem>
-    </Flex>
+    <StyledHeaderList>
+      <Flex $gap="25px">
+        <ListItem to="/aboutUs">About Us</ListItem>
+        <ListItem to="/bookings">Bookings</ListItem>
+      </Flex>
+    </StyledHeaderList>
   );
 }
 

@@ -10,6 +10,7 @@ import LoginForm from "../features/authentication/LoginForm";
 import ProfileMenu from "../features/authentication/ProfileMenu";
 import Flex from "./Flex";
 import { useUser } from "../features/authentication/useUser";
+import Menu from "./Menu";
 
 const StyledHeader = styled.header`
   padding-top: 15px;
@@ -49,7 +50,8 @@ function Header() {
             </BasicModal>
           ) : (
             <>
-              <ProfileMenu />
+              <ProfileMenu $inHeader="true" />
+              <Menu />
             </>
           )}
         </Flex>
